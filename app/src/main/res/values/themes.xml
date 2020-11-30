@@ -2,9 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.Spendy" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorPrimary">@color/fifthMain</item>
+        <item name="colorPrimaryDark">@color/sixthMain</item>
         <item name="colorAccent">@color/primaryTextColor</item>
+
+
+
         <!-- Customize your theme here. -->
 
         <item name="windowActionBar">false</item>

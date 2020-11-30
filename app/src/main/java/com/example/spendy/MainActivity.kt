@@ -1,19 +1,22 @@
 package com.example.spendy
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
 
-import android.widget.Adapter
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.utils.ColorTemplate
 
-import kotlinx.android.synthetic.main.activity_homepage.*
-import kotlin.math.E
+
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_homepage.*
+import kotlinx.android.synthetic.main.nav_header.view.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,21 +32,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_homepage)
-
-        studentList = ArrayList()
-        yearsList = ArrayList()
+        setContentView(R.layout.activity_main)
 
 
-        setPie()
-
-        setActivitiesAdapter()
+       // setActivitiesAdapter()
 
         setToolbar()
+        setDrawer()
 
 
-
-
+        supportFragmentManager.beginTransaction().add(R.id.fragmentHolder,FragmentHomepage()).commit()
+        //setActivitiesAdapter()
+        setNavigationHeader()
+        onPressedMenuItems()
 
 
 
@@ -51,17 +52,84 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //Set Toolbar
+    //Back Button Pressed
+    override fun onBackPressed() {
 
+
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+
+            drawer.closeDrawer(GravityCompat.START)
+        }
+        else{
+
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_HOME)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        }
+    }
+
+    //OnPressed Menu Items
+    fun onPressedMenuItems(){
+
+        navigationView.setNavigationItemSelectedListener {menuItem ->
+
+            if(menuItem.itemId ==R.id.action_income){
+
+                Toast.makeText(applicationContext,"Income",Toast.LENGTH_SHORT).show()
+            }
+            if(menuItem.itemId ==R.id.action_expense){
+
+                Toast.makeText(applicationContext,"Expense",Toast.LENGTH_SHORT).show()
+
+            }
+            if(menuItem.itemId ==R.id.action_settings){
+
+                Toast.makeText(applicationContext,"Settings",Toast.LENGTH_SHORT).show()
+            }
+
+
+            drawer.closeDrawer(GravityCompat.START)
+
+
+            true
+        }
+
+    }
+
+    fun setNavItemColor(){
+
+
+    }
+    //Set Navigation Header
+    fun setNavigationHeader(){
+
+        val header=navigationView.inflateHeaderView(R.layout.nav_header)
+        header.tvNavHeader.text="Spendy"
+    }
+    //Set Drawer
+    fun setDrawer(){
+
+        val toggle = ActionBarDrawerToggle(this,drawer,toolbar,0,0)
+        drawer.addDrawerListener(toggle)
+
+        toggle.syncState()
+
+    }
+
+
+    //Set Toolbar
     fun setToolbar(){
 
         toolbar.title="Homepage"
         setSupportActionBar(toolbar)
     }
+
+
     //Filling RV & Driver/Test Code
     fun setActivitiesAdapter(){
-        rvActivity.setHasFixedSize(true)
-        rvActivity.layoutManager = LinearLayoutManager(this)
+        rvHomepage.setHasFixedSize(true)
+        rvHomepage.layoutManager = LinearLayoutManager(this)
 
         val act1 = AccountActivity(1,211)
         val act2 = AccountActivity(1,111)
@@ -81,36 +149,10 @@ class MainActivity : AppCompatActivity() {
 
         adapter = HomePageRVAdapter(this,activitiesList)
 
-        rvActivity.adapter=adapter
+        rvHomepage.adapter=adapter
 
     }
 
-    //Setting Pie Chart
-    fun setPie(){
-        val pieDataSet = PieDataSet(getList(),"students")
-        val pieData =  PieData(getYears(),pieDataSet)
-        //pieDataSet.setColor(Color.GREEN)
-        pieDataSet.setColors(ColorTemplate.JOYFUL_COLORS)
-        pieChart.animateXY(5000,5000)
-        pieChart.data =pieData
 
-    }
-    //Entry For Pie Chart
-    fun getList(): ArrayList<Entry> {
-
-        studentList.add(Entry(100f,0))
-        studentList.add(Entry(60f,1))
-        studentList.add(Entry(160f,2))
-        return studentList
-    }
-    //Entry For Pie Chart
-    fun getYears():ArrayList<String>{
-
-        yearsList.add("2000")
-        yearsList.add("2005")
-        yearsList.add("2012")
-
-        return yearsList
-    }
 
 }

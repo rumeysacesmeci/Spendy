@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         dbcopy()
 
         val aa=DBHelper(this)
+
         //UserDao().insert(aa,1,"Resul","Ekinci","resulekinci10@gmail.com",123456)
 
         var liste=ArrayList<User>()

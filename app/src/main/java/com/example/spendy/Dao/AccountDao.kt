@@ -31,7 +31,7 @@ class AccountDao {
                     cursor.getString(cursor.getColumnIndex("Name")),
                     cursor.getString(cursor.getColumnIndex("Surname")),
                     cursor.getString(cursor.getColumnIndex("EMail")),
-                    cursor.getInt(cursor.getColumnIndex("Password"))
+                    cursor.getString(cursor.getColumnIndex("Password"))
             )
 
             val language= Language(cursor.getInt(cursor.getColumnIndex("LanguageId")),

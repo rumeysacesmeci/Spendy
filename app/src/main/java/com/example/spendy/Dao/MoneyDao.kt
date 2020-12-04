@@ -30,7 +30,7 @@ class MoneyDao {
                     cursor.getString(cursor.getColumnIndex("Name")),
                     cursor.getString(cursor.getColumnIndex("Surname")),
                     cursor.getString(cursor.getColumnIndex("EMail")),
-                    cursor.getInt(cursor.getColumnIndex("Password"))
+                    cursor.getString(cursor.getColumnIndex("Password"))
             )
             val money= Money(cursor.getInt(cursor.getColumnIndex("MoneyId")),
                     cursor.getInt(cursor.getColumnIndex("Income")),

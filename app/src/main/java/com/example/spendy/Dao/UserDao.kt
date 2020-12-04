@@ -38,7 +38,7 @@ class UserDao {
                         cursor.getString(cursor.getColumnIndex("Name")),
                         cursor.getString(cursor.getColumnIndex("Surname")),
                         cursor.getString(cursor.getColumnIndex("EMail")),
-                        cursor.getInt(cursor.getColumnIndex("Password"))
+                        cursor.getString(cursor.getColumnIndex("Password"))
                         )
             userlist.add(user)
         }

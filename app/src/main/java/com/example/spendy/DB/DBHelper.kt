@@ -52,7 +52,7 @@ class DBHelper (context:Context):SQLiteOpenHelper(context,"spendy.db",null,1){
                 "\tPRIMARY KEY(\"AccountId\" AUTOINCREMENT)\n" +
                 ")"
                 )
-
+// fdsfasdf
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {

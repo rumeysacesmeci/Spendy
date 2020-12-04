@@ -48,7 +48,7 @@ class DBHelper (context:Context):SQLiteOpenHelper(context,"spendy.db",null,1){
                 "\t\"Name\"\tTEXT NOT NULL,\n" +
                 "\t\"Surname\"\tTEXT NOT NULL,\n" +
                 "\t\"EMail\"\tTEXT NOT NULL,\n" +
-                "\t\"Password\"\tINTEGER NOT NULL,\n" +
+                "\t\"Password\"\tTEXT NOT NULL,\n" +
                 "\tPRIMARY KEY(\"AccountId\" AUTOINCREMENT)\n" +
                 ")"
                 )

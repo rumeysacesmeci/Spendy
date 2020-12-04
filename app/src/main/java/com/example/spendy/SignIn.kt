@@ -15,10 +15,9 @@ class SignIn : AppCompatActivity() {
 
         dbcopy()
         val email = txtEmail.text
-        val password = txtPassword
+        val password = txtPassword.text
         val nvgToSignUp = Intent(this@SignIn,SignUp::class.java )
-        //val aa=DBHelper(this)
-
+        val signUp = tvSignUp
         //UserDao().insert(aa,1,"Resul","Ekinci","resulekinci10@gmail.com",123456)
 
         var liste=ArrayList<User>()
@@ -28,13 +27,17 @@ class SignIn : AppCompatActivity() {
         val signIn = btnSignIn
         signIn.setOnClickListener{
             for (user in liste){
-                if(user.EMail == email.toString() ){
+                if(user.EMail == email.toString() && user.Password == password.toString()){
                     Toast.makeText(applicationContext,"Giriş başarılı",Toast.LENGTH_LONG).show()
-                    startActivity(nvgToSignUp)
+                    //startActivity(nvgToSignUp)
                 }else{
-                    Toast.makeText(applicationContext,"Kullanıcı bulunamadı.",Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext,"Kullanıcı adı ya da şifre yanlış",Toast.LENGTH_LONG).show()
                 }
             }
+        }
+
+        signUp.setOnClickListener{
+            startActivity(nvgToSignUp)
         }
     }
 

@@ -23,6 +23,7 @@ class UserDao {
     fun delete(vt: DBHelper, AccountId:Int){
         val db=vt.writableDatabase
         db.delete("user","AccountId=?", arrayOf(AccountId.toString()))
+        db.close()
     }
 
 

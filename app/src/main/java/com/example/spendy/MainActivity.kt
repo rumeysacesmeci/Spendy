@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.example.spendy.Dao.UserDao
 import com.info.sqlitekullanimihazirveritabani.DatabaseCopyHelper
-import kotlinx.android.synthetic.main.activity_main.*
+//import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         var liste=ArrayList<User>()
         val vt=DBHelper(this)
         liste= UserDao().Users(vt)
-        deneme.text=liste[0].Name
         Log.e("aaa",liste.size.toString())
     }
 

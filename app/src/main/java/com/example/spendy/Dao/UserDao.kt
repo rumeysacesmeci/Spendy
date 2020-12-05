@@ -6,15 +6,15 @@ import com.example.spendy.User
 
 class UserDao {
     //User tablosundaki işlemler için
-    fun insert(vt: DBHelper, AccountId:Int, Name:String, Surname:String, EMail:String, Password:Int){
+    fun insert(vt: DBHelper,user:User){
         val db=vt.writableDatabase
         val values=ContentValues()
 
-        values.put("AccountId",AccountId)
-        values.put("Name",Name)
-        values.put("Surname",Surname)
-        values.put("EMail",EMail)
-        values.put("Password",Password)
+
+        values.put("Name",user.Name)
+        values.put("Surname",user.Surname)
+        values.put("EMail",user.EMail)
+        values.put("Password",user.Password)
 
         db.insertOrThrow("user",null,values)
         db.close()
@@ -27,7 +27,7 @@ class UserDao {
     }
 
 
-    fun Users(vt: DBHelper):ArrayList<User>{
+    fun getUsers(vt: DBHelper):ArrayList<User>{
 
         val userlist=ArrayList<User>()
         val db=vt.writableDatabase

@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Spendy</string>
+
+
+
+
+
+
+    //Sign Up
+    <string name="txtName">Name</string>
+    <string name="txtSignUp">Sign Up</string>
+    <string name="txtSurname">Surname</string>
+    <string name="txtEMail">E-Mail</string>
+    <string name="txtPassword">Password</string>
+    <string name="txtPasswordConfirm">Confirm Password</string>
+
+    <string name="btnSignUp">Sign Up</string>
+
+
 </resources>

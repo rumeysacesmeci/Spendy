@@ -5,9 +5,12 @@ import com.example.spendy.*
 import com.example.spendy.DB.Account
 
 class AccountDao {
+
     //Account tablosundaki işlemler için
     fun insert(vt: DBHelper, AccountId:Int, AccountType:String, Language:String){
+
         val db=vt.writableDatabase
+
         val values=ContentValues()
         values.put("AccountId",AccountId)
         values.put("AccountType",AccountType)

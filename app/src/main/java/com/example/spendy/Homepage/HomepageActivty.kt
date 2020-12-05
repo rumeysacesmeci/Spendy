@@ -1,4 +1,4 @@
-package com.example.spendy
+package com.example.spendy.Homepage
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import com.example.spendy.R
 import com.github.mikephil.charting.data.Entry
 import kotlinx.android.synthetic.main.activity_homepage.*
 import kotlinx.android.synthetic.main.nav_header.view.*
@@ -32,7 +33,7 @@ class HomepageActivity : AppCompatActivity() {
         setDrawer()
 
 
-        supportFragmentManager.beginTransaction().add(R.id.fragmentHolder,FragmentHomepage()).commit()
+        supportFragmentManager.beginTransaction().add(R.id.fragmentHolder, FragmentHomepage()).commit()
         //setActivitiesAdapter()
         setNavigationHeader()
         onPressedMenuItems()
@@ -63,16 +64,16 @@ class HomepageActivity : AppCompatActivity() {
 
         navigationView.setNavigationItemSelectedListener {menuItem ->
 
-            if(menuItem.itemId ==R.id.action_income){
+            if(menuItem.itemId == R.id.action_income){
 
                 Toast.makeText(applicationContext,"Income", Toast.LENGTH_SHORT).show()
             }
-            if(menuItem.itemId ==R.id.action_expense){
+            if(menuItem.itemId == R.id.action_expense){
 
                 Toast.makeText(applicationContext,"Expense", Toast.LENGTH_SHORT).show()
 
             }
-            if(menuItem.itemId ==R.id.action_settings){
+            if(menuItem.itemId == R.id.action_settings){
 
                 Toast.makeText(applicationContext,"Settings", Toast.LENGTH_SHORT).show()
             }

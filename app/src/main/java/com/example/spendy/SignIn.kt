@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.spendy.Dao.UserDao
+import com.example.spendy.Homepage.HomepageActivity
+import com.example.spendy.SignUp.ActivitySignUp
 import com.info.sqlitekullanimihazirveritabani.DatabaseCopyHelper
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
@@ -16,14 +18,14 @@ class SignIn : AppCompatActivity() {
         dbcopy()
         val email = txtEmail.text
         val password = txtPassword.text
-        val nvgToSignUp = Intent(this@SignIn,SignUp::class.java )
+        val nvgToSignUp = Intent(this@SignIn,ActivitySignUp::class.java )
         val nvgToHomePage = Intent(this@SignIn, HomepageActivity::class.java)
         val signUp = tvSignUp
         //UserDao().insert(aa,1,"Resul","Ekinci","resulekinci10@gmail.com",123456)
 
-        var liste=ArrayList<User>()
+        var liste: ArrayList<User>
         val vt=DBHelper(this)
-        liste= UserDao().Users(vt)
+        liste= UserDao().getUsers(vt)
 
         val signIn = btnSignIn
         signIn.setOnClickListener{

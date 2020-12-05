@@ -1,13 +1,9 @@
 package com.example.spendy.SignUp
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.os.UserHandle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.spendy.DBHelper
 import com.example.spendy.Dao.UserDao
-import com.example.spendy.Homepage.FragmentHomepage
 import com.example.spendy.R
 import com.example.spendy.User
 import com.info.sqlitekullanimihazirveritabani.DatabaseCopyHelper
@@ -15,8 +11,6 @@ import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
 class ActivitySignUp : AppCompatActivity(){
-
-
 
     //Initiliaze
     private val userDao = UserDao()
@@ -29,34 +23,17 @@ class ActivitySignUp : AppCompatActivity(){
         //Copy Db
         dbCopy()
 
-
-        //Login
-        logIn()
-
+        //SignUp
+        signUp()
 
     }
 
-
-
-    //Log In
-    fun logIn(){
-
+    //Sign Up
+    fun signUp(){
 
         btnLogin.setOnClickListener {
 
-
             userDao.insert(dbHelper,getSignUpValues())
-
-            var ulist =ArrayList<User>()
-
-            ulist = userDao.getUsers(dbHelper)
-
-            ulist.forEach {
-
-                Log.e("USER", it.Name.toString())
-            }
-
-
 
         }
     }
@@ -91,7 +68,6 @@ class ActivitySignUp : AppCompatActivity(){
         }catch(e:Exception){
             e.printStackTrace()
         }
-
 
     }
 

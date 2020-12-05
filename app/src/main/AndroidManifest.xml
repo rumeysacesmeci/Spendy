@@ -11,17 +11,14 @@
         android:theme="@style/Theme.Spendy">
         <activity android:name=".LanguageSettings"/>
         <activity android:name=".Statistics" />
-        <activity android:name=".SignUp" />
-        <activity android:name=".HomepageActivity"/>
+        <activity android:name=".Homepage.HomepageActivity" />
+        <activity android:name=".SignUp.ActivitySignUp"/>
         <activity android:name=".SignIn" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-
     </application>
 
 </manifest>

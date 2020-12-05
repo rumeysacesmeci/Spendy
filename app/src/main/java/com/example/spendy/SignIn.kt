@@ -2,10 +2,10 @@ package com.example.spendy
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.spendy.Dao.UserDao
 import com.info.sqlitekullanimihazirveritabani.DatabaseCopyHelper
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class SignIn : AppCompatActivity() {
@@ -17,6 +17,7 @@ class SignIn : AppCompatActivity() {
         val email = txtEmail.text
         val password = txtPassword.text
         val nvgToSignUp = Intent(this@SignIn,SignUp::class.java )
+        val nvgToHomePage = Intent(this@SignIn, HomepageActivity::class.java)
         val signUp = tvSignUp
         //UserDao().insert(aa,1,"Resul","Ekinci","resulekinci10@gmail.com",123456)
 
@@ -29,9 +30,7 @@ class SignIn : AppCompatActivity() {
             for (user in liste){
                 if(user.EMail == email.toString() && user.Password == password.toString()){
                     Toast.makeText(applicationContext,"Giriş başarılı",Toast.LENGTH_LONG).show()
-                    //startActivity(nvgToSignUp)
-                }else{
-                    Toast.makeText(applicationContext,"Kullanıcı adı ya da şifre yanlış",Toast.LENGTH_LONG).show()
+                    startActivity(nvgToHomePage)
                 }
             }
         }

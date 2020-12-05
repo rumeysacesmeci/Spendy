@@ -5,6 +5,7 @@ import com.example.spendy.AccountType
 import com.example.spendy.DBHelper
 
 class AccountTypeDao {
+
     fun insert(vt: DBHelper, AccountId:Int, AccountType:String){
         val db=vt.writableDatabase
         val values=ContentValues()
@@ -14,6 +15,7 @@ class AccountTypeDao {
         db.insertOrThrow("accounttype",null,values)
         db.close()
     }
+
     fun select(vt: DBHelper):ArrayList<AccountType>{
         val types=ArrayList<AccountType>()
         val db=vt.writableDatabase

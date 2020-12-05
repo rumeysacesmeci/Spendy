@@ -1,4 +1,4 @@
-package com.example.spendy
+package com.example.spendy.Homepage
 
 import android.content.Context
 import android.graphics.Color
@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-
+import com.example.spendy.R
 
 
 //Adapter for RecyclerView
@@ -64,6 +64,7 @@ class HomePageRVAdapter(private val mContext: Context, private val activitiesLis
             holder.iv.setBackgroundResource(R.drawable.up)
 
             holder.cv.setCardBackgroundColor(Color.rgb(193, 205, 153))
+
         }
         if(type==1) {
 

@@ -1,4 +1,4 @@
-package com.example.spendy
+package com.example.spendy.Homepage
 
 import android.graphics.Color
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.spendy.R
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -87,12 +88,12 @@ class FragmentHomepage : Fragment() {
         rvHomepage.setHasFixedSize(true)
         rvHomepage.layoutManager = LinearLayoutManager(requireContext())
 
-        val act1 = AccountActivity(1,211)
-        val act2 = AccountActivity(1,111)
-        val act3 = AccountActivity(0,241)
-        val act4 = AccountActivity(0,211)
-        val act5= AccountActivity(1,111)
-        val act6= AccountActivity(0,111)
+        val act1 = AccountActivity(1, 211)
+        val act2 = AccountActivity(1, 111)
+        val act3 = AccountActivity(0, 241)
+        val act4 = AccountActivity(0, 211)
+        val act5= AccountActivity(1, 111)
+        val act6= AccountActivity(0, 111)
 
         activitiesList = ArrayList<AccountActivity>()
 
@@ -105,7 +106,7 @@ class FragmentHomepage : Fragment() {
 
 
 
-        adapter = HomePageRVAdapter(requireContext(),activitiesList)
+        adapter = HomePageRVAdapter(requireContext(), activitiesList)
 
         rvHomepage.adapter=adapter
 

@@ -1,4 +1,4 @@
-package com.example.spendy.Dao
+package com.example.spendy.DatabaseOperations.DatabaseAcces
 
 import android.content.ContentValues
 import com.example.spendy.AccountType
@@ -6,16 +6,19 @@ import com.example.spendy.DBHelper
 
 class AccountTypeDao {
 
-    fun insert(vt: DBHelper, AccountId:Int, AccountType:String){
+
+    //Insert
+    fun insert(vt: DBHelper, accountType:AccountType){
         val db=vt.writableDatabase
         val values=ContentValues()
-        values.put("AccountId",AccountId)
-        values.put("AccountType",AccountType)
+        values.put("AccountId",accountType.AccountId.toString())
+        values.put("AccountType",accountType.AccountType.toString())
 
         db.insertOrThrow("accounttype",null,values)
         db.close()
     }
 
+    //Select
     fun select(vt: DBHelper):ArrayList<AccountType>{
         val types=ArrayList<AccountType>()
         val db=vt.writableDatabase

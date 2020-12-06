@@ -1,4 +1,4 @@
-package com.example.spendy.Dao
+package com.example.spendy.DatabaseOperations.DatabaseAcces
 
 import android.content.ContentValues
 import com.example.spendy.DBHelper
@@ -6,6 +6,8 @@ import com.example.spendy.User
 
 class UserDao {
     //User tablosundaki işlemler için
+
+    //Insert
     fun insert(vt: DBHelper,user:User){
         val db=vt.writableDatabase
         val values=ContentValues()
@@ -20,13 +22,17 @@ class UserDao {
         db.close()
     }
 
+
+    //Delete
     fun delete(vt: DBHelper, AccountId:Int){
         val db=vt.writableDatabase
         db.delete("user","AccountId=?", arrayOf(AccountId.toString()))
         db.close()
+
+
     }
 
-
+    //Get Users
     fun getUsers(vt: DBHelper):ArrayList<User>{
 
         val userlist=ArrayList<User>()
@@ -44,4 +50,16 @@ class UserDao {
         }
         return userlist
     }
+
+    //Get User Id
+    fun getUserID(dbHelper:DBHelper,email:String):Int{
+
+        val db=dbHelper.writableDatabase
+
+        val cursor=db.rawQuery("Select AccountId From user Where Email= $email ",null)
+
+
+        return cursor.getInt(cursor.getColumnIndex("AccountId"))
+    }
+
 }

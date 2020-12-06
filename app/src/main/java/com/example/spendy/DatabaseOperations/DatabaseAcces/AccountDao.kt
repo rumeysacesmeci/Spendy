@@ -1,27 +1,33 @@
-package com.example.spendy.Dao
+package com.example.spendy.DatabaseOperations.DatabaseAcces
 
 import android.content.ContentValues
 import com.example.spendy.*
-import com.example.spendy.DB.Account
+import com.example.spendy.DatabaseOperations.DatabaseEntitates.Account
 
 class AccountDao {
 
     //Account tablosundaki işlemler için
-    fun insert(vt: DBHelper, AccountId:Int, AccountType:String, Language:String){
+
+    //Insert
+    fun insert(vt: DBHelper, account:Account){
 
         val db=vt.writableDatabase
 
         val values=ContentValues()
-        values.put("AccountId",AccountId)
-        values.put("AccountType",AccountType)
-        values.put("Language",Language)
+        values.put("AccountId",account.AccountId.toString())//?
+        values.put("AccountType",account.AccountType.toString())
+        values.put("Language",account.Language.toString())
 
         db.insertOrThrow("account",null,values)
         db.close()
     }
+
+    //Select
     fun select(vt: DBHelper, AccountId: Int):ArrayList<Account>{
 
-        val AccountList=ArrayList<Account>()
+
+
+        val accountList=ArrayList<Account>()
         val db=vt.writableDatabase
 
         val cursor=db.rawQuery("Select * From user,account,language,accounttype " +
@@ -45,14 +51,18 @@ class AccountDao {
             cursor.getString(cursor.getColumnIndex("AccountTye"))
             )
 
-            val account= Account(user,type,language)
+            val account= Account(user, type, language)
 
-            AccountList.add(account)
+            accountList.add(account)
         }
 
 
 
-        return AccountList
+        return accountList
 
     }
+
+
+
+
 }

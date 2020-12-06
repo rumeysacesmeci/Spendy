@@ -1,16 +1,16 @@
-package com.example.spendy.Dao
+package com.example.spendy.DatabaseOperations.DatabaseAcces
 
 import android.content.ContentValues
 import com.example.spendy.DBHelper
 import com.example.spendy.Language
 
 class LanguageDao {
-    fun insert(vt: DBHelper, LanguageId:Int, Language:String){
+    fun insert(vt: DBHelper,language:Language){
 
         val db=vt.writableDatabase
         val values=ContentValues()
-        values.put("LanguageId",LanguageId)
-        values.put("Language",Language)
+        values.put("LanguageId",language.LanguageID)
+        values.put("Language",language.Language.toString())
 
         db.insertOrThrow("language",null,values)
         db.close()

@@ -1,14 +1,12 @@
 package com.example.spendy.SignUp
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.os.UserHandle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.spendy.DBHelper
-import com.example.spendy.Dao.UserDao
-import com.example.spendy.Homepage.FragmentHomepage
+import com.example.spendy.DatabaseOperations.DatabaseAcces.UserDao
 import com.example.spendy.R
+import com.example.spendy.Repository.Repository
 import com.example.spendy.User
 import com.info.sqlitekullanimihazirveritabani.DatabaseCopyHelper
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -19,8 +17,8 @@ class ActivitySignUp : AppCompatActivity(){
 
 
     //Initiliaze
-    private val userDao = UserDao()
-    private val dbHelper = DBHelper(this)
+
+    private val repo = Repository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,30 +31,19 @@ class ActivitySignUp : AppCompatActivity(){
         //Login
         logIn()
 
-
     }
-
 
 
     //Log In
     fun logIn(){
 
 
+
         btnLogin.setOnClickListener {
 
+            repo.addUser(this,getSignUpValues())
 
-            userDao.insert(dbHelper,getSignUpValues())
-
-            var ulist =ArrayList<User>()
-
-            ulist = userDao.getUsers(dbHelper)
-
-            ulist.forEach {
-
-                Log.e("USER", it.Name.toString())
-            }
-
-
+            val list = repo.getAccountType(this)
 
         }
     }

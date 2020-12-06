@@ -1,4 +1,4 @@
-package com.example.spendy.Dao
+package com.example.spendy.DatabaseOperations.DatabaseAcces
 
 import android.content.ContentValues
 import com.example.spendy.DBHelper
@@ -6,15 +6,15 @@ import com.example.spendy.Money
 import com.example.spendy.User
 
 class MoneyDao {
-    fun insert(vt: DBHelper, MoneyId:Int, AccountId:Int, Income:Int, Expense :Int, Goal:Int){
+    fun insert(vt: DBHelper, money:Money){
         val db=vt.writableDatabase
         val values=ContentValues()
 
-        values.put("MoneyId",MoneyId)
-        values.put("AccountId",AccountId)
-        values.put("Income",Income)
-        values.put("Expense",Expense)
-        values.put("Goal",Goal)
+        values.put("MoneyId",money.MoneyId)
+        values.put("AccountId",money.AccountId.toString())//?
+        values.put("Income",money.Income)
+        values.put("Expense",money.Expense)
+        values.put("Goal",money.Goal)
 
         db.insertOrThrow("money",null,values)
         db.close()

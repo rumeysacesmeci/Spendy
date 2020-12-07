@@ -32,6 +32,7 @@ class FragmentExpenseIncome:Fragment() {
         rvExpenseIncome.layoutManager = LinearLayoutManager(requireContext())
         expenseIncomeArrayList = ArrayList<ExpenseIncome>()
         var total = 0.0
+        // When income button clicked add datas to recyclervier
         btnIncome.setOnClickListener {
 
             ivVallet.visibility = View.GONE
@@ -44,6 +45,7 @@ class FragmentExpenseIncome:Fragment() {
             adapter = ExpenseIncomeAdapter(requireContext(),expenseIncomeArrayList)
             rvExpenseIncome.adapter = adapter
         }
+        // When expense button clicked add datas to recyclervier
         btnExpense.setOnClickListener {
 
             ivVallet.visibility = View.GONE

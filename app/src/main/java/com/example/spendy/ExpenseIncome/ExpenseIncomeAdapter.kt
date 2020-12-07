@@ -40,7 +40,7 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
     override fun onBindViewHolder(holder: CardViewObjectsHolder, position: Int) {
         val expenseIncome = expenseIncomeList[position]
         holder.tvExpenseIncome.text = expenseIncome.expenseIncome
-        holder.tvCategory.text = expenseIncome.expenseIncome
+        holder.tvCategory.text = expenseIncome.categoryName
         holder.tvAmount.text = "${expenseIncome.amount} $"
         if(expenseIncome.expenseIncome.equals("INCOME")){
             holder.cv.setCardBackgroundColor(Color.rgb(193, 205, 153))

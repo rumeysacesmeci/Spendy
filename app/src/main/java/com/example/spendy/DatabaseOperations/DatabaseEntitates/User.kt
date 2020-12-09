@@ -8,4 +8,8 @@ data class User(
     var Password:String) {
     //deneme fdsafdda
     // fasdfadsf
+
+    override fun toString(): String {
+        return "$Name  $Surname $Password "
+    }
 }

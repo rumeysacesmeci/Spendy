@@ -1,4 +1,4 @@
-package com.example.spendy.ExpenseIncome
+package com.example.spendy.ui.budgetManager
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,9 +8,9 @@ import android.widget.ArrayAdapter
 
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.spendy.Money
+import com.example.spendy.adapters.ExpenseIncomeAdapter
 import com.example.spendy.R
-import com.example.spendy.Repository.Repository
+import com.example.spendy.repository.Repository
 
 import kotlinx.android.synthetic.main.fragment_expense_income.*
 // Fragment for Expense and Income Page
@@ -60,7 +60,7 @@ class FragmentExpenseIncome:Fragment() {
 
             val amount = txtAmount.text.toString().toDouble()
 
-            expenseIncomeArrayList.add(ExpenseIncome(1, amount,"${categories[spnCategories.selectedItemPosition]}"))
+            expenseIncomeArrayList.add(ExpenseIncome(1, amount, "${categories[spnCategories.selectedItemPosition]}"))
 
             total-= txtAmount.text.toString().toDouble()
 

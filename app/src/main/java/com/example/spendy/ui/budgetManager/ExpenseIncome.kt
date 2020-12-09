@@ -1,4 +1,4 @@
-package com.example.spendy.ExpenseIncome
+package com.example.spendy.ui.budgetManager
 
 
 

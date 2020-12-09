@@ -1,12 +1,9 @@
-package com.example.spendy.SignUp
+package com.example.spendy.ui.signUp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.example.spendy.DBHelper
-import com.example.spendy.DatabaseOperations.DatabaseAcces.UserDao
 import com.example.spendy.R
-import com.example.spendy.Repository.Repository
+import com.example.spendy.repository.Repository
 import com.example.spendy.User
 import com.info.sqlitekullanimihazirveritabani.DatabaseCopyHelper
 import kotlinx.android.synthetic.main.activity_sign_up.*

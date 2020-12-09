@@ -1,4 +1,4 @@
-package com.example.spendy.DatabaseOperations.DatabaseAcces
+package com.example.spendy.databaseOperations.databaseAccess
 
 import android.content.ContentValues
 import com.example.spendy.DBHelper

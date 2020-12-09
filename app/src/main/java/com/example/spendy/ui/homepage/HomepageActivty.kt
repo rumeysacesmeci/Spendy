@@ -1,4 +1,4 @@
-package com.example.spendy.Homepage
+package com.example.spendy.ui.homepage
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
-import com.example.spendy.ExpenseIncome.FragmentExpenseIncome
+import com.example.spendy.adapters.HomePageRVAdapter
+import com.example.spendy.ui.budgetManager.FragmentExpenseIncome
 import com.example.spendy.R
 import com.github.mikephil.charting.data.Entry
 import kotlinx.android.synthetic.main.activity_homepage.*

@@ -1,4 +1,4 @@
-package com.example.spendy.ExpenseIncome
+package com.example.spendy.adapters
 
 import android.content.Context
 import android.graphics.Color
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.spendy.ui.budgetManager.ExpenseIncome
 import com.example.spendy.R
 
 

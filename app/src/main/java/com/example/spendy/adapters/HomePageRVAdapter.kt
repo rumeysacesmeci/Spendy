@@ -1,4 +1,4 @@
-package com.example.spendy.Homepage
+package com.example.spendy.adapters
 
 import android.content.Context
 import android.graphics.Color
@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spendy.R
+import com.example.spendy.ui.homepage.AccountActivity
 
 
 //Adapter for RecyclerView

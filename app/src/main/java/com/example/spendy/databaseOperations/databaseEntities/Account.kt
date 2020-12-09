@@ -1,4 +1,4 @@
-package com.example.spendy.DatabaseOperations.DatabaseEntitates
+package com.example.spendy.databaseOperations.databaseEntities
 
 import com.example.spendy.AccountType
 import com.example.spendy.Language

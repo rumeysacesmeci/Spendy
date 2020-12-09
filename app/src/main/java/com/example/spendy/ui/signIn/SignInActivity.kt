@@ -1,19 +1,19 @@
-package com.example.spendy
+package com.example.spendy.ui.signIn
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.spendy.DatabaseOperations.DatabaseAcces.*
-import com.example.spendy.Homepage.HomepageActivity
-import com.example.spendy.Models.SignInModel
-import com.example.spendy.Repository.Repository
-import com.example.spendy.SignUp.SignUpActivity
+import com.example.spendy.ui.homepage.HomepageActivity
+import com.example.spendy.models.SignInModel
+import com.example.spendy.R
+import com.example.spendy.repository.Repository
+import com.example.spendy.ui.signUp.SignUpActivity
 import com.info.sqlitekullanimihazirveritabani.DatabaseCopyHelper
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
-class SignIn : AppCompatActivity() {
+class SignInActivity : AppCompatActivity() {
 
     private val repository = Repository()
 
@@ -27,8 +27,8 @@ class SignIn : AppCompatActivity() {
 
 
         //Intents
-        val nvgToSignUp = Intent(this@SignIn,SignUpActivity::class.java )
-        val nvgToHomePage = Intent(this@SignIn, HomepageActivity::class.java)
+        val nvgToSignUp = Intent(this@SignInActivity,SignUpActivity::class.java )
+        val nvgToHomePage = Intent(this@SignInActivity, HomepageActivity::class.java)
 
 
         //UserDao().insert(aa,1,"Resul","Ekinci","resulekinci10@gmail.com",123456)

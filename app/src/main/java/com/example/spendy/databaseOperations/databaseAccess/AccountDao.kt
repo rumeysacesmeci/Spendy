@@ -1,8 +1,8 @@
-package com.example.spendy.DatabaseOperations.DatabaseAcces
+package com.example.spendy.databaseOperations.databaseAccess
 
 import android.content.ContentValues
 import com.example.spendy.*
-import com.example.spendy.DatabaseOperations.DatabaseEntitates.Account
+import com.example.spendy.databaseOperations.databaseEntities.Account
 
 class AccountDao {
 

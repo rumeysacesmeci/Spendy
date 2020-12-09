@@ -1,9 +1,8 @@
-package com.example.spendy.Repository
+package com.example.spendy.repository
 
-import android.accounts.Account
 import android.content.Context
 import com.example.spendy.*
-import com.example.spendy.DatabaseOperations.DatabaseAcces.*
+import com.example.spendy.databaseOperations.databaseAccess.*
 
 class Repository {
 
@@ -78,7 +77,7 @@ class Repository {
 
     //Add Account
 
-    fun addAccount(context:Context,account:com.example.spendy.DatabaseOperations.DatabaseEntitates.Account){
+    fun addAccount(context:Context,account:com.example.spendy.databaseOperations.databaseEntities.Account){
 
         dbHelper =DBHelper(context)
 
@@ -87,13 +86,13 @@ class Repository {
     }
 
     //Get Accounts
-    fun getAccount(context:Context,email: String):ArrayList<com.example.spendy.DatabaseOperations.DatabaseEntitates.Account>{
+    fun getAccount(context:Context,email: String):ArrayList<com.example.spendy.databaseOperations.databaseEntities.Account>{
 
         dbHelper = DBHelper(context)
 
         val id = userDao.getUserID(dbHelper,email)
 
-        var list = ArrayList<com.example.spendy.DatabaseOperations.DatabaseEntitates.Account>()
+        var list = ArrayList<com.example.spendy.databaseOperations.databaseEntities.Account>()
 
         list = accountDao.select(dbHelper,id)
 

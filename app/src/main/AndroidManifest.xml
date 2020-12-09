@@ -12,18 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Spendy">
 
-        <activity android:name=".Homepage.HomepageActivity">
+        <activity android:name="com.example.spendy.ui.homepage.HomepageActivity">
 
 
 
         </activity>
-        <activity android:name=".SignUp.SignUpActivity">
+        <activity android:name="com.example.spendy.ui.signUp.SignUpActivity">
 
 
 
         </activity>
 
-        <activity android:name=".SignIn">
+        <activity android:name=".ui.signIn.SignInActivity">
 
 
             <intent-filter>

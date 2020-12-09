@@ -1,25 +1,28 @@
 package com.example.spendy.ExpenseIncome
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.LinearLayout
-import android.widget.Toast
 
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.spendy.Money
 import com.example.spendy.R
+import com.example.spendy.Repository.Repository
 
 import kotlinx.android.synthetic.main.fragment_expense_income.*
 // Fragment for Expense and Income Page
 class FragmentExpenseIncome:Fragment() {
+
+
     private lateinit var expenseIncomeArrayList:ArrayList<ExpenseIncome>
     private lateinit var adapter: ExpenseIncomeAdapter
     private val categories = ArrayList<String>()
     private lateinit var categoriesAdapter:ArrayAdapter<String>
+    private val repository = Repository()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_expense_income,container,false)
         return rootView
@@ -32,30 +35,44 @@ class FragmentExpenseIncome:Fragment() {
         rvExpenseIncome.layoutManager = LinearLayoutManager(requireContext())
         expenseIncomeArrayList = ArrayList<ExpenseIncome>()
         var total = 0.0
-        // When income button clicked add datas to recyclervier
+
+
+        // When INCOME button clicked add datas to recyclervier
         btnIncome.setOnClickListener {
 
             ivVallet.visibility = View.GONE
             rvExpenseIncome.visibility = View.VISIBLE
 
-            expenseIncomeArrayList.add(ExpenseIncome("INCOME",txtAmount.text.toString().toDouble(),
-                    "${categories[spnCategories.selectedItemPosition]}"))
+            expenseIncomeArrayList.add(ExpenseIncome(0, txtAmount.text.toString().toDouble(), "${categories[spnCategories.selectedItemPosition]}"))
             total+= txtAmount.text.toString().toDouble()
             tvTotalAmountShower.text ="TOTAL    "+total.toString()+"  $"
-            adapter = ExpenseIncomeAdapter(requireContext(),expenseIncomeArrayList)
+            adapter = ExpenseIncomeAdapter(requireContext(), expenseIncomeArrayList)
             rvExpenseIncome.adapter = adapter
         }
-        // When expense button clicked add datas to recyclervier
+
+
+        // When EXPENSE button clicked add datas to recyclervier
         btnExpense.setOnClickListener {
 
             ivVallet.visibility = View.GONE
+
             rvExpenseIncome.visibility = View.VISIBLE
-            expenseIncomeArrayList.add(ExpenseIncome("EXPENSE",txtAmount.text.toString().toDouble(),
-                    "${categories[spnCategories.selectedItemPosition]}"))
+
+            val amount = txtAmount.text.toString().toDouble()
+
+            expenseIncomeArrayList.add(ExpenseIncome(1, amount,"${categories[spnCategories.selectedItemPosition]}"))
+
             total-= txtAmount.text.toString().toDouble()
+
             tvTotalAmountShower.text ="TOTAL    "+total.toString()+"  $"
-            adapter = ExpenseIncomeAdapter(requireContext(),expenseIncomeArrayList)
+
+            adapter = ExpenseIncomeAdapter(requireContext(), expenseIncomeArrayList)
+
             rvExpenseIncome.adapter = adapter
+
+
+            //E mail login den sonra tutulup buraya verilecek
+            //repository.addMoney(requireContext(),Money(0,amount.toInt(),0,0,repository.getUser(requireContext(),"email")))
         }
 
         

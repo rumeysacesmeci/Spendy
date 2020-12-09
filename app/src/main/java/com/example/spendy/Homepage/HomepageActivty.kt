@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import com.example.spendy.ExpenseIncome.FragmentExpenseIncome
 import com.example.spendy.R
 import com.github.mikephil.charting.data.Entry
 import kotlinx.android.synthetic.main.activity_homepage.*
@@ -27,6 +28,7 @@ class HomepageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_homepage)
 
 
+
         // setActivitiesAdapter()
 
         setToolbar()
@@ -35,8 +37,13 @@ class HomepageActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction().add(R.id.fragmentHolder, FragmentHomepage()).commit()
         //setActivitiesAdapter()
-        setNavigationHeader()
+
         onPressedMenuItems()
+        setNavigationHeader()
+
+        //onPressedNavTV()
+
+
 
     }
 
@@ -59,19 +66,23 @@ class HomepageActivity : AppCompatActivity() {
         }
     }
 
+    //
+
+
     //OnPressed Menu Items
     fun onPressedMenuItems(){
 
         navigationView.setNavigationItemSelectedListener {menuItem ->
 
-            if(menuItem.itemId == R.id.action_income){
+            if(menuItem.itemId == R.id.action_budget_manager){
 
-                Toast.makeText(applicationContext,"Income", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext,"Budget Manager", Toast.LENGTH_SHORT).show()
+                supportFragmentManager.beginTransaction().replace(R.id.fragmentHolder, FragmentExpenseIncome()).commit()
             }
-            if(menuItem.itemId == R.id.action_expense){
+            if(menuItem.itemId == R.id.action_homepage){
 
-                Toast.makeText(applicationContext,"Expense", Toast.LENGTH_SHORT).show()
-
+                Toast.makeText(applicationContext,"Homepage", Toast.LENGTH_SHORT).show()
+                supportFragmentManager.beginTransaction().replace(R.id.fragmentHolder, FragmentHomepage()).commit()
             }
             if(menuItem.itemId == R.id.action_settings){
 
@@ -96,6 +107,8 @@ class HomepageActivity : AppCompatActivity() {
 
         val header=navigationView.inflateHeaderView(R.layout.nav_header)
         header.tvNavHeader.text="Spendy"
+
+
     }
     //Set Drawer
     fun setDrawer(){

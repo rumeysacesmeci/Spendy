@@ -14,6 +14,7 @@ import com.example.spendy.R
 // Adapter for card_view_expense_income.xml
 class ExpenseIncomeAdapter(private val context: Context,private val expenseIncomeList:List<ExpenseIncome>)
     :RecyclerView.Adapter<ExpenseIncomeAdapter.CardViewObjectsHolder>() {
+
     //Card view holder
     inner class CardViewObjectsHolder(view:View):RecyclerView.ViewHolder(view){
         var tvExpenseIncome:TextView
@@ -38,14 +39,21 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
     }
 
     override fun onBindViewHolder(holder: CardViewObjectsHolder, position: Int) {
+
         val expenseIncome = expenseIncomeList[position]
-        holder.tvExpenseIncome.text = expenseIncome.expenseIncome
+
+        //Values Of CardView Elements
         holder.tvCategory.text = expenseIncome.categoryName
         holder.tvAmount.text = "${expenseIncome.amount} $"
-        if(expenseIncome.expenseIncome.equals("INCOME")){
+
+
+
+        if(expenseIncome.type==0){
+            holder.tvExpenseIncome.text = "INCOME"
             holder.cv.setCardBackgroundColor(Color.rgb(193, 205, 153))
         }
-        if(expenseIncome.expenseIncome.equals("EXPENSE")){
+        if(expenseIncome.type==1){
+            holder.tvExpenseIncome.text = "EXPENSE"
             holder.cv.setCardBackgroundColor(Color.rgb(133, 151, 113))
         }
         

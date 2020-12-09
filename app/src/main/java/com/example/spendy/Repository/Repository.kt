@@ -53,6 +53,26 @@ class Repository {
 
     }
 
+    //Get User Id
+    fun getUserId(context:Context,email: String):Int{
+
+        dbHelper = DBHelper(context)
+
+        val res =  userDao.getUserID(dbHelper,email)
+
+        return res
+    }
+
+    //Get User Id
+    fun getUser(context:Context,email: String):User{
+
+        dbHelper = DBHelper(context)
+
+
+        return userDao.getUser(dbHelper,getUserId(context,email))
+    }
+
+
 
     //Account Operations
 

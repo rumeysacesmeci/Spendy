@@ -62,4 +62,24 @@ class UserDao {
         return cursor.getInt(cursor.getColumnIndex("AccountId"))
     }
 
+    //Get User
+    fun getUser(dbHelper:DBHelper,id:Int):User{
+
+        val db=dbHelper.writableDatabase
+
+         val user = User(0,"","","","")
+
+        val list = getUsers(dbHelper)
+
+        list.forEach {
+
+            if(it.AccountId==id){
+                return it
+            }
+        }
+
+        return user
+
+    }
+
 }

@@ -12,7 +12,7 @@ import com.info.sqlitekullanimihazirveritabani.DatabaseCopyHelper
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
-class ActivitySignUp : AppCompatActivity(){
+class SignUpActivity : AppCompatActivity(){
 
 
 

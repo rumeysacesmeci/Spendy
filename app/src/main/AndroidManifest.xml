@@ -12,17 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Spendy">
         <activity android:name=".Homepage.HomepageActivity">
-
-
-
-        </activity>
-        <activity android:name=".SignUp.ActivitySignUp">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
+        </activity>
+        <activity android:name=".SignUp.SignUpActivity">
+
+
 
         </activity>
     </application>

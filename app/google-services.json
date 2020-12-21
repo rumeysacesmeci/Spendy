@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "820334577716",
+    "project_id": "spendy-bc063",
+    "storage_bucket": "spendy-bc063.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:820334577716:android:765c8f595817aa8c34e261",
+        "android_client_info": {
+          "package_name": "com.example.spendy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "820334577716-qp4qd84vn1idb9gegr7avhvbop4cth3n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3QxA9DyBBr5EDvLkx4u7IFJbak9TWdNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "820334577716-qp4qd84vn1idb9gegr7avhvbop4cth3n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

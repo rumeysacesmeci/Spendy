@@ -1,181 +1,156 @@
 package com.example.spendy.repository
 
 import android.content.Context
+import android.widget.Toast
 import com.example.spendy.*
-import com.example.spendy.databaseOperations.databaseAccess.*
+import com.example.spendy.adapters.ExpenseIncomeAdapter
+import com.example.spendy.models.Budget
+import com.example.spendy.models.SignInModel
+import com.example.spendy.models.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import java.lang.Exception
+import java.util.*
+import kotlin.collections.ArrayList
+
+
+private val auth = FirebaseAuth.getInstance()
+private val db = Firebase.firestore
+
+private lateinit var mutableBudgetList: MutableList<Budget>
+
 
 class Repository {
 
 
-    private val userDao = UserDao()
-    private  val accountDao = AccountDao()
-    private  val accountTypeDao = AccountTypeDao()
-    private  val languageDao = LanguageDao()
-    private  val moneyDao = MoneyDao()
-    private lateinit var dbHelper: DBHelper
+    //Sign Up
+    fun signUp(user: User): Boolean {
+
+        var res = true
+
+        auth.createUserWithEmailAndPassword(user.email, user.password).addOnCompleteListener { task ->
+
+            if (task.isSuccessful) {
 
 
+                println("success")
 
-    //User Operations
+                addUser(user)
 
-    //Add User
+            } else {
+                println(task.exception.toString())
+                res = false
+            }
+        }
 
-     fun addUser(context:Context,user:User){
-
-        dbHelper =DBHelper(context)
-
-        userDao.insert(dbHelper,user)
-
-    }
-
-    //Delete
-    fun deleteUser(context:Context,email:String){
-
-        dbHelper =DBHelper(context)
-
-        userDao.delete(dbHelper,userDao.getUserID(dbHelper,email))
-
-
-    }
-
-
-    //Get Users
-    fun getUsers(context:Context):ArrayList<User>{
-
-        dbHelper = DBHelper(context)
-
-        var list = ArrayList<User>()
-
-        list = userDao.getUsers(dbHelper)
-
-        return list
-
-    }
-
-    //Get User Id
-    fun getUserId(context:Context,email: String):Int{
-
-        dbHelper = DBHelper(context)
-
-        val res =  userDao.getUserID(dbHelper,email)
 
         return res
     }
 
-    //Get User Id
-    fun getUser(context:Context,email: String):User{
+    //Log In
+    fun logIn(signInModel: SignInModel): Boolean {
 
-        dbHelper = DBHelper(context)
+        var res = true
 
+        auth.signInWithEmailAndPassword(signInModel.email, signInModel.password).addOnCompleteListener { task ->
 
-        return userDao.getUser(dbHelper,getUserId(context,email))
+            if (task.isSuccessful) {
+
+                println("success")
+
+            } else {
+                println(task.exception.toString())
+                res = false
+            }
+        }
+
+        return res
     }
 
+    //Add User
+    private fun addUser(user: User) {
 
+        val userMap = hashMapOf(
+                "name" to user.name,
+                "surname" to user.surname,
+                "email" to user.email.toString(),
+                "pasword" to user.password
+        )
 
-    //Account Operations
-
-    //Add Account
-
-    fun addAccount(context:Context,account:com.example.spendy.databaseOperations.databaseEntities.Account){
-
-        dbHelper =DBHelper(context)
-
-        accountDao.insert(dbHelper,account)
-
-    }
-
-    //Get Accounts
-    fun getAccount(context:Context,email: String):ArrayList<com.example.spendy.databaseOperations.databaseEntities.Account>{
-
-        dbHelper = DBHelper(context)
-
-        val id = userDao.getUserID(dbHelper,email)
-
-        var list = ArrayList<com.example.spendy.databaseOperations.databaseEntities.Account>()
-
-        list = accountDao.select(dbHelper,id)
-
-        return list
+        db.collection("Users").document(user.email).set(userMap)
 
     }
 
-    //Money Operations
+    //Add Income
+    fun addIncome(budget: Budget) {
 
-    //Add Money
+        val budgetMap = hashMapOf(
 
-    fun addMoney(context:Context,money:Money){
+                "type" to budget.type,
+                "amount" to budget.amount,
+                "category" to budget.category,
+                "time" to budget.time
 
-        dbHelper =DBHelper(context)
+        )
 
-        moneyDao.insert(dbHelper,money)
+        val uuid = UUID.randomUUID().toString()
 
-    }
-
-    //Get Money
-    fun getMoney(context:Context,email: String):ArrayList<Money>{
-
-        dbHelper = DBHelper(context)
-
-        val id = userDao.getUserID(dbHelper,email)
-
-        var list = ArrayList<Money>()
-
-        list = moneyDao.select(dbHelper,id)
-
-        return list
+        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget").document(uuid).set(budgetMap)
 
     }
 
 
-    //Language Operations
+    //Add Expense
+    fun addExpense(budget: Budget) {
 
-    //Add Language
+        val budgetMap = hashMapOf(
 
-    fun addLanguage(context:Context,language:Language){
+                "type" to budget.type,
+                "amount" to budget.amount,
+                "category" to budget.category,
+                "time" to budget.time
 
-        dbHelper =DBHelper(context)
+        )
 
-        languageDao.insert(dbHelper,language)
+        val uuid = UUID.randomUUID().toString()
 
-    }
-
-    //Get Users
-    fun getLanguage(context:Context):ArrayList<Language>{
-
-        dbHelper = DBHelper(context)
-
-        var list = ArrayList<Language>()
-
-        list = languageDao.select(dbHelper)
-
-        return list
+        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget").document(uuid).set(budgetMap)
 
     }
 
-    //AccountType Operations
+    //Get Budget
 
-    //Add Account Type
+    fun getBudget(): MutableList<Budget> {
 
-    fun addAccountType(context:Context,accountType:AccountType){
+        mutableBudgetList = mutableListOf()//?
 
-        dbHelper =DBHelper(context)
 
-        accountTypeDao.insert(dbHelper,accountType)
 
-    }
+        /*
 
-    //Get Users
-    fun getAccountType(context:Context):ArrayList<AccountType>{
+        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget").addSnapshotListener { snapshot, e ->
 
-        dbHelper = DBHelper(context)
 
-        var list = ArrayList<AccountType>()
+            if (e != null || snapshot == null) {
 
-        list = accountTypeDao.select(dbHelper)
+                return@addSnapshotListener
+            }
 
-        return list
 
+           // budgetList = snapshot.toObjects(Budget::class.java)
+
+
+
+        }
+            */
+
+
+
+
+        return mutableBudgetList
     }
 
 }

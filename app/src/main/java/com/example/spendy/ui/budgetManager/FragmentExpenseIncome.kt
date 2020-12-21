@@ -10,44 +10,94 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spendy.adapters.ExpenseIncomeAdapter
 import com.example.spendy.R
-import com.example.spendy.repository.Repository
+import com.example.spendy.models.Budget
+import com.example.spendy.models.ExpenseIncome
+import com.example.spendy.repository.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 import kotlinx.android.synthetic.main.fragment_expense_income.*
+
+
+//
 // Fragment for Expense and Income Page
-class FragmentExpenseIncome:Fragment() {
+class FragmentExpenseIncome : Fragment() {
 
 
-    private lateinit var expenseIncomeArrayList:ArrayList<ExpenseIncome>
+    private lateinit var expenseIncomeArrayList: ArrayList<Budget>
+
     private lateinit var adapter: ExpenseIncomeAdapter
+
     private val categories = ArrayList<String>()
-    private lateinit var categoriesAdapter:ArrayAdapter<String>
+
+    private lateinit var categoriesAdapter: ArrayAdapter<String>
+
     private val repository = Repository()
 
+    private val db = Firebase.firestore
+
+    private val auth = FirebaseAuth.getInstance()
+
+    private lateinit var mutableBudgetList: MutableList<Budget>
+
+    //OnCreateView
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_expense_income,container,false)
-        return rootView
+
+        return inflater.inflate(R.layout.fragment_expense_income, container, false)
     }
 
+
+    //onViewCreated
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         categoriesToSpinner()
+
+
+
+        mutableBudgetList = mutableListOf()
+
+        ivVallet.visibility = View.GONE
+        rvExpenseIncome.visibility = View.VISIBLE
+
+        adapter = ExpenseIncomeAdapter(requireContext(), mutableBudgetList)
+
+        rvExpenseIncome.adapter = adapter
         rvExpenseIncome.setHasFixedSize(true)
         rvExpenseIncome.layoutManager = LinearLayoutManager(requireContext())
-        expenseIncomeArrayList = ArrayList<ExpenseIncome>()
+
+        expenseIncomeArrayList = ArrayList<Budget>()
         var total = 0.0
+
+
+        populateRV()
+
+
+
 
 
         // When INCOME button clicked add datas to recyclervier
         btnIncome.setOnClickListener {
 
             ivVallet.visibility = View.GONE
+
             rvExpenseIncome.visibility = View.VISIBLE
 
-            expenseIncomeArrayList.add(ExpenseIncome(0, txtAmount.text.toString().toDouble(), "${categories[spnCategories.selectedItemPosition]}"))
-            total+= txtAmount.text.toString().toDouble()
-            tvTotalAmountShower.text ="TOTAL    "+total.toString()+"  $"
-            adapter = ExpenseIncomeAdapter(requireContext(), expenseIncomeArrayList)
-            rvExpenseIncome.adapter = adapter
+            val category = "${categories[spnCategories.selectedItemPosition]}"
+
+
+
+            total += txtAmount.text.toString().toDouble()
+
+            tvTotalAmountShower.text = "TOTAL    " + total.toString() + "  $"
+
+
+            val budget = Budget(0,txtAmount.text.toString().toDouble(), "${categories[spnCategories.selectedItemPosition]}", "10")
+
+            repository.addIncome(budget)
+
+
         }
 
 
@@ -58,29 +108,55 @@ class FragmentExpenseIncome:Fragment() {
 
             rvExpenseIncome.visibility = View.VISIBLE
 
-            val amount = txtAmount.text.toString().toDouble()
+            val amount = txtAmount.text.toString().toInt()
 
-            expenseIncomeArrayList.add(ExpenseIncome(1, amount, "${categories[spnCategories.selectedItemPosition]}"))
+            val category = "${categories[spnCategories.selectedItemPosition]}"
 
-            total-= txtAmount.text.toString().toDouble()
 
-            tvTotalAmountShower.text ="TOTAL    "+total.toString()+"  $"
+            total -= txtAmount.text.toString().toInt()
 
-            adapter = ExpenseIncomeAdapter(requireContext(), expenseIncomeArrayList)
+            tvTotalAmountShower.text = "TOTAL    " + total.toString() + "  $"
 
-            rvExpenseIncome.adapter = adapter
+
+
+
+            //Firebase
+            val budget = Budget(1,txtAmount.text.toString().toDouble()*-1, "${categories[spnCategories.selectedItemPosition]}", "10")
+
+            repository.addExpense(budget)
 
 
             //E mail login den sonra tutulup buraya verilecek
             //repository.addMoney(requireContext(),Money(0,amount.toInt(),0,0,repository.getUser(requireContext(),"email")))
         }
 
-        
+
     }
 
 
+    fun populateRV(){
+
+        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget")
+                .addSnapshotListener { snapshot, e ->
+
+
+                    if (e != null || snapshot == null) {
+
+                        return@addSnapshotListener
+                    }
+
+
+                    val  budgetList = snapshot.toObjects(Budget::class.java)
+
+                    mutableBudgetList.clear()
+                    mutableBudgetList.addAll(budgetList)
+                    adapter.notifyDataSetChanged()
+
+
+                }
+    }
     //add categories to spinner
-    fun categoriesToSpinner(){
+    private fun categoriesToSpinner() {
         categories.add("SELECT CATEGORY")
         categories.add("BOOK")
         categories.add("CAR")
@@ -111,7 +187,7 @@ class FragmentExpenseIncome:Fragment() {
         categories.add("TV")
         categories.add("WATER")
 
-        categoriesAdapter = ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,android.R.id.text1,categories)
+        categoriesAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, android.R.id.text1, categories)
         spnCategories.adapter = categoriesAdapter
 
     }

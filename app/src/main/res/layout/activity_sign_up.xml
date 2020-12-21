@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center"
-        android:hint="@string/txtSignUp"
+        android:hint="@string/txtSurname"
         android:singleLine="true"
         android:textColor="#424242"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,11 +122,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="24dp"
+        android:onClick="signUp"
         android:text="@string/btnSignUp"
         android:textColor="@color/white"
         app:backgroundTint="@color/SecondMain"

@@ -3,6 +3,7 @@ package com.example.spendy.ui.signIn
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.spendy.ui.homepage.HomepageActivity
@@ -10,133 +11,68 @@ import com.example.spendy.models.SignInModel
 import com.example.spendy.R
 import com.example.spendy.repository.Repository
 import com.example.spendy.ui.signUp.SignUpActivity
-import com.info.sqlitekullanimihazirveritabani.DatabaseCopyHelper
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class SignInActivity : AppCompatActivity() {
 
     private val repository = Repository()
-
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
-        dbcopy()
-        printUsers()
 
 
-        //Intents
-        val nvgToSignUp = Intent(this@SignInActivity,SignUpActivity::class.java )
-        val nvgToHomePage = Intent(this@SignInActivity, HomepageActivity::class.java)
+        if (auth.currentUser!=null){
 
+            val nvgToHomePage = Intent(this@SignInActivity, HomepageActivity::class.java)
+            startActivity(nvgToHomePage)
 
-        //UserDao().insert(aa,1,"Resul","Ekinci","resulekinci10@gmail.com",123456)
+            finish()
 
-
-        //Sign IN
-        signIn(nvgToHomePage)
-
-        //SignUp
-        signUp(nvgToSignUp)
+        }
 
 
 
 
     }
 
-    //Print Users
-
-    private fun printUsers(){
-
-    val list = repository.getUsers(this)
-
-        list.forEach {
-
-            Log.e("TAG",it.toString())
-        }
-
-
-    }
-
-    //SignIn Button
-    private fun signIn(intent:Intent){
-
-        btnSignIn.setOnClickListener{
-
-            if(verifyLogIn()) {
-                Toast.makeText(applicationContext, "Login Successful", Toast.LENGTH_LONG).show()
-                startActivity(intent)
-            }
-        }
-
-    }
-
-    //SignUp Button
-    private fun signUp(intent:Intent){
-
-
-        tvSignUp.setOnClickListener{
-            startActivity(intent)
-        }
-
-    }
-
-
-    // Verify Login
-   private fun verifyLogIn():Boolean{
-
-        val signInModel = getSignInValues()
-
-        val list = repository.getUsers(this)
-
-
-        list.forEach {
-
-            if(it.EMail.equals(signInModel.email) && it.Password.equals(signInModel.password)){
-                return true
-            }
-        }
-
-        return false
-
-
-        /*for (user in list){
-            if(user.EMail.equals(signInModel.email) && user.Password.equals(signInModel.password)){
-
-              return true
-            }
-        }
-
-        return false*/
-    }
 
     // Get Sign In Values
-    private fun getSignInValues():SignInModel{
+    private fun getSignInValues(): SignInModel {
 
         val email = txtEmail.text.toString()
         val password = txtPassword.text.toString()
 
-        return SignInModel(email,password)
+        return SignInModel(email, password)
     }
 
-    //DB Copy
-    private fun dbcopy(){
 
-        val db= DatabaseCopyHelper(this)
+    //LogIn
+    fun logIn(view: View) {
 
-        try{
-            db.createDataBase()
-        }catch(e:Exception){
-            e.printStackTrace()
+       var result = repository.logIn(getSignInValues())
+
+        if(!result){
+            Toast.makeText(baseContext, "Login failed.", Toast.LENGTH_SHORT).show()
+            return
         }
+        Toast.makeText(baseContext, "Success.", Toast.LENGTH_SHORT).show()
 
-        try{
-            db.openDataBase()
-        }catch(e:Exception){
-            e.printStackTrace()
-        }
+        val nvgToHomePage = Intent(this@SignInActivity, HomepageActivity::class.java)
+        startActivity(nvgToHomePage)
 
+        finish()
 
     }
+
+    //Navigate To SignUp page
+    fun signUp(view: View){
+
+        val nvgToSignUp = Intent(this@SignInActivity, SignUpActivity::class.java)
+        startActivity(nvgToSignUp)
+    }
+
 }

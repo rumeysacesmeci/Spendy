@@ -8,12 +8,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.spendy.ui.budgetManager.ExpenseIncome
+import com.example.spendy.models.ExpenseIncome
 import com.example.spendy.R
+import com.example.spendy.models.Budget
 
 
 // Adapter for card_view_expense_income.xml
-class ExpenseIncomeAdapter(private val context: Context,private val expenseIncomeList:List<ExpenseIncome>)
+class ExpenseIncomeAdapter(private val context: Context,private val expenseIncomeList:List<Budget>)
     :RecyclerView.Adapter<ExpenseIncomeAdapter.CardViewObjectsHolder>() {
 
     //Card view holder
@@ -44,8 +45,8 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         val expenseIncome = expenseIncomeList[position]
 
         //Values Of CardView Elements
-        holder.tvCategory.text = expenseIncome.categoryName
-        holder.tvAmount.text = "${expenseIncome.amount} $"
+        holder.tvCategory.text = expenseIncome.category
+        holder.tvAmount.text = expenseIncome.amount.toString()
 
 
 

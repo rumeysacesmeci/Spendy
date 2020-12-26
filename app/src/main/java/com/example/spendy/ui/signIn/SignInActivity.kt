@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.spendy.ui.homepage.HomepageActivity
-import com.example.spendy.models.SignInModel
+import com.example.spendy.ForgotPasswordActivity
 import com.example.spendy.R
+import com.example.spendy.models.SignInModel
 import com.example.spendy.repository.Repository
+import com.example.spendy.ui.homepage.HomepageActivity
 import com.example.spendy.ui.signUp.SignUpActivity
 import com.info.sqlitekullanimihazirveritabani.DatabaseCopyHelper
 import kotlinx.android.synthetic.main.activity_sign_in.*
@@ -29,6 +30,7 @@ class SignInActivity : AppCompatActivity() {
         //Intents
         val nvgToSignUp = Intent(this@SignInActivity,SignUpActivity::class.java )
         val nvgToHomePage = Intent(this@SignInActivity, HomepageActivity::class.java)
+        val nvgToForgotPassword = Intent(this@SignInActivity, ForgotPasswordActivity::class.java)
 
 
         //UserDao().insert(aa,1,"Resul","Ekinci","resulekinci10@gmail.com",123456)
@@ -40,6 +42,8 @@ class SignInActivity : AppCompatActivity() {
         //SignUp
         signUp(nvgToSignUp)
 
+        //Forgot Password
+        forgotPassword(nvgToForgotPassword)
 
 
 
@@ -82,6 +86,15 @@ class SignInActivity : AppCompatActivity() {
 
     }
 
+    //Forgot Password
+    private fun forgotPassword(intent:Intent){
+
+
+        tvForgotPassword.setOnClickListener{
+            startActivity(intent)
+        }
+
+    }
 
     // Verify Login
    private fun verifyLogIn():Boolean{
@@ -115,7 +128,7 @@ class SignInActivity : AppCompatActivity() {
     private fun getSignInValues():SignInModel{
 
         val email = txtEmail.text.toString()
-        val password = txtPassword.text.toString()
+        val password = txtPassword.toString()
 
         return SignInModel(email,password)
     }

@@ -9,7 +9,10 @@ import androidx.core.view.GravityCompat
 import com.example.spendy.adapters.HomePageRVAdapter
 import com.example.spendy.ui.budgetManager.FragmentExpenseIncome
 import com.example.spendy.R
+import com.example.spendy.ui.signIn.SignInActivity
+import com.example.spendy.ui.signUp.SignUpActivity
 import com.github.mikephil.charting.data.Entry
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_homepage.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 
@@ -20,7 +23,7 @@ private lateinit var adapter: HomePageRVAdapter
 
 private lateinit var studentList:ArrayList<Entry>
 private lateinit var yearsList:ArrayList<String>
-
+private val auth = FirebaseAuth.getInstance()
 
 class HomepageActivity : AppCompatActivity() {
 
@@ -88,6 +91,13 @@ class HomepageActivity : AppCompatActivity() {
             if(menuItem.itemId == R.id.action_settings){
 
                 Toast.makeText(applicationContext,"Settings", Toast.LENGTH_SHORT).show()
+            }
+            if(menuItem.itemId==R.id.action_logout){
+                auth.signOut()
+
+                val nvgToSignUp = Intent(this, SignInActivity::class.java)
+                startActivity(nvgToSignUp)
+                finish()
             }
 
 

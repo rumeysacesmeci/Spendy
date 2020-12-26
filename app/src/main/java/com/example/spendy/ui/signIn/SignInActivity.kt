@@ -2,14 +2,13 @@ package com.example.spendy.ui.signIn
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.spendy.ui.homepage.HomepageActivity
-import com.example.spendy.models.SignInModel
 import com.example.spendy.R
+import com.example.spendy.models.SignInModel
 import com.example.spendy.repository.Repository
+import com.example.spendy.ui.homepage.HomepageActivity
 import com.example.spendy.ui.signUp.SignUpActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_in.*
@@ -33,7 +32,6 @@ class SignInActivity : AppCompatActivity() {
             finish()
 
         }
-
 
 
 

@@ -40,7 +40,6 @@
                 android:id="@+id/textView12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/rent"
                 android:drawablePadding="2dp"
                 android:text="Rent                        $1500"
                 android:textSize="24sp" />

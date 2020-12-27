@@ -22,7 +22,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledTextField"
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutlinedRoundedBox"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
         android:layout_width="92dp"
         android:layout_height="40dp"
         android:layout_marginTop="60dp"
-        android:background="@color/primaryColor"
+        android:background="@drawable/rounded_button"
         android:text="Sıgn In"
         android:textColor="@color/secondaryLightColor"
         android:textSize="18sp"
@@ -62,7 +62,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledEmail"
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutlinedRoundedBox"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

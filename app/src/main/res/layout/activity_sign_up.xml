@@ -27,7 +27,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLName"
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutlinedRoundedBox"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLPasswordConfirm"
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutlinedRoundedBox"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLPassword"
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutlinedRoundedBox"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLSurname"
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutlinedRoundedBox"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLEmail"
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutlinedRoundedBox"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -214,7 +214,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="24dp"
-        android:background="@color/primaryColor"
+        android:background="@drawable/rounded_button"
         android:text="@string/btnSignUp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

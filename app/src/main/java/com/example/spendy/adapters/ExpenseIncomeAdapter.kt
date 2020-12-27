@@ -58,10 +58,6 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
             holder.tvExpenseIncome.text = "EXPENSE"
             holder.cv.setCardBackgroundColor(Color.rgb(133, 151, 113))
         }
-        
-
-
-
 
 
     }

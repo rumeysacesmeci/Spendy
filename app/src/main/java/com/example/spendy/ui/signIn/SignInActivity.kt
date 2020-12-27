@@ -69,7 +69,7 @@ class SignInActivity : AppCompatActivity() {
     //Navigate To SignUp page
     fun signUp(view: View){
 
-        val nvgToSignUp = Intent(this@SignInActivity, SignUpActivity::class.java)
+        val nvgToSignUp = Intent(this@SignInActivity, SignInActivity::class.java)
         startActivity(nvgToSignUp)
     }
 

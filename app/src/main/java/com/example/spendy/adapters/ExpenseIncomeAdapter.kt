@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -23,11 +24,15 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         var tvCategory:TextView
         var tvAmount:TextView
         var cv:CardView
+        var tvTimeShower:TextView
+        var ivDelete:ImageView
         init {
             cv = view.findViewById(R.id.cvExpenseIncome)
             tvExpenseIncome = view.findViewById(R.id.tvExpenseIncome)
             tvCategory = view.findViewById(R.id.tvCategory)
             tvAmount = view.findViewById(R.id.tvAmount)
+            tvTimeShower = view.findViewById(R.id.tvTimeShower)
+            ivDelete = view.findViewById(R.id.ivDelete)
         }
     }
 
@@ -47,6 +52,7 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         //Values Of CardView Elements
         holder.tvCategory.text = expenseIncome.category
         holder.tvAmount.text = expenseIncome.amount.toString()
+        holder.tvTimeShower.text = expenseIncome.time
 
 
 
@@ -58,11 +64,31 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
             holder.tvExpenseIncome.text = "EXPENSE"
             holder.cv.setCardBackgroundColor(Color.rgb(133, 151, 113))
         }
-        
+
+
+
+        holder.cv.setOnClickListener {
+            holder.tvTimeShower.visibility = View.VISIBLE
+            holder.ivDelete.visibility = View.VISIBLE
+
+        }
+
+
+
+
+        holder.ivDelete.setOnClickListener {
+
+        }
+
+
+
+
 
 
 
 
 
     }
+
+
 }

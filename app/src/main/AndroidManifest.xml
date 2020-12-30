@@ -15,7 +15,9 @@
         <activity android:name=".ActivityStatisticsTab">
 
         </activity>
-        <activity android:name=".ui.homepage.HomepageActivity" />
+        <activity android:name=".ui.homepage.HomepageActivity">
+
+        </activity>
         <activity android:name=".ui.signUp.SignUpActivity" />
         <activity android:name=".ui.statistics.StatisticsActivity"></activity>
         <activity android:name=".ui.signIn.SignInActivity" >

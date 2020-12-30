@@ -1,19 +1,11 @@
-package com.example.spendy.ui.statistics
+package com.example.spendy
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.spendy.R
 
-
-class StatisticsActivity : AppCompatActivity() {
+class ForgotPasswordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_statistics)
-
-
+        setContentView(R.layout.activity_forgot_password)
     }
-
-
 }
-
-

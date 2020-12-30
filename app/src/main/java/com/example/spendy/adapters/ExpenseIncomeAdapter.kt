@@ -67,15 +67,24 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
 
 
 
+        //Card view opener
         holder.cv.setOnClickListener {
-            holder.tvTimeShower.visibility = View.VISIBLE
-            holder.ivDelete.visibility = View.VISIBLE
+            if(holder.tvTimeShower.visibility == View.GONE){
+                holder.tvTimeShower.visibility = View.VISIBLE
+                holder.ivDelete.visibility = View.VISIBLE
+            }
+            else{
+                holder.tvTimeShower.visibility = View.GONE
+                holder.ivDelete.visibility = View.GONE
+            }
+
 
         }
 
 
 
 
+        // Delete mehtod
         holder.ivDelete.setOnClickListener {
 
         }

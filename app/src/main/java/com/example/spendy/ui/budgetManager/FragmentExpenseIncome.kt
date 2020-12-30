@@ -114,16 +114,20 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
 
 
 
-                total += txtAmount.text.toString().toDouble()
-
-                tvTotalAmountShower.text = "TOTAL    " + total.toString() + "  $"
 
 
-                val newIntent = Intent(requireContext(), CategoryActivity::class.java)
-                newIntent.putExtra("type", 0)
-                newIntent.putExtra("amount", txtAmount.text.toString().toDouble())
-                newIntent.putExtra("time", tvTime.text)
-                startActivity(newIntent)
+             if(!txtAmount.text.toString().isEmpty()){
+
+                 val newIntent = Intent(requireContext(), CategoryActivity::class.java)
+                 newIntent.putExtra("type", 0)
+                 newIntent.putExtra("amount", txtAmount.text.toString().toDouble())
+                 newIntent.putExtra("time", tvTime.text)
+                 startActivity(newIntent)
+             }
+            else{
+                 return@setOnClickListener
+             }
+
 
 
 
@@ -167,7 +171,7 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
         db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget")
                 .addSnapshotListener { snapshot, e ->
 
-
+                    var total =0.0
                     if (e != null || snapshot == null) {
 
                         return@addSnapshotListener
@@ -178,7 +182,16 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
 
                     val  budgetList = snapshot.toObjects(Budget::class.java)
 
+                    budgetList.forEach{
+                        if(it.type== 0){
+                            total += it.amount
+                        }
+                        else if(it.type ==1){
+                            total -= it.amount
+                        }
+                    }
 
+                    tvTotalAmountShower.text = total.toString()
 
                     mutableBudgetList.clear()
                     mutableBudgetList.addAll(budgetList)

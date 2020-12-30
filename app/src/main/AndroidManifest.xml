@@ -17,12 +17,16 @@
         </activity>
         <activity android:name=".ui.homepage.HomepageActivity" />
         <activity android:name=".ui.signUp.SignUpActivity" />
-        <activity android:name=".ui.signIn.SignInActivity" >
+        <activity android:name=".ui.budgetManager.CategoryActivity"></activity>
+        <activity android:name=".ui.signIn.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
+
         </activity>
     </application>
 

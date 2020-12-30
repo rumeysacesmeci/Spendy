@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+
 }
 
 android {
@@ -23,6 +24,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
     compileOptions {
@@ -32,6 +34,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    android.defaultConfig.vectorDrawables.useSupportLibrary = true
 }
 
 dependencies {
@@ -65,5 +68,5 @@ dependencies {
     implementation "androidx.viewpager:viewpager:1.0.0"
 
 }
-
 apply plugin: 'com.google.gms.google-services'
+

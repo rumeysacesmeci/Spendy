@@ -2,11 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.Spendy" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorSecondary">@color/secondaryColor</item>
 
-        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/fifthMain</item>
+
+    <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+
+
+>>>>>>>>> Temporary merge branch 2
+
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

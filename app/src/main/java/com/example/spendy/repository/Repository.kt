@@ -10,9 +10,7 @@ import com.example.spendy.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SnapshotMetadata
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.model.SnapshotVersion
 import com.google.firebase.ktx.Firebase
 import java.lang.Exception
 import java.util.*
@@ -101,11 +99,6 @@ class Repository {
         val uuid = UUID.randomUUID().toString()
 
         db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget").document(uuid).set(budgetMap)
-
-    }
-
-    fun deleteBudget(position:Int){
-
 
     }
 

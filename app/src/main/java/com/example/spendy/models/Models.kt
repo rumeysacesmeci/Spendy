@@ -1,10 +1,6 @@
 package com.example.spendy.models
 
-import com.google.firebase.firestore.FieldValue
-import java.sql.Time
-import java.sql.Timestamp
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import com.google.firebase.Timestamp
 
 data class SignInModel(
 
@@ -17,11 +13,6 @@ data class SignInModel(
 data class ExpenseIncome(
         var type:Int,
         var amount:Double,
-        var categoryName:String
-)
-
-
-data class Categories(
         var categoryName:String
 )
 
@@ -42,8 +33,5 @@ data class Budget(
         val type:Int=0,
         val amount :Double=0.0,
         val category:String="",
-        val time :String=""
-
-
-
+        val time : String=" "
 )

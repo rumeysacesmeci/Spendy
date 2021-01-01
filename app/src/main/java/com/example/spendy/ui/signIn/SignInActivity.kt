@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.spendy.ForgotPasswordActivity
 import com.example.spendy.R
 import com.example.spendy.models.SignInModel
 import com.example.spendy.repository.Repository
@@ -67,10 +68,15 @@ class SignInActivity : AppCompatActivity() {
     }
 
     //Navigate To SignUp page
-    fun signUp(view: View){
+    fun nvgSignUp(view: View){
 
         val nvgToSignUp = Intent(this@SignInActivity, SignUpActivity::class.java)
         startActivity(nvgToSignUp)
+    }
+
+    fun nvgForgotPassword(view: View){
+        val nvgToForgotPassword = Intent(this@SignInActivity, ForgotPasswordActivity::class.java)
+        startActivity(nvgToForgotPassword)
     }
 
 }

@@ -10,11 +10,12 @@
     <Button
         android:id="@+id/btnIncome"
         android:layout_width="129dp"
-        android:layout_height="81dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="30dp"
+        android:background="@drawable/rounded_button"
         android:text="Income"
         android:textSize="14sp"
-        app:backgroundTint="@color/fourthtMain"
+        app:backgroundTint="@color/primaryColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -23,11 +24,12 @@
     <Button
         android:id="@+id/btnExpense"
         android:layout_width="129dp"
-        android:layout_height="81dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="30dp"
+        android:background="@drawable/rounded_button"
         android:text="EXPENSE"
         android:textSize="14sp"
-        app:backgroundTint="@color/SecondMain"
+        app:backgroundTint="@color/secondaryDarkColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnIncome"
         app:layout_constraintHorizontal_bias="0.5"
@@ -37,6 +39,8 @@
         android:id="@+id/txtAmount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="  Enter Amount..."
@@ -83,13 +87,16 @@
 
     <TextView
         android:id="@+id/tvTime"
-        android:layout_width="410dp"
+        android:layout_width="wrap_content"
         android:layout_height="46dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="4dp"
         android:text="Tİme"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/txtAmount"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,9 @@
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorSecondary">@color/secondaryColor</item>
 
-        <!-- Customize your theme here. -->
+
+    <!-- Secondary brand color. -->
+
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

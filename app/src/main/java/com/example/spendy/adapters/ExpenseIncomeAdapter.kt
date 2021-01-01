@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.spendy.models.ExpenseIncome
 import com.example.spendy.R
 import com.example.spendy.models.Budget
 
@@ -20,7 +19,7 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
 
     //Card view holder
     inner class CardViewObjectsHolder(view:View):RecyclerView.ViewHolder(view){
-        var tvExpenseIncome:TextView
+        //var tvExpenseIncome:TextView
         var tvCategory:TextView
         var tvAmount:TextView
         var cv:CardView
@@ -28,7 +27,7 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         var ivDelete:ImageView
         init {
             cv = view.findViewById(R.id.cvExpenseIncome)
-            tvExpenseIncome = view.findViewById(R.id.tvExpenseIncome)
+            //tvExpenseIncome = view.findViewById(R.id.tvExpenseIncome)
             tvCategory = view.findViewById(R.id.tvCategory)
             tvAmount = view.findViewById(R.id.tvAmount)
             tvTimeShower = view.findViewById(R.id.tvTimeShower)
@@ -57,19 +56,29 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
 
 
         if(expenseIncome.type==0){
-            holder.tvExpenseIncome.text = "INCOME"
-            holder.cv.setCardBackgroundColor(Color.rgb(193, 205, 153))
+            //holder.tvExpenseIncome.text = "INCOME"
+            holder.cv.setCardBackgroundColor(Color.rgb(207,216,220))
+            holder.tvAmount.setTextColor(Color.rgb(0,128,0))
+            holder.tvAmount.setText("+" + expenseIncome.amount.toString())
         }
         if(expenseIncome.type==1){
-            holder.tvExpenseIncome.text = "EXPENSE"
-            holder.cv.setCardBackgroundColor(Color.rgb(133, 151, 113))
+            //holder.tvExpenseIncome.text = "EXPENSE"
+            holder.cv.setCardBackgroundColor(Color.rgb(207,216,220))
+            holder.tvAmount.setTextColor(Color.RED)
+            holder.tvAmount.setText("-" + expenseIncome.amount.toString())
+
         }
 
 
 
         holder.cv.setOnClickListener {
-            holder.tvTimeShower.visibility = View.VISIBLE
-            holder.ivDelete.visibility = View.VISIBLE
+            if(holder.tvTimeShower.visibility == View.VISIBLE){
+                holder.tvTimeShower.visibility = View.GONE
+                holder.ivDelete.visibility = View.GONE
+            }else{
+                holder.tvTimeShower.visibility = View.VISIBLE
+                holder.ivDelete.visibility = View.VISIBLE
+            }
 
         }
 

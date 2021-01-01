@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/secondaryLightColor">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvCategory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="false"
-        app:cardBackgroundColor="@color/background">
+        app:cardBackgroundColor="@color/secondaryColor"
+        app:cardCornerRadius="15dp"
+        android:layout_margin="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,7 +29,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="Category Name"
-                android:textSize="30sp"
+                android:textColor="@color/primaryDarkColor"
+                android:textSize="23sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

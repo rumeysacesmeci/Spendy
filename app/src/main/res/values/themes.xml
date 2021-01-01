@@ -5,13 +5,9 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorSecondary">@color/secondaryColor</item>
-        <item name="colorPrimary">@color/fifthMain</item>
 
 
     <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-
-
 
 
         <item name="windowActionBar">false</item>

@@ -177,7 +177,9 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
                         return@addSnapshotListener
                     }
                     for (i in mutableBudgetList.indices){
+
                         mutableBudgetList.get(0).time.toString()
+
                     }
 
                     val  budgetList = snapshot.toObjects(Budget::class.java)

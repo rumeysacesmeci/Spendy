@@ -45,14 +45,12 @@ class FragmentHomepage : Fragment() {
 
 
 
-
-
     fun setPie(){
-        val pieDataSet = PieDataSet(getList(),"")
+        //val pieDataSet = PieDataSet(getList(),"")
 
-        val pieData =  PieData(getYears(),pieDataSet)
+        // val pieData =  PieData(pieDataSet)
 
-        pieDataSet.setColor(Color.rgb(209, 121, 88))
+        //pieDataSet.setColor(Color.rgb(209, 121, 88))
 
         pcHomepage.animateXY(5000,5000)
 
@@ -62,17 +60,18 @@ class FragmentHomepage : Fragment() {
 
         pcHomepage.setCenterTextSize(20f)
 
-        pcHomepage.setDescription("")
 
-        pcHomepage.data =pieData
+        // pcHomepage.data =pieData
 
     }
+
+
     //Entry For Pie Chart
-    fun getList(): ArrayList<Entry> {
-
-        studentList.add(Entry(100f,0))
-        return studentList
-    }
+    //fun getList(): MutableList<PieEntry>? {
+    //
+    //  studentList.add(PieEntry(100f, 0F))
+    //return studentList
+    //}
     //Entry For Pie Chart
     fun getYears():ArrayList<String>{
 

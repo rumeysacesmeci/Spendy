@@ -79,8 +79,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvAmount"
-
-                />
+                app:srcCompat="@drawable/delete" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

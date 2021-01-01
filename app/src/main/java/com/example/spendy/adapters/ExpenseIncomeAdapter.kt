@@ -52,7 +52,7 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         //Values Of CardView Elements
         holder.tvCategory.text = expenseIncome.category
         holder.tvAmount.text = expenseIncome.amount.toString()
-        holder.tvTimeShower.text = expenseIncome.time
+        holder.tvTimeShower.text = expenseIncome.time.toString()
 
 
 

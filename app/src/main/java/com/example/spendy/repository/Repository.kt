@@ -55,19 +55,31 @@ class Repository {
     //Log In
     fun logIn(signInModel: SignInModel): Boolean {
 
-        var res = true
+        var res = false
 
-        auth.signInWithEmailAndPassword(signInModel.email, signInModel.password).addOnCompleteListener { task ->
+
+      /*  auth.signInWithEmailAndPassword(signInModel.email, signInModel.password).addOnCompleteListener { task ->
 
             if (task.isSuccessful) {
 
                 println("success")
+                res = true
 
             } else {
                 println(task.exception.toString())
-                res = false
+
             }
+        }*/
+
+        auth.signInWithEmailAndPassword(signInModel.email,signInModel.password).addOnCompleteListener { task ->
+
+            if (task.isSuccessful){
+                res=true
+            }
+
+
         }
+
 
         return res
     }

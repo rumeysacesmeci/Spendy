@@ -52,11 +52,11 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
 
         if(expenseIncome.type==0){
             holder.tvExpenseIncome.text = "INCOME"
-            holder.cv.setCardBackgroundColor(Color.rgb(193, 205, 153))
+            holder.cv.setCardBackgroundColor(Color.rgb(0, 149, 168))
         }
         if(expenseIncome.type==1){
             holder.tvExpenseIncome.text = "EXPENSE"
-            holder.cv.setCardBackgroundColor(Color.rgb(133, 151, 113))
+            holder.cv.setCardBackgroundColor(Color.rgb(38,198,218))
         }
 
 

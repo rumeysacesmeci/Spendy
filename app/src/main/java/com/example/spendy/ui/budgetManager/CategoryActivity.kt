@@ -118,6 +118,7 @@ class CategoryActivity : AppCompatActivity(),CategoryAdapter.OnItemClickListener
         categoriesArrayList.add(c29)
 
 
+
         adapter = CategoryAdapter(this@CategoryActivity,categoriesArrayList,this)
         rvCategories.adapter = adapter
     }

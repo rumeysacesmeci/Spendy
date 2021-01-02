@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@color/primaryLightColor">
+    android:background="@color/firstMain">
 
     <TextView
         android:id="@+id/tvNavHeader"
@@ -12,7 +12,7 @@
         android:layout_height="56dp"
         android:paddingLeft="40dp"
         android:text="TextView"
-        android:textColor="@color/primaryTextColor"
+        android:textColor="@color/white"
         android:textSize="38sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

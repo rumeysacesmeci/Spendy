@@ -1,11 +1,16 @@
 package com.example.spendy.ui.signIn
 
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.spendy.R
 import com.example.spendy.models.SignInModel
@@ -22,12 +27,16 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import kotlinx.android.synthetic.main.activity_sign_in.txtEmail
+import kotlinx.android.synthetic.main.activity_sign_in.txtPassword
+import kotlinx.android.synthetic.main.activity_sign_up.*
+import kotlinx.android.synthetic.main.dialog_forgot_password.*
 
 
 class SignInActivity : AppCompatActivity() {
 
-    companion object{
-        private const val RC_SIGN_IN=120
+    companion object {
+        private const val RC_SIGN_IN = 120
     }
 
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -36,16 +45,15 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
 
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
         mAuth = Firebase.auth
 
-        if (auth.currentUser!=null){
+
+
+        if (auth.currentUser != null) {
 
             val nvgToHomePage = Intent(this@SignInActivity, HomepageActivity::class.java)
             startActivity(nvgToHomePage)
@@ -59,28 +67,30 @@ class SignInActivity : AppCompatActivity() {
             .requestEmail()
             .build()
 
-        googleSignInClient=GoogleSignIn.getClient(this,gso)
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        btnGoogle.setOnClickListener{
+        btnGoogle.setOnClickListener {
             logInGoogle()
         }
+
 
     }
 
     // Get Sign In Values
     private fun getSignInValues(): SignInModel {
 
-            val email = txtEmail.text.toString()
-            val password = txtPassword.text.toString()
-            return SignInModel(email, password)
+        val email = txtEmail.text.toString()
+        val password = txtPassword.text.toString()
+        return SignInModel(email, password)
 
     }
 
     //LogIn with GOOGLE
-    fun logInGoogle(){
+    fun logInGoogle() {
 
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+
 
     }
 
@@ -92,20 +102,75 @@ class SignInActivity : AppCompatActivity() {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             //val exception=task.exception
 
-                try {
-                    // Google Sign In was successful, authenticate with Firebase
-                    val account = task.getResult(ApiException::class.java)!!
-                    Log.d("SignInActivity", "firebaseAuthWithGoogle:" + account.id)
-                    firebaseAuthWithGoogle(account.idToken!!)
-                } catch (e: ApiException) {
-                    // Google Sign In failed, update UI appropriately
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                val account = task.getResult(ApiException::class.java)!!
+                Log.d("SignInActivity", "firebaseAuthWithGoogle:" + account.id)
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                // Google Sign In failed, update UI appropriately
 
-                    Log.w("SignInActivity" , "Google sign in failed", e)
-                    // ...
-                }
+                Log.w("SignInActivity", "Google sign in failed", e)
+                // ...
+            }
 
 
         }
+    }
+
+
+    //LogIn
+    fun logIn(view: View) {
+
+        if (!verifyLogin()) {
+
+            Toast.makeText(baseContext, "Please Check Your Email or Password.", Toast.LENGTH_SHORT)
+                .show()
+            return
+        }
+
+
+
+        auth.signInWithEmailAndPassword(txtEmail.text.toString(), txtPassword.text.toString())
+            .addOnCompleteListener { task ->
+
+                if (task.isSuccessful) {
+
+                    Toast.makeText(baseContext, "Login Success.", Toast.LENGTH_SHORT).show()
+                    val nvgToHomepage = Intent(this@SignInActivity, HomepageActivity::class.java)
+                    startActivity(nvgToHomepage)
+
+                } else {
+
+                    Toast.makeText(baseContext, "Login Failed.", Toast.LENGTH_SHORT).show()
+                }
+
+
+            }
+
+
+    }
+
+    //Verify Login
+
+    private fun verifyLogin(): Boolean {
+
+        var res = true
+
+        if (txtEmail.text.toString().isEmpty() && txtPassword.text.toString().isEmpty()) {
+
+            res = false
+
+        }
+
+        return res
+    }
+
+    //Navigate To SignUp page
+    fun signUp(view: View) {
+
+        val nvgToSignUp = Intent(this@SignInActivity, SignUpActivity::class.java)
+        startActivity(nvgToSignUp)
     }
 
     private fun firebaseAuthWithGoogle(idToken: String) {
@@ -128,37 +193,79 @@ class SignInActivity : AppCompatActivity() {
                     Log.w("DENEME", "signInWithCredential:failure", task.exception)
 
 
-
                 }
 
                 // ...
             }
     }
 
+    //On Forgot Password Pressed
 
-    //LogIn
-    fun logIn(view: View) {
-        
-       var result = repository.logIn(getSignInValues())
+    fun onForgotPasswordPressed(view: View) {
 
-        if(!result){
-            Toast.makeText(baseContext, "Login failed.", Toast.LENGTH_SHORT).show()
+
+
+    }
+
+    fun onForgotButtonPressed(view: View){
+
+        val builder = AlertDialog.Builder(this)
+
+
+
+
+        val view = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
+        val email = view.findViewById<EditText>(R.id.txtForgotPassword)
+
+
+        builder.setView(view)
+
+
+        builder.setPositiveButton("Reset", DialogInterface.OnClickListener { _, _ ->
+
+            forgotPassword(email)
+
+        })
+
+        builder.setNegativeButton("Close", DialogInterface.OnClickListener { _, _ ->
+
+        })
+
+        builder.show()
+
+
+    }
+
+
+    //Forgot Password.
+    private fun forgotPassword(email: EditText) {
+
+
+        if (email.text.toString().isEmpty()){
+
+            txtEmail.error = "Please Enter Your E-Mail"
+            txtEmail.requestFocus()
+
             return
         }
-        Toast.makeText(baseContext, "Success.", Toast.LENGTH_SHORT).show()
 
-        val nvgToHomePage = Intent(this@SignInActivity, HomepageActivity::class.java)
-        startActivity(nvgToHomePage)
+        if (!Patterns.EMAIL_ADDRESS.matcher(email.text.toString()).matches()) {
 
-        finish()
+            txtEmail.error = "Please Enter a Valid Email"
+            txtEmail.requestFocus()
+
+            return
+        }
+
+        auth.sendPasswordResetEmail(email.text.toString())
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    Toast.makeText(baseContext, "E-Mail has been sent,Please Check Your E-Mail", Toast.LENGTH_LONG).show()
+                }
+            }
+
+
 
     }
-
-    //Navigate To SignUp page
-    fun signUp(view: View){
-
-        val nvgToSignUp = Intent(this@SignInActivity, SignUpActivity::class.java)
-        startActivity(nvgToSignUp)
-    }
-
 }

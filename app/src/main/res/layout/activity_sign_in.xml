@@ -14,6 +14,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+
+        android:onClick="onForgotButtonPressed"
         android:text="Forgot Password?"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -128,11 +130,12 @@
         android:id="@+id/ivUserLogo"
         android:layout_width="119dp"
         android:layout_height="132dp"
-        android:layout_marginTop="90dp"
-        android:src="@drawable/user"
+        android:layout_marginTop="88dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/user" />
+        android:src="@drawable/log_in_page"
+         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -98,6 +98,7 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
 
 
 
+>>>>>>>>> Temporary merge branch 2
 
 
     }

@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.spendy.models.ExpenseIncome
 import com.example.spendy.R
 import com.example.spendy.models.Budget
 
@@ -19,7 +20,7 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
 
     //Card view holder
     inner class CardViewObjectsHolder(view:View):RecyclerView.ViewHolder(view){
-        //var tvExpenseIncome:TextView
+        var tvExpenseIncome:TextView
         var tvCategory:TextView
         var tvAmount:TextView
         var cv:CardView
@@ -27,7 +28,7 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         var ivDelete:ImageView
         init {
             cv = view.findViewById(R.id.cvExpenseIncome)
-            //tvExpenseIncome = view.findViewById(R.id.tvExpenseIncome)
+            tvExpenseIncome = view.findViewById(R.id.tvExpenseIncome)
             tvCategory = view.findViewById(R.id.tvCategory)
             tvAmount = view.findViewById(R.id.tvAmount)
             tvTimeShower = view.findViewById(R.id.tvTimeShower)
@@ -51,7 +52,7 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         //Values Of CardView Elements
         holder.tvCategory.text = expenseIncome.category
         holder.tvAmount.text = expenseIncome.amount.toString()
-        holder.tvTimeShower.text = expenseIncome.time
+        holder.tvTimeShower.text = expenseIncome.time.toString()
 
 
 
@@ -71,6 +72,7 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
 
 
 
+        //Card view opener
         holder.cv.setOnClickListener {
             if(holder.tvTimeShower.visibility == View.VISIBLE){
                 holder.tvTimeShower.visibility = View.GONE
@@ -85,6 +87,7 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
 
 
 
+        // Delete mehtod
         holder.ivDelete.setOnClickListener {
 
         }
@@ -95,6 +98,7 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
 
 
 
+>>>>>>>>> Temporary merge branch 2
 
 
     }

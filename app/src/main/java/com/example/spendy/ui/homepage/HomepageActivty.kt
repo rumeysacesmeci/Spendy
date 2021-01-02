@@ -96,6 +96,7 @@ class HomepageActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext,"Statistics",Toast.LENGTH_SHORT).show()
             }
             if(menuItem.itemId==R.id.action_logout){
+
                 auth.signOut()
 
                 val nvgToSignUp = Intent(this, SignInActivity::class.java)
@@ -140,6 +141,8 @@ class HomepageActivity : AppCompatActivity() {
     fun setToolbar(){
 
         toolbar.title="Homepage"
+
+
         setSupportActionBar(toolbar)
     }
 

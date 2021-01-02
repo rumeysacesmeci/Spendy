@@ -11,16 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Spendy">
-        <activity android:name=".ForgotPasswordActivity"></activity>
-        <activity android:name=".ActivityStatisticsTab">
-
-        </activity>
-        <activity android:name=".ui.homepage.HomepageActivity">
-
-        </activity>
-        <activity android:name=".ui.signUp.SignUpActivity" />
-        <activity android:name=".ui.statistics.StatisticsActivity"></activity>
-        <activity android:name=".ui.signIn.SignInActivity" >
+        <activity android:name=".ui.budgetManager.CategoryActivity"></activity>
+        <activity android:name=".ui.homepage.HomepageActivity"></activity>
+        <activity android:name=".ui.signUp.SignUpActivity"></activity>
+        <activity android:name=".ui.signIn.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

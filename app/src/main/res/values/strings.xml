@@ -11,9 +11,26 @@
     <string name="txtPasswordConfirm">Confirm Password</string>
 
     <string name="btnSignUp">Sign Up</string>
+    <string name="btnSignIn">Sign In</string>
     <string name="title_activity_tab_statistics">ActivityTabStatistics</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="btnSendEmail">Send E-Mail</string>
+    <string name="tvForgotPassword">Forgot Password?</string>
+    <string name="cbAccept">I have accepted Terms And Conditions</string>
+    <string name="tvCategory">Category Name</string>
+    <string name="btnIncome">Income</string>
+    <string name="btnExpense">Expense</string>
+    <string name="hintAmount">      Enter Amount…</string>
+    <string name="tvTotal">  TOTAL $</string>
+    <string name="tvTime"> Time</string>
+    <string name="MenuHome">Homepage</string>
+    <string name="MenuBudget">Budget Manager</string>
+    <string name="MenuSettings">Settings</string>
+    <string name="MenuLogout">Log Out</string>
+
+
+
 
 
 </resources>

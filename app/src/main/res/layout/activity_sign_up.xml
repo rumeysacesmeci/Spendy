@@ -197,7 +197,7 @@
         android:checked="false"
         android:clickable="true"
         android:focusable="true"
-        android:text="I have accepted Terms And Conditions"
+        android:text="@string/cbAccept"
         android:textColor="@color/cardview_dark_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

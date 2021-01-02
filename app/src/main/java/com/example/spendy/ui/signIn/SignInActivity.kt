@@ -50,7 +50,7 @@ class SignInActivity : AppCompatActivity() {
         return SignInModel(email, password)
     }
 
-
+    //Check for inputs
     private fun checkCredentials(): Boolean {
         val email = txtEmail.text.toString()
         val password = txtPassword.text.toString()
@@ -67,6 +67,7 @@ class SignInActivity : AppCompatActivity() {
         return true
     }
 
+    //Error message
     fun showError(input: TextInputEditText?, s: String) {
         if (input != null) {
             input.setError(s)

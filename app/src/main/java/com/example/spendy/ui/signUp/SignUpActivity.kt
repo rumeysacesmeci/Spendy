@@ -51,6 +51,7 @@ class SignUpActivity : AppCompatActivity(){
 
     }
 
+    //Control for inputs
     private fun checkCredentials(): Boolean {
         val email = txtEmail.text.toString()
         val name = txtName.text.toString()
@@ -82,6 +83,7 @@ class SignUpActivity : AppCompatActivity(){
 
     }
 
+    //Error message for invalid input types
     private fun showError(input: TextInputEditText?, s: String) {
         if (input != null) {
             input.setError(s)

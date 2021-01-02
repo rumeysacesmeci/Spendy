@@ -49,6 +49,8 @@ class FragmentIncome :Fragment(){
         pcStatistics.setUsePercentValues(false)
         pcStatistics.centerText = "Total \n 2000"
         pcStatistics.setEntryLabelColor(Color.WHITE)
+        pcStatistics.description.text=""
+
 
         val legend: Legend = pcStatistics.getLegend()
         legend.form = Legend.LegendForm.CIRCLE

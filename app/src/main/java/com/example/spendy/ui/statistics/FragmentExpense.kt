@@ -13,6 +13,7 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import kotlinx.android.synthetic.main.fragment_statistics_expense_tab.*
 
+
 class FragmentExpense : Fragment() {
 
     override fun onCreateView(
@@ -41,7 +42,7 @@ class FragmentExpense : Fragment() {
         val pieData = PieData(pieDataSet)
         pieDataSet.setColors(
             Color.rgb(38,198,218), Color.rgb(0,149,168)
-            , Color.rgb(207,216,220)
+            , Color.rgb(207,216,220), Color.GRAY,Color.MAGENTA,Color.YELLOW
         )
 
         pcStatistics.setHoleRadius(60f)
@@ -51,6 +52,7 @@ class FragmentExpense : Fragment() {
         pcStatistics.setUsePercentValues(false)
         pcStatistics.centerText = "Total \n 2000"
         pcStatistics.setEntryLabelColor(Color.WHITE)
+        pcStatistics.description.text=""
 
         val legend: Legend = pcStatistics.getLegend()
         legend.form = Legend.LegendForm.CIRCLE

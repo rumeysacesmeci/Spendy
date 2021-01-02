@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
         android:clickable="true"
-        app:cardCornerRadius="15dp">
+        app:cardCornerRadius="15dp"
+        android:focusable="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,7 +27,7 @@
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="CATEGORY"
+                android:text="@string/tvCategory"
                 android:textColor="@color/primaryDarkColor"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"

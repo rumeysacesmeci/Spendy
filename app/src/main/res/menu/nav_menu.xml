@@ -3,20 +3,19 @@
 
     <item
         android:id="@+id/action_homepage"
-        android:title="Homepage"
+        android:title="@string/MenuHome"
         android:icon="@drawable/home"/>
     <item
         android:id="@+id/action_budget_manager"
-        android:title="Budget Manager"
+        android:title="@string/MenuBudget"
         android:icon="@drawable/wallet"/>
     <item
         android:id="@+id/action_settings"
-        android:title="Settings"
+        android:title="@string/MenuSettings"
         android:icon="@drawable/setting"/>
     <item
          android:id="@+id/action_logout"
-        android:title="Log Out"
-        android:icon="@drawable/logout"
-                            />
+        android:title="@string/MenuLogout"
+        android:icon="@drawable/logout"/>
 
 </menu>

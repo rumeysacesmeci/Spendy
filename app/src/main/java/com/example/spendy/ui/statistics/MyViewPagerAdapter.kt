@@ -9,20 +9,20 @@ class MyViewPagerAdapter(manager: FragmentManager) : FragmentPagerAdapter(manage
     private val fragmentList: MutableList<Fragment> = ArrayList()
     private val titleList: MutableList<String> = ArrayList()
 
-    //Fragment'in pozisyonunu veriyoruz
+    //Fragment position
     override fun getItem(position: Int): Fragment {
         return fragmentList[position]
     }
-    //Fragment sayısını veriyoruz
+    //Fragment count
     override fun getCount(): Int {
         return fragmentList.size
     }
-    //Bu fonksiyon ile Fragment'leri ve title'ları ekliyoruz
+    //Add fragments and titles
     fun addFragment(fragment: Fragment, title: String) {
         fragmentList.add(fragment)
         titleList.add(title)
     }
-    //Title'ların pozisyonunu veriyoruz
+    //Title position
     override fun getPageTitle(position: Int): CharSequence? {
         return titleList[position]
     }

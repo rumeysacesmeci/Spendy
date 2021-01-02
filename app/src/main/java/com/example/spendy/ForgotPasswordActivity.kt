@@ -19,6 +19,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
     fun resetPassword(view: View){
         val emailAdress = txtEmail.text.toString()
 
+        //Send reset password Email on Firebase
         auth.sendPasswordResetEmail(emailAdress).addOnCompleteListener{ task ->
             if(task.isSuccessful){
                 Toast.makeText(this, "Email sent.", Toast.LENGTH_SHORT).show()

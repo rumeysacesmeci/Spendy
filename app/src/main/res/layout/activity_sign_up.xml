@@ -27,7 +27,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLName"
 
-        style="@style/OutlinedRoundedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLPasswordConfirm"
 
-        style="@style/OutlinedRoundedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLPassword"
 
-        style="@style/OutlinedRoundedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -124,7 +124,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLSurname"
 
-        style="@style/OutlinedRoundedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/txtLEmail"
 
-        style="@style/OutlinedRoundedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -175,6 +175,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:inputType="textEmailAddress"
             android:singleLine="true"
             android:textColor="#424242"
             app:layout_constraintBottom_toTopOf="@+id/txtPassword"
@@ -216,7 +217,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="24dp"
-        android:background="@drawable/rounded_button"
+        android:background="@color/primaryColor"
+        android:onClick="signUp"
         android:text="@string/btnSignUp"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -225,8 +227,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cbSignUp"
         app:layout_constraintVertical_bias="0.808"
-        tools:visibility="visible"
-        android:onClick="signUp"/>
+        tools:visibility="visible" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

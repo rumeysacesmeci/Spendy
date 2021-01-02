@@ -1,17 +1,14 @@
 package com.example.spendy.ui.homepage
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.spendy.adapters.HomePageRVAdapter
 import com.example.spendy.R
+import com.example.spendy.adapters.HomePageRVAdapter
 import com.github.mikephil.charting.data.Entry
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
 import kotlinx.android.synthetic.main.fragment_homepage.*
 
 
@@ -39,16 +36,18 @@ class FragmentHomepage : Fragment() {
         studentList = ArrayList()
         yearsList = ArrayList()
 
-        setPie()
+        //setPie()
         setActivitiesAdapter()
     }
+
+
 
 
 
     fun setPie(){
         //val pieDataSet = PieDataSet(getList(),"")
 
-        // val pieData =  PieData(pieDataSet)
+       // val pieData =  PieData(pieDataSet)
 
         //pieDataSet.setColor(Color.rgb(209, 121, 88))
 
@@ -61,16 +60,14 @@ class FragmentHomepage : Fragment() {
         pcHomepage.setCenterTextSize(20f)
 
 
-        // pcHomepage.data =pieData
+       // pcHomepage.data =pieData
 
     }
-
-
     //Entry For Pie Chart
     //fun getList(): MutableList<PieEntry>? {
     //
-    //  studentList.add(PieEntry(100f, 0F))
-    //return studentList
+      //  studentList.add(PieEntry(100f, 0F))
+        //return studentList
     //}
     //Entry For Pie Chart
     fun getYears():ArrayList<String>{

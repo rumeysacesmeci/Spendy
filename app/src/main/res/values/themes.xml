@@ -6,9 +6,7 @@
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorSecondary">@color/secondaryColor</item>
 
-
-    <!-- Secondary brand color. -->
-
+        <!-- Customize your theme here. -->
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
@@ -22,13 +20,4 @@
     <style name="Theme.Spendy.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Spendy.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="OutlinedRoundedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="boxCornerRadiusBottomEnd">10dp</item>
-        <item name="boxCornerRadiusBottomStart">10dp</item>
-        <item name="boxCornerRadiusTopEnd">10dp</item>
-        <item name="boxCornerRadiusTopStart">10dp</item>
-    </style>
-
-
 </resources>

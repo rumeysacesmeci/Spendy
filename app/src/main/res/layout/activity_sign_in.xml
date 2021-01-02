@@ -82,12 +82,13 @@
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivUserLogo"
-        app:layout_constraintVertical_bias="0.321"
-        app:errorEnabled="true">
+        app:layout_constraintVertical_bias="0.153">
 
 
         <!--this is the actual edit text which takes the input-->
@@ -116,13 +117,13 @@
 
     <ImageView
         android:id="@+id/ivUserLogo"
-        android:layout_width="119dp"
-        android:layout_height="132dp"
-        android:layout_marginTop="90dp"
-        android:src="@drawable/user"
+        android:layout_width="163dp"
+        android:layout_height="219dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/user" />
+        app:srcCompat="@drawable/login"
+        tools:ignore="VectorDrawableCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,8 +11,12 @@ import com.example.spendy.models.SignInModel
 import com.example.spendy.repository.Repository
 import com.example.spendy.ui.homepage.HomepageActivity
 import com.example.spendy.ui.signUp.SignUpActivity
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import kotlinx.android.synthetic.main.activity_sign_in.txtEmail
+import kotlinx.android.synthetic.main.activity_sign_in.txtPassword
+import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignInActivity : AppCompatActivity() {
 
@@ -24,7 +28,6 @@ class SignInActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_in)
 
 
-
         if (auth.currentUser!=null){
 
             val nvgToHomePage = Intent(this@SignInActivity, HomepageActivity::class.java)
@@ -33,7 +36,6 @@ class SignInActivity : AppCompatActivity() {
             finish()
 
         }
-
 
 
     }
@@ -49,22 +51,49 @@ class SignInActivity : AppCompatActivity() {
     }
 
 
+    private fun checkCredentials(): Boolean {
+        val email = txtEmail.text.toString()
+        val password = txtPassword.text.toString()
+
+
+        if(password.isEmpty() || password.length < 6){
+            showError(txtPassword, "Password must be min 6 character!")
+            return false
+        }
+        if(email.isEmpty() || !email.contains("@")){
+            showError(txtEmail, "Email is not valid!")
+            return false
+        }
+        return true
+    }
+
+    fun showError(input: TextInputEditText?, s: String) {
+        if (input != null) {
+            input.setError(s)
+        }
+    }
+
     //LogIn
     fun logIn(view: View) {
 
-       var result = repository.logIn(getSignInValues())
+        if(checkCredentials()){
+            var result = repository.logIn(getSignInValues())
 
-        if(!result){
+            if(!result){
+                Toast.makeText(baseContext, "Login failed.", Toast.LENGTH_SHORT).show()
+                return
+            }
+
+            Toast.makeText(baseContext, "Success.", Toast.LENGTH_SHORT).show()
+            val nvgToHomePage = Intent(this@SignInActivity, HomepageActivity::class.java)
+            startActivity(nvgToHomePage)
+
+
+        }else{
             Toast.makeText(baseContext, "Login failed.", Toast.LENGTH_SHORT).show()
-            return
         }
-        Toast.makeText(baseContext, "Success.", Toast.LENGTH_SHORT).show()
-
-        val nvgToHomePage = Intent(this@SignInActivity, HomepageActivity::class.java)
-        startActivity(nvgToHomePage)
 
         finish()
-
     }
 
     //Navigate To SignUp page

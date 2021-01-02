@@ -12,7 +12,7 @@
         android:id="@+id/txtSignUp"
         android:layout_width="178dp"
         android:layout_height="31dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="@string/txtSignUp"
         android:textColor="#424242"
@@ -35,9 +35,10 @@
         android:hint="@string/txtName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSignUp">
+        app:layout_constraintTop_toBottomOf="@+id/txtSignUp"
+        app:errorEnabled="true">
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtName"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -61,16 +62,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:hint="@string/txtPasswordConfirm"
+        app:errorEnabled="true"
+        app:layout_constraintBottom_toTopOf="@+id/cbSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLPassword">
+        app:layout_constraintTop_toBottomOf="@+id/txtLPassword"
+        app:passwordToggleEnabled="true">
 
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtPasswordConfirm"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -96,18 +99,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="24dp"
         android:hint="@string/txtPassword"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/txtLPasswordConfirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLEmail">
+        app:layout_constraintTop_toBottomOf="@+id/txtLEmail"
+        app:passwordToggleEnabled="true">
 
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtPassword"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -130,16 +134,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:hint="@string/txtSurname"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLName">
 
 
-        <EditText
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtSurname"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -162,10 +167,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:hint="@string/txtEMail"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtLSurname">
@@ -188,7 +194,6 @@
         android:id="@+id/cbSignUp"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_marginTop="10dp"
         android:checked="false"
         android:clickable="true"
         android:focusable="true"
@@ -203,7 +208,7 @@
         android:id="@+id/ivLogin"
         android:layout_width="81dp"
         android:layout_height="47dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="32dp"
         android:contentDescription=""
         app:layout_constraintBottom_toTopOf="@+id/txtSignUp"
         app:layout_constraintEnd_toEndOf="parent"

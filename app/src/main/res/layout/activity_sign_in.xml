@@ -36,7 +36,9 @@
         android:hint="Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filledEmail">
+        app:layout_constraintTop_toBottomOf="@+id/filledEmail"
+        app:passwordToggleEnabled="true"
+        app:errorEnabled="true">
 
         <!--this is the actual edit text which takes the input-->
         <com.google.android.material.textfield.TextInputEditText
@@ -84,14 +86,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivUserLogo"
-        app:layout_constraintVertical_bias="0.321">
+        app:layout_constraintVertical_bias="0.321"
+        app:errorEnabled="true">
 
 
         <!--this is the actual edit text which takes the input-->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

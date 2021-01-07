@@ -24,6 +24,7 @@ import com.example.spendy.repository.*
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -167,7 +168,7 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,
     // Take budgets from Firestore continously
     fun populateRV() {
 
-        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget")
+        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget").orderBy("time",Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, e ->
 
                 var total = 0.0

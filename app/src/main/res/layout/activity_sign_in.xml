@@ -9,14 +9,14 @@
 
     <TextView
         android:id="@+id/tvForgotPassword"
-        android:layout_width="100dp"
-        android:layout_height="22dp"
+        android:layout_width="91dp"
+        android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
 
         android:onClick="onForgotButtonPressed"
-        android:text="Forgot Password?"
+        android:text="@string/forgot_password"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filledTextField" />
@@ -45,7 +45,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:hint="Password"
+        android:hint="@string/password_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filledEmail">
@@ -55,18 +55,18 @@
             android:id="@+id/txtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnSignIn"
-        android:layout_width="92dp"
-        android:layout_height="40dp"
+        android:layout_width="120dp"
+        android:layout_height="41dp"
         android:layout_marginTop="24dp"
         android:background="@color/primaryColor"
         android:onClick="logIn"
-        android:text="Sıgn In"
+        android:text="@string/sign_in"
         android:textColor="@color/secondaryLightColor"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +87,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="32dp"
         android:focusable="auto"
-        android:hint="E-Mail"
+        android:hint="@string/email_hint"
         app:boxCornerRadiusBottomEnd="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
@@ -116,7 +116,7 @@
         android:layout_marginTop="51dp"
         android:layout_marginBottom="56dp"
         android:onClick="signUp"
-        android:text="Sign Up with E-Mail"
+        android:text="@string/sign_up_with_email"
         android:textColor="@color/primaryDarkColor"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -17,6 +17,8 @@ import com.example.spendy.models.Budget
 class ExpenseIncomeAdapter(private val context: Context,private val expenseIncomeList:List<Budget>)
     :RecyclerView.Adapter<ExpenseIncomeAdapter.CardViewObjectsHolder>() {
 
+
+
     //Card view holder
     inner class CardViewObjectsHolder(view:View):RecyclerView.ViewHolder(view){
         var tvExpenseIncome:TextView

@@ -1,8 +1,11 @@
- package com.example.spendy.ui.signIn
+package com.example.spendy.ui.signIn
 
 
+import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -31,6 +34,7 @@ import kotlinx.android.synthetic.main.activity_sign_in.txtEmail
 import kotlinx.android.synthetic.main.activity_sign_in.txtPassword
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import kotlinx.android.synthetic.main.dialog_forgot_password.*
+import java.util.*
 
 
 class SignInActivity : AppCompatActivity() {
@@ -52,7 +56,7 @@ class SignInActivity : AppCompatActivity() {
         mAuth = Firebase.auth
 
 
-
+        //Checking Current User
         if (auth.currentUser != null) {
 
             val nvgToHomePage = Intent(this@SignInActivity, HomepageActivity::class.java)
@@ -201,7 +205,9 @@ class SignInActivity : AppCompatActivity() {
 
     //On Forgot Password Pressed
 
+
     fun onForgotButtonPressed(view: View){
+
 
         val builder = AlertDialog.Builder(this)
 
@@ -228,7 +234,14 @@ class SignInActivity : AppCompatActivity() {
         builder.show()
 
 
+
+
+
+
     }
+
+
+
 
 
     //Forgot Password.

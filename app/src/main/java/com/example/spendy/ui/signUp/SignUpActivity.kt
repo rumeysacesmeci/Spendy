@@ -41,7 +41,8 @@ class SignUpActivity : AppCompatActivity(){
 
         if (txtEmail.text.toString().isEmpty()){
 
-            txtEmail.error = "Please Enter Your E-Mail"
+            txtEmail.error = getString(R.string.empty_email_error)
+
             txtEmail.requestFocus()
 
             verifySignUp = false
@@ -49,7 +50,7 @@ class SignUpActivity : AppCompatActivity(){
 
         if (txtName.text.toString().isEmpty()){
 
-            txtName.error = "Please Enter Your Name"
+            txtName.error = getString(R.string.empty_name_error)
             txtName.requestFocus()
 
             verifySignUp = false
@@ -57,7 +58,7 @@ class SignUpActivity : AppCompatActivity(){
 
         if (txtSurname.text.toString().isEmpty()){
 
-            txtSurname.error = "Please Enter Your Surname"
+            txtSurname.error = getString(R.string.empty_surname_error)
             txtSurname.requestFocus()
 
             verifySignUp = false
@@ -65,7 +66,7 @@ class SignUpActivity : AppCompatActivity(){
 
         if (txtPassword.text.toString().isEmpty()){
 
-            txtPassword.error = "Please Enter Your Password"
+            txtPassword.error = getString(R.string.empty_password_error)
             txtPassword.requestFocus()
 
             verifySignUp = false
@@ -73,7 +74,7 @@ class SignUpActivity : AppCompatActivity(){
 
         if (txtPasswordConfirm.text.toString().isEmpty()){
 
-            txtPasswordConfirm.error = "Please Confirm Your Password"
+            txtPasswordConfirm.error = getString(R.string.empty_password_confirm_error)
             txtPasswordConfirm.requestFocus()
 
             verifySignUp = false
@@ -81,7 +82,7 @@ class SignUpActivity : AppCompatActivity(){
 
         if(!Patterns.EMAIL_ADDRESS.matcher(txtEmail.text.toString()).matches()){
 
-            txtEmail.error = "Please Enter a Valid Email"
+            txtEmail.error = getString(R.string.email_validation_error)
             txtEmail.requestFocus()
 
             verifySignUp = false
@@ -91,7 +92,7 @@ class SignUpActivity : AppCompatActivity(){
         //Confirm Password
         if (!txtPassword.text.toString().equals(txtPasswordConfirm.text.toString())){
 
-            Toast.makeText(baseContext, "Passwords did not Match", Toast.LENGTH_LONG).show()
+            Toast.makeText(baseContext,getString(R.string.password_match_error), Toast.LENGTH_LONG).show()
             txtPasswordConfirm.requestFocus()
 
             verifySignUp = false

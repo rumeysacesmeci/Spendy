@@ -3,20 +3,36 @@
 
     <item
         android:id="@+id/action_homepage"
-        android:title="Homepage"
-        android:icon="@drawable/home"/>
+        android:icon="@drawable/home"
+        android:title="@string/homepage" />
     <item
         android:id="@+id/action_budget_manager"
-        android:title="Budget Manager"
-        android:icon="@drawable/wallet"/>
+        android:icon="@drawable/wallet"
+        android:title="@string/budget_manager" />
     <item
-        android:id="@+id/action_settings"
-        android:title="Settings"
-        android:icon="@drawable/setting"/>
+        android:id="@+id/action_statistics"
+        android:icon="@drawable/setting"
+        android:title="@string/statistics" />
     <item
-         android:id="@+id/action_logout"
-        android:title="Log Out"
+        android:id="@+id/action_logout"
         android:icon="@drawable/logout"
-                            />
+        android:title="@string/log_out" />
+
+    <item android:title="@string/language">
+
+        <menu>
+
+            <item
+                android:id="@+id/action_english"
+                android:title="@string/english" />
+            <item
+                android:id="@+id/action_deutsch"
+                android:title="@string/german" />
+
+
+        </menu>
+
+
+    </item>
 
 </menu>

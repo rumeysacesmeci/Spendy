@@ -21,7 +21,7 @@ import kotlin.collections.ArrayList
 
 private val auth = FirebaseAuth.getInstance()
 private val db = Firebase.firestore
-
+private var timeCount = 0
 private lateinit var mutableBudgetList: MutableList<Budget>
 
 
@@ -101,12 +101,13 @@ class Repository {
     //Add Income
     fun addIncome(budget: Budget) {
 
+        timeCount++
         val budgetMap = hashMapOf(
 
                 "type" to budget.type,
                 "amount" to budget.amount,
                 "category" to budget.category,
-                "time" to budget.time
+                "time" to timeCount.toString()
 
         )
 
@@ -125,12 +126,14 @@ class Repository {
     //Add Expense
     fun addExpense(budget: Budget) {
 
+        timeCount++
+
         val budgetMap = hashMapOf(
 
                 "type" to budget.type,
                 "amount" to budget.amount,
                 "category" to budget.category,
-                "time" to budget.time
+                "time" to timeCount.toString()
 
         )
 

@@ -1,10 +1,8 @@
-package com.example.spendy
+package com.example.spendy.ui.statistics
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.spendy.ui.statistics.FragmentExpense
-import com.example.spendy.ui.statistics.FragmentIncome
-import com.example.spendy.ui.statistics.MyViewPagerAdapter
+import com.example.spendy.R
 import kotlinx.android.synthetic.main.activity_statistics_tab.*
 
 

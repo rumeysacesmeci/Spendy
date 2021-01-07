@@ -29,11 +29,25 @@
 
     <color name ="background">#F0FCF4</color>
 
+    <color name="firstMain">#26c6da</color>
+    <color name="SecondMain">#6ff9ff</color>
+    <color name="thirdMain">#0095a8</color>
+    <color name="fourthMain">#859871</color>
+    <color name="fifthMain">#C1CD99</color>
+    <color name="sixthMain">#DFE1CA</color>
+
+    <!--
+
+        old colors
+
     <color name="firstMain">#DFBB80</color>
     <color name="SecondMain">#D17958</color>
     <color name="thirdMain">#535A4B</color>
     <color name="fourthtMain">#859871</color>
     <color name="fifthMain">#C1CD99</color>
     <color name="sixthMain">#DFE1CA</color>
+
+
+    -->
 
 </resources>

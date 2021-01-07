@@ -21,13 +21,15 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
-class CategoryActivity : AppCompatActivity(),CategoryAdapter.OnItemClickListener {
+class CategoryActivity : AppCompatActivity(), CategoryAdapter.OnItemClickListener {
     private val repository = Repository()
     private lateinit var categoriesArrayList: ArrayList<Categories>
     private lateinit var adapter: CategoryAdapter
     private val db = Firebase.firestore
 
     private val auth = FirebaseAuth.getInstance()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
@@ -35,7 +37,7 @@ class CategoryActivity : AppCompatActivity(),CategoryAdapter.OnItemClickListener
         rvCategories.setHasFixedSize(true)
         rvCategories.layoutManager = LinearLayoutManager(this)
 
-        toolbarCreate()
+
 
 
 
@@ -45,74 +47,45 @@ class CategoryActivity : AppCompatActivity(),CategoryAdapter.OnItemClickListener
     }
 
 
-
-
-
     // Add categories to recyclerview
-    fun categoryAdder(){
-        val c1 = Categories("No Category")
-        val c2 = Categories("BOOK")
-        val c3 = Categories("CAR")
-        val c4 = Categories("CHİLD")
-        val c5 = Categories("CLOTHES")
-        val c6 = Categories("COSMETIC")
-        val c7 = Categories("CREDIT CARD")
-        val c8 = Categories("DONATION")
-        val c9 = Categories("DUES")
-        val c10 = Categories("EDUCATION")
-        val c11 = Categories("ELECTRICITY")
-        val c12 = Categories("ENTERTAINMENT")
-        val c13 = Categories("FOOD")
-        val c14 = Categories("HEALTH")
-        val c15 = Categories("HEAT")
-        val c16 = Categories("HOUSE")
-        val c17 = Categories("INSURANCE")
-        val c18 = Categories("INTERNET")
-        val c19 = Categories("INVOICE")
-        val c20 = Categories("MARKET")
-        val c21 = Categories("PET")
-        val c22 = Categories("RENTAL FEE")
-        val c23 = Categories("SALARY")
-        val c24 = Categories("SALES")
-        val c25 = Categories("TELEPHONE")
-        val c26 = Categories("TRANSPORTATION")
-        val c27 = Categories("TRAVEL")
-        val c28 = Categories("TV")
-        val c29 = Categories("WATER")
+    private fun categoryAdder() {
+
 
         categoriesArrayList = ArrayList<Categories>()
-        categoriesArrayList.add(c1)
-        categoriesArrayList.add(c2)
-        categoriesArrayList.add(c3)
-        categoriesArrayList.add(c4)
-        categoriesArrayList.add(c5)
-        categoriesArrayList.add(c6)
-        categoriesArrayList.add(c7)
-        categoriesArrayList.add(c8)
-        categoriesArrayList.add(c9)
-        categoriesArrayList.add(c10)
-        categoriesArrayList.add(c11)
-        categoriesArrayList.add(c12)
-        categoriesArrayList.add(c13)
-        categoriesArrayList.add(c14)
-        categoriesArrayList.add(c15)
-        categoriesArrayList.add(c16)
-        categoriesArrayList.add(c17)
-        categoriesArrayList.add(c18)
-        categoriesArrayList.add(c19)
-        categoriesArrayList.add(c20)
-        categoriesArrayList.add(c21)
-        categoriesArrayList.add(c22)
-        categoriesArrayList.add(c23)
-        categoriesArrayList.add(c24)
-        categoriesArrayList.add(c25)
-        categoriesArrayList.add(c26)
-        categoriesArrayList.add(c27)
-        categoriesArrayList.add(c28)
-        categoriesArrayList.add(c29)
+
+        categoriesArrayList.add(Categories(getString(R.string.no_category)))
+        categoriesArrayList.add(Categories(getString(R.string.book)))
+        categoriesArrayList.add(Categories(getString(R.string.car)))
+        categoriesArrayList.add(Categories(getString(R.string.child)))
+        categoriesArrayList.add(Categories(getString(R.string.clothes)))
+        categoriesArrayList.add(Categories(getString(R.string.cosmetic)))
+        categoriesArrayList.add(Categories(getString(R.string.credit_card)))
+        categoriesArrayList.add(Categories(getString(R.string.donation)))
+        categoriesArrayList.add(Categories(getString(R.string.dues)))
+        categoriesArrayList.add(Categories(getString(R.string.education)))
+        categoriesArrayList.add(Categories(getString(R.string.electricity)))
+        categoriesArrayList.add(Categories(getString(R.string.entertainment)))
+        categoriesArrayList.add(Categories(getString(R.string.food)))
+        categoriesArrayList.add(Categories(getString(R.string.health)))
+        categoriesArrayList.add(Categories(getString(R.string.heat)))
+        categoriesArrayList.add(Categories(getString(R.string.house)))
+        categoriesArrayList.add(Categories(getString(R.string.insurance)))
+        categoriesArrayList.add(Categories(getString(R.string.internet)))
+        categoriesArrayList.add(Categories(getString(R.string.invoice)))
+        categoriesArrayList.add(Categories(getString(R.string.market)))
+        categoriesArrayList.add(Categories(getString(R.string.pet)))
+        categoriesArrayList.add(Categories(getString(R.string.rental_fee)))
+        categoriesArrayList.add(Categories(getString(R.string.salary)))
+        categoriesArrayList.add(Categories(getString(R.string.sales)))
+        categoriesArrayList.add(Categories(getString(R.string.telephone)))
+        categoriesArrayList.add(Categories(getString(R.string.transportation)))
+        categoriesArrayList.add(Categories(getString(R.string.travel)))
+        categoriesArrayList.add(Categories(getString(R.string.tv)))
+        categoriesArrayList.add(Categories(getString(R.string.water)))
 
 
-        adapter = CategoryAdapter(this@CategoryActivity,categoriesArrayList,this)
+
+        adapter = CategoryAdapter(this@CategoryActivity, categoriesArrayList, this)
         rvCategories.adapter = adapter
     }
 
@@ -122,8 +95,8 @@ class CategoryActivity : AppCompatActivity(),CategoryAdapter.OnItemClickListener
     @SuppressLint("NewApi")
     override fun onItemClick(position: Int) {
         val clickedItem = categoriesArrayList[position]
-        val messageType = intent.getIntExtra("type",0)
-        val messageAmount = intent.getDoubleExtra("amount",0.0)
+        val messageType = intent.getIntExtra("type", 0)
+        val messageAmount = intent.getDoubleExtra("amount", 0.0)
         val messageTime = intent.getStringExtra("time")
 
         /*val pattern = "dd-MM-yyyy HH:mm"
@@ -134,7 +107,7 @@ class CategoryActivity : AppCompatActivity(),CategoryAdapter.OnItemClickListener
 
         //var ts = Timestamp(messageTime.toLong(),0)
 
-        val budget = Budget(messageType,messageAmount,clickedItem.categoryName, messageTime)
+        val budget = Budget(messageType, messageAmount, clickedItem.categoryName, messageTime)
 
         repository.addIncome(budget)
         adapter.notifyItemChanged(position)
@@ -143,10 +116,11 @@ class CategoryActivity : AppCompatActivity(),CategoryAdapter.OnItemClickListener
     }
 
 
-
     // Create toolbar for category page
-    fun toolbarCreate(){
-        toolbarCategory.title = "SELECT CATEGORY"
+    fun toolbarCreate() {
+
+
+
         toolbarCategory.setLogo(R.drawable.category)
     }
 

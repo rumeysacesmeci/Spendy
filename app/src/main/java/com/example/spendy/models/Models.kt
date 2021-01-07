@@ -42,7 +42,8 @@ data class Budget(
         val type:Int=0,
         val amount :Double=0.0,
         val category:String="",
-        val time :String = ""
+        val time :String=""
+
 
 
 )

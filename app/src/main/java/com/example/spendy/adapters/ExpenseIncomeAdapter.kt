@@ -20,7 +20,6 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
 
     //Card view holder
     inner class CardViewObjectsHolder(view:View):RecyclerView.ViewHolder(view){
-        var tvExpenseIncome:TextView
         var tvCategory:TextView
         var tvAmount:TextView
         var cv:CardView
@@ -28,7 +27,6 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         var ivDelete:ImageView
         init {
             cv = view.findViewById(R.id.cvExpenseIncome)
-            tvExpenseIncome = view.findViewById(R.id.tvExpenseIncome)
             tvCategory = view.findViewById(R.id.tvCategory)
             tvAmount = view.findViewById(R.id.tvAmount)
             tvTimeShower = view.findViewById(R.id.tvTimeShower)
@@ -95,10 +93,6 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
 
 
 
-
-
-
->>>>>>>>> Temporary merge branch 2
 
 
     }

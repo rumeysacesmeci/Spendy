@@ -3,19 +3,15 @@
 
     <item
         android:id="@+id/action_homepage"
-        android:icon="@drawable/home"
         android:title="@string/homepage" />
     <item
         android:id="@+id/action_budget_manager"
-        android:icon="@drawable/wallet"
         android:title="@string/budget_manager" />
     <item
         android:id="@+id/action_statistics"
-        android:icon="@drawable/setting"
         android:title="@string/statistics" />
     <item
         android:id="@+id/action_logout"
-        android:icon="@drawable/logout"
         android:title="@string/log_out" />
 
     <item android:title="@string/language">

@@ -164,7 +164,6 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,
 
     }
 
-
     // Take budgets from Firestore continously
     fun populateRV() {
 

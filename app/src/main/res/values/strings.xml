@@ -97,6 +97,9 @@
 
     //Category
     <string name="select_category">Select Category</string>
+    
+    //piechart 
+    <string name="balance">Balance</string>
 
 
 

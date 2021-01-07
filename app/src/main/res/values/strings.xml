@@ -11,9 +11,6 @@
     <string name="txtPasswordConfirm">Confirm Password</string>
 
     <string name="btnSignUp">Sign Up</string>
-    <string name="title_activity_tab_statistics">ActivityTabStatistics</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
 
     //Sign In Page
     <string name="forgot_password">Forgot Password?</string>

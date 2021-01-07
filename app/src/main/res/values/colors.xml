@@ -13,18 +13,13 @@
     <color name="thema4">#859871</color>
     <color name="thema5">#dfbb80</color>
     <color name="thema6">#DFE1CA</color>
+    #d17958ff
 
-    <color name="chart1">#6a1b9a</color>
 
-
-    <color name="primaryColor">#26c6da</color>
-    <color name="primaryLightColor">#6ff9ff</color>
-    <color name="primaryDarkColor">#0095a8</color>
-    <color name="secondaryColor">#cfd8dc</color>
-    <color name="secondaryLightColor">#ffffff</color>
-    <color name="secondaryDarkColor">#9ea7aa</color>
-    <color name="primaryTextColor">#000000</color>
-    <color name="secondaryTextColor">#000000</color>
+    <color name="primaryColor">#007f00</color>
+    <color name="primaryLightColor">#4baf3a</color>
+    <color name="primaryDarkColor">#005100</color>
+    <color name="primaryTextColor">#ffffff</color>
 
     <color name="income">#d1d8e0</color>
     <color name="expense">#a5b1c2</color>

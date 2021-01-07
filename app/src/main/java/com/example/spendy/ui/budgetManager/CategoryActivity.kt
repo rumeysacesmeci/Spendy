@@ -15,15 +15,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_category.*
-import kotlinx.android.synthetic.main.card_view_category.*
-import kotlinx.android.synthetic.main.card_view_category.view.*
-import kotlinx.android.synthetic.main.fragment_expense_income.*
-import java.sql.Time
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
+import com.google.firebase.Timestamp
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
 
@@ -98,12 +92,20 @@ class CategoryActivity : AppCompatActivity(), CategoryAdapter.OnItemClickListene
 
     //Click method for category recyclerview(every row)
 
+    @SuppressLint("NewApi")
     override fun onItemClick(position: Int) {
         val clickedItem = categoriesArrayList[position]
         val messageType = intent.getIntExtra("type", 0)
         val messageAmount = intent.getDoubleExtra("amount", 0.0)
         val messageTime = intent.getStringExtra("time")
 
+        /*val pattern = "dd-MM-yyyy HH:mm"
+
+        val formatter = DateTimeFormatter.ofPattern(pattern)
+        val localDateTime = LocalDateTime.from(formatter.parse(messageTime))
+        var ts = Timestamp(localDateTime*/
+
+        //var ts = Timestamp(messageTime.toLong(),0)
 
         val budget = Budget(messageType, messageAmount, clickedItem.categoryName, messageTime)
 

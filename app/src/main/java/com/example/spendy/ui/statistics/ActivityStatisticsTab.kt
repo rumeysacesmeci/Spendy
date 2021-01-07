@@ -17,12 +17,11 @@ class ActivityStatisticsTab : AppCompatActivity() {
         val adapter = MyViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(FragmentExpense(), "Expense")
         adapter.addFragment(FragmentIncome(), "Income")
+        //Tab fragments
 
 
-
-        //Adapter'ımızdaki verileri viewPager adapter'a veriyoruz
         viewPager2.adapter = adapter
-        //Tablar arasında yani viewPager'lar arasında geçisi sağlıyoruz
+        //Change Tab(ViewPager)
         tabLayout.setupWithViewPager(viewPager2)
 
     }

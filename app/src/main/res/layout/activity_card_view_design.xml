@@ -10,7 +10,7 @@
         android:id="@+id/cvActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardBackgroundColor="#143514">
+        app:cardBackgroundColor="@color/primaryDarkColor"
         android:layout_margin="5dp"
         app:cardCornerRadius="10dp">
 

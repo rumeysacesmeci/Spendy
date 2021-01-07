@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/onc"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondaryLightColor"
@@ -36,7 +37,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledTextField"
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutlinedRoundedBox"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,8 +48,11 @@
         android:layout_marginRight="16dp"
         android:hint="@string/password_hint"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/filledEmail">
+        app:layout_constraintTop_toBottomOf="@+id/filledEmail"
+        app:passwordToggleEnabled="true"
+        app:errorEnabled="true">
 
         <!--this is the actual edit text which takes the input-->
         <com.google.android.material.textfield.TextInputEditText
@@ -61,23 +65,23 @@
 
     <Button
         android:id="@+id/btnSignIn"
-        android:layout_width="120dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/primaryColor"
+        android:layout_width="92dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/rounded_button"
         android:onClick="logIn"
         android:text="@string/sign_in"
         android:textColor="@color/secondaryLightColor"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/filledTextField" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledEmail"
 
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/OutlinedRoundedBox"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -92,12 +96,13 @@
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusTopEnd="10dp"
         app:boxCornerRadiusTopStart="10dp"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivUserLogo"
-        app:layout_constraintVertical_bias="0.223">
+        app:layout_constraintVertical_bias="0.153">
 
 
         <!--this is the actual edit text which takes the input-->
@@ -121,18 +126,16 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnSignIn"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/ivUserLogo"
-        android:layout_width="119dp"
-        android:layout_height="132dp"
-        android:layout_marginTop="88dp"
+        android:layout_width="163dp"
+        android:layout_height="219dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/log_in_page"

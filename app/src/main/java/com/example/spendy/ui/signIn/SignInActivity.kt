@@ -1,4 +1,4 @@
-package com.example.spendy.ui.signIn
+ package com.example.spendy.ui.signIn
 
 
 import android.content.DialogInterface
@@ -200,12 +200,6 @@ class SignInActivity : AppCompatActivity() {
     }
 
     //On Forgot Password Pressed
-
-    fun onForgotPasswordPressed(view: View) {
-
-
-
-    }
 
     fun onForgotButtonPressed(view: View){
 

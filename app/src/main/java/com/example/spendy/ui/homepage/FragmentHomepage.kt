@@ -65,7 +65,7 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
 
         // adapter = HomePageRVAdapter(requireContext(), activitiesList)
 
-        adapter = ExpenseIncomeAdapter(requireContext(),mutableBudgetList)
+        adapter = ExpenseIncomeAdapter(requireContext(), mutableBudgetList)
         rvHomepage.adapter = adapter
 
 
@@ -79,15 +79,12 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
     }
 
 
-
-
-
     fun populateRV() {
 
-        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget").limit(5)
+        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget")
+            .limit(5)
 
             .addSnapshotListener { snapshot, e ->
-
 
 
                 if (e != null || snapshot == null) {
@@ -112,7 +109,7 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
     }
 
 
-    private fun printTotalToChart(){
+    private fun printTotalToChart() {
 
 
         db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget")
@@ -130,11 +127,10 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
                 val budgetList = snapshot.toObjects(Budget::class.java)
 
 
-                budgetList.forEach{
-                    if(it.type== 0){
+                budgetList.forEach {
+                    if (it.type == 0) {
                         total += it.amount
-                    }
-                    else if(it.type ==1){
+                    } else if (it.type == 1) {
                         total -= it.amount
                     }
                 }
@@ -148,15 +144,12 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
 
 
                 /*for(i in 0..4){
-
                     limitedList.add(budgetList[i])
-
-
                 }*/
 
                 //mutableBudgetList.addAll(budgetList)
 
-               // adapter.notifyDataSetChanged()
+                // adapter.notifyDataSetChanged()
 
 
             }
@@ -177,8 +170,7 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
 
         val pieData = PieData(pieDataSet)
         pieDataSet.setColors(
-            Color.rgb(38,198,218), Color.rgb(0,149,168)
-            , Color.rgb(207,216,220)
+            Color.rgb(38, 198, 218), Color.rgb(0, 149, 168), Color.rgb(207, 216, 220)
         )
 
         pcHomepage.setHoleRadius(60f)
@@ -190,13 +182,10 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
         pcHomepage.setEntryLabelColor(Color.WHITE)
 
 
-
-       /* val legend: Legend = pcStatistics.getLegend()
-        legend.form = Legend.LegendForm.CIRCLE
-        legend.textSize = 16f
-        legend.formSize = 20f
-        legend.formToTextSpace = 4f*/
+        /* val legend: Legend = pcStatistics.getLegend()
+         legend.form = Legend.LegendForm.CIRCLE
+         legend.textSize = 16f
+         legend.formSize = 20f
+         legend.formToTextSpace = 4f*/
     }
-
-
 }

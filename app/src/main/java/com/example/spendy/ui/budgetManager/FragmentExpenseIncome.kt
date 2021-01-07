@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.TimePicker
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -26,6 +28,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 import kotlinx.android.synthetic.main.fragment_expense_income.*
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -34,7 +37,8 @@ import kotlin.collections.ArrayList
 
 //
 // Fragment for Expense and Income Page
-class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,TimePickerDialog.OnTimeSetListener {
+class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,
+    TimePickerDialog.OnTimeSetListener {
 
 
     private lateinit var expenseIncomeArrayList: ArrayList<Budget>
@@ -51,7 +55,6 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
     private lateinit var mutableBudgetList: MutableList<Budget>
 
 
-
     var day = 0
     var month = 0
     var year = 0
@@ -65,7 +68,11 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
     var savedMinute = 0
 
     //OnCreateView
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
         return inflater.inflate(R.layout.fragment_expense_income, container, false)
     }
@@ -73,6 +80,7 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
 
     //onViewCreated
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -102,8 +110,6 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
         pickDate()
 
 
-
-
         // When INCOME button clicked add datas to recyclervier
         btnIncome.setOnClickListener {
 
@@ -116,21 +122,16 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
 
 
 
-            if(!txtAmount.text.toString().isEmpty()){
+            if (!txtAmount.text.toString().isEmpty()) {
 
                 val newIntent = Intent(requireContext(), CategoryActivity::class.java)
                 newIntent.putExtra("type", 0)
                 newIntent.putExtra("amount", txtAmount.text.toString().toDouble())
                 newIntent.putExtra("time", tvTime.text)
                 startActivity(newIntent)
-            }
-            else{
+            } else {
                 return@setOnClickListener
             }
-
-
-
-
 
 
         }
@@ -149,10 +150,10 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
             tvTotalAmountShower.text = "TOTAL    " + total.toString() + "  $"
 
 
-            val newIntent = Intent(requireContext(),CategoryActivity::class.java)
-            newIntent.putExtra("type",1)
-            newIntent.putExtra("amount",txtAmount.text.toString().toDouble())
-            newIntent.putExtra("time",tvTime.text)
+            val newIntent = Intent(requireContext(), CategoryActivity::class.java)
+            newIntent.putExtra("type", 1)
+            newIntent.putExtra("amount", txtAmount.text.toString().toDouble())
+            newIntent.putExtra("time", tvTime.text)
             startActivity(newIntent)
 
             //E mail login den sonra tutulup buraya verilecek
@@ -163,32 +164,29 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
     }
 
 
-
-
     // Take budgets from Firestore continously
-    fun populateRV(){
+    fun populateRV() {
 
         db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget")
             .addSnapshotListener { snapshot, e ->
 
-                var total =0.0
+                var total = 0.0
                 if (e != null || snapshot == null) {
 
                     return@addSnapshotListener
                 }
-                for (i in mutableBudgetList.indices){
+                for (i in mutableBudgetList.indices) {
 
                     mutableBudgetList.get(0).time.toString()
 
                 }
 
-                val  budgetList = snapshot.toObjects(Budget::class.java)
+                val budgetList = snapshot.toObjects(Budget::class.java)
 
-                budgetList.forEach{
-                    if(it.type== 0){
+                budgetList.forEach {
+                    if (it.type == 0) {
                         total += it.amount
-                    }
-                    else if(it.type ==1){
+                    } else if (it.type == 1) {
                         total -= it.amount
                     }
                 }
@@ -204,10 +202,8 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
     }
 
 
-
-
-    private fun getDateTimeCalendar(){
-        val cal:Calendar = Calendar.getInstance()
+    private fun getDateTimeCalendar() {
+        val cal: Calendar = Calendar.getInstance()
         day = cal.get(Calendar.DAY_OF_MONTH)
         month = cal.get(Calendar.MONTH)
         year = cal.get(Calendar.YEAR)
@@ -217,24 +213,18 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
     }
 
 
-
-
-
     //When you click time textview this method called firs
-    private fun pickDate(){
+    private fun pickDate() {
         tvTime.setOnClickListener {
             getDateTimeCalendar()
 
-            val a1 =DatePickerDialog(requireContext(),this,year,month,day)
+            val a1 = DatePickerDialog(requireContext(), this, year, month, day)
 
             a1.show()
 
 
         }
     }
-
-
-
 
 
     // Date setter for Datepicker
@@ -245,12 +235,9 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
 
         getDateTimeCalendar()
 
-        TimePickerDialog(requireContext(),this,hour,minute,true).show()
+        TimePickerDialog(requireContext(), this, hour, minute, true).show()
 
     }
-
-
-
 
 
     // Time setter for Timepicker
@@ -260,10 +247,6 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
         savedMinute = minute
         tvTime.text = "$savedDay-$savedMonth-$savedYear $savedHour:$savedMinute"
     }
-
-
-
-
 
 
     // Function that gave current time as format "dd-MM-yyyy HH:mm"
@@ -276,9 +259,5 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
 
         tvTime.text = formatted.toString()
     }
-
-
-
-
 
 }

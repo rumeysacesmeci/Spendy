@@ -22,7 +22,6 @@ import com.example.spendy.repository.*
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -50,6 +49,7 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
     private val auth = FirebaseAuth.getInstance()
 
     private lateinit var mutableBudgetList: MutableList<Budget>
+    private lateinit var budgetList: MutableList<Budget>
 
 
 
@@ -117,17 +117,17 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
 
 
 
-            if(!txtAmount.text.toString().isEmpty()){
+             if(!txtAmount.text.toString().isEmpty()){
 
-                val newIntent = Intent(requireContext(), CategoryActivity::class.java)
-                newIntent.putExtra("type", 0)
-                newIntent.putExtra("amount", txtAmount.text.toString().toDouble())
-                newIntent.putExtra("time", tvTime.text)
-                startActivity(newIntent)
-            }
+                 val newIntent = Intent(requireContext(), CategoryActivity::class.java)
+                 newIntent.putExtra("type", 0)
+                 newIntent.putExtra("amount", txtAmount.text.toString().toDouble())
+                 newIntent.putExtra("time", tvTime.text)
+                 startActivity(newIntent)
+             }
             else{
-                return@setOnClickListener
-            }
+                 return@setOnClickListener
+             }
 
 
 
@@ -166,42 +166,57 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
 
 
 
+
     // Take budgets from Firestore continously
     fun populateRV(){
 
-        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget").orderBy("time",Query.Direction.DESCENDING)
-            .addSnapshotListener { snapshot, e ->
+        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget")
+                .addSnapshotListener { snapshot, e ->
 
-                var total =0.0
-                if (e != null || snapshot == null) {
+                   /* for (i in snapshot!!.toObjects(Budget::class.java).indices ){
 
-                    return@addSnapshotListener
-                }
-                for (i in mutableBudgetList.indices){
 
-                    mutableBudgetList.get(0).time.toString()
 
-                }
 
-                val  budgetList = snapshot.toObjects(Budget::class.java)
+                    }*/
 
-                budgetList.forEach{
-                    if(it.type== 0){
-                        total += it.amount
+                    var total =0.0
+                    if (e != null || snapshot == null) {
+
+                        return@addSnapshotListener
                     }
-                    else if(it.type ==1){
-                        total -= it.amount
+
+                   /* snapshot.toObjects(Budget::class.java).forEach {
+                        it.time.toDate()
+
+
+                    }*/
+
+                    budgetList = snapshot.toObjects(Budget::class.java)
+                    budgetList.forEach{
+                        if(it.type== 0){
+                            total += it.amount
+                        }
+                        else if(it.type ==1){
+                            total -= it.amount
+                        }
                     }
+
+                    tvTotalAmountShower.text = total.toString()
+
+                    mutableBudgetList.clear()
+                    mutableBudgetList.addAll(budgetList)
+                    adapter.notifyDataSetChanged()
+
+                    //val  budgetList = snapshot.toObjects(Budget::class.java)
+
+
+
+
+
+
+
                 }
-
-                tvTotalAmountShower.text = total.toString()
-
-                mutableBudgetList.clear()
-                mutableBudgetList.addAll(budgetList)
-                adapter.notifyDataSetChanged()
-
-
-            }
     }
 
 
@@ -272,7 +287,7 @@ class FragmentExpenseIncome : Fragment(), DatePickerDialog.OnDateSetListener,Tim
     fun currentTime() {
         val current = LocalDateTime.now()
 
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")
+        val formatter = DateTimeFormatter.ofPattern("yyyy-dd-MM+HH:mm")
         val formatted = current.format(formatter)
 
         tvTime.text = formatted.toString()

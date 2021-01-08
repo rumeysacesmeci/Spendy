@@ -5,19 +5,19 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spendy.models.ExpenseIncome
 import com.example.spendy.R
 import com.example.spendy.models.Budget
+import java.util.*
 
 
 // Adapter for card_view_expense_income.xml
 class ExpenseIncomeAdapter(private val context: Context,private val expenseIncomeList:List<Budget>)
     :RecyclerView.Adapter<ExpenseIncomeAdapter.CardViewObjectsHolder>() {
-
-
 
     //Card view holder
     inner class CardViewObjectsHolder(view:View):RecyclerView.ViewHolder(view){
@@ -25,11 +25,15 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         var tvCategory:TextView
         var tvAmount:TextView
         var cv:CardView
+        var tvTimeShower:TextView
+        var ivDelete:ImageView
         init {
             cv = view.findViewById(R.id.cvExpenseIncome)
             tvExpenseIncome = view.findViewById(R.id.tvExpenseIncome)
             tvCategory = view.findViewById(R.id.tvCategory)
             tvAmount = view.findViewById(R.id.tvAmount)
+            tvTimeShower = view.findViewById(R.id.tvTimeShower)
+            ivDelete = view.findViewById(R.id.ivDelete)
         }
     }
 
@@ -49,18 +53,53 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         //Values Of CardView Elements
         holder.tvCategory.text = expenseIncome.category
         holder.tvAmount.text = expenseIncome.amount.toString()
+        holder.tvTimeShower.text = expenseIncome.time.toString()
 
 
 
         if(expenseIncome.type==0){
             holder.tvExpenseIncome.text = "INCOME"
-            holder.cv.setCardBackgroundColor(Color.rgb(0, 149, 168))
+            holder.cv.setCardBackgroundColor(Color.rgb(193, 205, 153))
         }
         if(expenseIncome.type==1){
             holder.tvExpenseIncome.text = "EXPENSE"
-            holder.cv.setCardBackgroundColor(Color.rgb(38,198,218))
+            holder.cv.setCardBackgroundColor(Color.rgb(133, 151, 113))
         }
 
 
+
+        //Card view opener
+        holder.cv.setOnClickListener {
+            if(holder.tvTimeShower.visibility == View.GONE){
+                holder.tvTimeShower.visibility = View.VISIBLE
+                holder.ivDelete.visibility = View.VISIBLE
+            }
+            else{
+                holder.tvTimeShower.visibility = View.GONE
+                holder.ivDelete.visibility = View.GONE
+            }
+
+
+        }
+
+
+
+
+        // Delete mehtod
+        holder.ivDelete.setOnClickListener {
+
+
+        }
+
+
+
+
+
+
+
+
+
     }
+
+
 }

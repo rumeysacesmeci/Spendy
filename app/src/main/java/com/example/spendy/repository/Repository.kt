@@ -7,6 +7,7 @@ import com.example.spendy.adapters.ExpenseIncomeAdapter
 import com.example.spendy.models.Budget
 import com.example.spendy.models.SignInModel
 import com.example.spendy.models.User
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -21,7 +22,7 @@ import kotlin.collections.ArrayList
 
 private val auth = FirebaseAuth.getInstance()
 private val db = Firebase.firestore
-private var timeCount = 0
+
 private lateinit var mutableBudgetList: MutableList<Budget>
 
 
@@ -55,33 +56,17 @@ class Repository {
     //Log In
     fun logIn(signInModel: SignInModel): Boolean {
 
-        var res = false
+        var res = true
+        //val credential = EmailAuthProvider.getCredential(signInModel.email,signInModel.password)
 
 
-      /*  auth.signInWithEmailAndPassword(signInModel.email, signInModel.password).addOnCompleteListener { task ->
-
-            if (task.isSuccessful) {
-
-                println("success")
-                res = true
-
-            } else {
-                println(task.exception.toString())
-
-            }
-        }*/
-
-        auth.signInWithEmailAndPassword(signInModel.email,signInModel.password).addOnCompleteListener { task ->
-
-            if (task.isSuccessful){
-                res=true
-            }
-
-
+        if (auth.signInWithEmailAndPassword(signInModel.email,signInModel.password).isSuccessful){
+            print("Success")
+            return true
         }
-
-
-        return res
+        else{
+            return false
+        }
     }
 
     //Add User
@@ -101,13 +86,12 @@ class Repository {
     //Add Income
     fun addIncome(budget: Budget) {
 
-        timeCount++
         val budgetMap = hashMapOf(
 
                 "type" to budget.type,
                 "amount" to budget.amount,
                 "category" to budget.category,
-                "time" to timeCount.toString()
+                "time" to budget.time
 
         )
 
@@ -126,14 +110,12 @@ class Repository {
     //Add Expense
     fun addExpense(budget: Budget) {
 
-        timeCount++
-
         val budgetMap = hashMapOf(
 
                 "type" to budget.type,
                 "amount" to budget.amount,
                 "category" to budget.category,
-                "time" to timeCount.toString()
+                "time" to budget.time
 
         )
 

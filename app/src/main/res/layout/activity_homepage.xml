@@ -18,10 +18,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/firstMain"
+            android:background="@color/toolbar"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:title="@string/tb_homepage" />
+            android:theme="?attr/actionBarTheme" />
 
         <FrameLayout
             android:id="@+id/fragmentHolder"

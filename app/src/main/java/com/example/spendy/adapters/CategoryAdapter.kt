@@ -62,11 +62,11 @@ class CategoryAdapter(
         holder.tvCategoryName.text = category.categoryName
 
         if (position % 2 == 0) {
-            holder.cv.setCardBackgroundColor(Color.rgb(0, 149, 168))
+            holder.cv.setCardBackgroundColor(Color.rgb(207,216,220))
         }
 
         if (position % 2 == 1) {
-            holder.cv.setCardBackgroundColor(Color.rgb(38, 198, 218))
+            holder.cv.setCardBackgroundColor(Color.rgb(158,167,170))
         }
 
 

@@ -130,24 +130,22 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
         val pieData = PieData(pieDataSet)
         pieDataSet.setColors(
             Color.rgb(38, 198, 218), Color.rgb(0, 149, 168)
-            , Color.rgb(207, 216, 220)
+            , Color.rgb(207,216,220), Color.GRAY, Color.CYAN
         )
 
         pcHomepage.setHoleRadius(60f)
         pcHomepage.setCenterTextSize(26f)
         pcHomepage.setEntryLabelTextSize(18f)
         pcHomepage.data = pieData
+        pcHomepage.description.text = ""
 
         pcHomepage.centerText = "2390"
         pcHomepage.setUsePercentValues(false)
 
-        pcHomepage.setEntryLabelColor(Color.WHITE)
+        pcHomepage.setEntryLabelColor(Color.BLACK)
 
-        val legend: Legend = pcHomepage.getLegend()
-        legend.form = Legend.LegendForm.CIRCLE
-        legend.textSize = 16f
-        legend.formSize = 20f
-        legend.formToTextSpace = 4f
+        pcHomepage.getLegend().setEnabled(false)
+
     }
 
 

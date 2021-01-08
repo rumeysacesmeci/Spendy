@@ -13,12 +13,11 @@ class ActivityStatisticsTab : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics_tab)
 
-        //ViewPager için adapter nesnesi oluşturuyoruz ve kullanacağımız fragment, title'ları ekliyoruz.
+        //ViewPager için adapter oluşturuyoruz ve kullanacağımız fragment, title'ları ekliyoruz.
         val adapter = MyViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(FragmentExpense(), "Expense")
         adapter.addFragment(FragmentIncome(), "Income")
         //Tab fragments
-
 
         viewPager2.adapter = adapter
         //Change Tab(ViewPager)

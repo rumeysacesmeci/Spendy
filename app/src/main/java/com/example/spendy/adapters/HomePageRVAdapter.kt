@@ -64,15 +64,14 @@ class HomePageRVAdapter(private val mContext: Context, private val activitiesLis
 
             holder.iv.setBackgroundResource(R.drawable.up)
 
-            holder.cv.setCardBackgroundColor(Color.rgb(38,198,218))
-
+            holder.cv.setCardBackgroundColor(Color.rgb(193, 205, 153))
 
         }
         if(type==1) {
 
             holder.amount.text = "Expense-\t"+activityMember.amount.toString()+"$"
 
-            holder.cv.setCardBackgroundColor(Color.rgb(207,216,220))
+            holder.cv.setCardBackgroundColor(Color.rgb(133, 151, 113))
 
             holder.iv.setBackgroundResource(R.drawable.down)
 

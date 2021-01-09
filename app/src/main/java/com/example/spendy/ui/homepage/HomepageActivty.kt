@@ -30,7 +30,7 @@ private lateinit var studentList:ArrayList<Entry>
 private lateinit var yearsList:ArrayList<String>
 private val auth = FirebaseAuth.getInstance()
 
-class HomepageActivity : AppCompatActivity() {
+public final class HomepageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -163,7 +163,7 @@ class HomepageActivity : AppCompatActivity() {
 
 
     //Load Language
-    private fun loadLocate(){
+    fun loadLocate(){
 
         val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
 

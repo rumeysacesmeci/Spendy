@@ -46,7 +46,7 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
     private lateinit var mutableBudgetList: MutableList<Budget>
 
     private val pcEntries = ArrayList<PieEntry>()
-
+    var total = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -99,7 +99,16 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
 
                 val budgetList = snapshot.toObjects(Budget::class.java)
 
-
+                if(total==0.0){
+                    budgetList.forEach {
+                        if (it.type == 0) {
+                            total += it.amount
+                        } else if (it.type == 1) {
+                            total -= it.amount
+                        }
+                    }
+                    printtotal(total)
+                }
 
 
                 mutableBudgetList.clear()
@@ -114,13 +123,12 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
 
     }
 
+
     //Setting Pie Chart Configuration
     private fun setPcStatistics() {
 
 
-        pcEntries.add(PieEntry(500F, "Education"))
-        pcEntries.add(PieEntry(1000F, "Rent"))
-        pcEntries.add(PieEntry(1500F, "Shopping"))
+        pcEntries.add(PieEntry(1000F, getString(R.string.balance)))
         //expenses.add(PieEntry(800F, "Health"))
         //expenses.add(PieEntry(900F, "Hobbies"))*/
 
@@ -139,7 +147,11 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
         pcHomepage.data = pieData
         pcHomepage.description.text = ""
 
-        pcHomepage.centerText = "2390"
+
+
+
+
+       // pcHomepage.centerText = total.toString()
         pcHomepage.setUsePercentValues(false)
 
         pcHomepage.setEntryLabelColor(Color.BLACK)
@@ -148,5 +160,10 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
 
     }
 
+    fun printtotal(total:Double){
+
+            pcHomepage.centerText = total.toString()
+
+    }
 
 }

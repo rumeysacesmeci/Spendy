@@ -149,9 +149,7 @@ class SignInActivity : AppCompatActivity() {
                     Toast.makeText(baseContext, "Login Failed.", Toast.LENGTH_SHORT).show()
                 }
 
-
             }
-
 
     }
 

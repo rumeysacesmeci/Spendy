@@ -5,16 +5,33 @@
 
     //Sign Up
     <string name="txtName">Name</string>
-    <string name="txtSignUp">Anmelden</string>
+    <string name="txtSignUp">Registrieren</string>
     <string name="txtSurname">Nachname</string>
     <string name="txtEMail">E-Mail</string>
     <string name="txtPassword">Password</string>
     <string name="txtPasswordConfirm">Passwort Bestatigen</string>
 
-    <string name="btnSignUp">Sign Up</string>
+    <string name="btnSignUp">Registrieren</string>
+    <string name="btnSignIn">Anmelden</string>
     <string name="title_activity_tab_statistics">ActivityTabStatistics</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="btnSendEmail">E-Mail senden</string>
+    <string name="tvForgotPassword">Passwort vergessen?</string>
+    <string name="cbAccept">Ich akzeptiere die Geschäftsbedingungen</string>
+    <string name="tvCategory">Kategorie</string>
+    <string name="btnIncome">Eingabe</string>
+    <string name="btnExpense">Ausgabe</string>
+    <string name="hintAmount">      Betrag Eingeben</string>
+    <string name="tvTotal">  GESAMT $</string>
+
+    <string name="tvTime"> Zeit</string>
+    <string name="MenuHome">Startzeite</string>
+    <string name="MenuBudget">Finanzmanagement</string>
+    <string name="MenuSettings">Einstellungen</string>
+    <string name="MenuLogout">Abmelden</string>
+
+
 
     //Sign In Page
     <string name="forgot_password">Passwort vergessen?</string>
@@ -102,7 +119,6 @@
 
     //piechart
     <string name="balance">Balance</string>
-
 
 
 

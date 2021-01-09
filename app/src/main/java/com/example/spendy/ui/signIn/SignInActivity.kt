@@ -159,11 +159,25 @@ class SignInActivity : AppCompatActivity() {
 
         var res = true
 
-        if (txtEmail.text.toString().isEmpty() && txtPassword.text.toString().isEmpty()) {
+        if (txtEmail.text.toString().isEmpty() || txtPassword.text.toString().isEmpty()) {
 
             res = false
 
         }
+        if(txtPassword.text.toString().length < 6){
+            txtPassword.error = getString(R.string.password_not_valid_error)
+            txtPassword.requestFocus()
+            res = false
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(txtEmail.text.toString()).matches()){
+
+            txtEmail.error = getString(R.string.email_validation_error)
+            txtEmail.requestFocus()
+
+            res = false
+
+        }
+
 
         return res
     }

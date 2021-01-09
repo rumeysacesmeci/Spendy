@@ -63,7 +63,7 @@ class SignUpActivity : AppCompatActivity(){
             verifySignUp = false
         }
 
-        if (txtPassword.text.toString().isEmpty()){
+        if (txtPassword.text.toString().isEmpty() || password.length < 6){
 
             txtPassword.error = getString(R.string.empty_password_error)
             txtPassword.requestFocus()

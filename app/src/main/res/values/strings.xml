@@ -68,6 +68,8 @@
 
     <string name="email_validation_error">Please Enter a Valid Email</string>
     <string name="password_match_error">Passwords did not Match</string>
+    <string name="password_not_valid_error">Password must be min 6 character!</string>
+
 
     //Categories
     <string name="no_category">No Category"</string>

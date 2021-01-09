@@ -69,6 +69,7 @@
 
     <string name="email_validation_error">Bitte geben Sie eine gültige Email-Adresse ein</string>
     <string name="password_match_error">Die Passwörter stimmen nicht überein</string>
+    <string name="password_not_valid_error">Passwort sollte min 6 Zeichen!</string>
 
     //Categories
     <string name="no_category">Keine Kategorie</string>

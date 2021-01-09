@@ -63,7 +63,7 @@ class FragmentIncome :Fragment(){
             var entry = LegendEntry()
             entry.formColor = pieDataSet.getColor(x)
             x += 1
-            entry.label = "   " + i.label + " - " + i.value.toInt().toString() + " TL"
+            entry.label = "   " + i.label + " - " + i.value.toInt().toString() + " $"
             entries.add(entry);
         }
 

@@ -23,14 +23,12 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         var tvCategory:TextView
         var tvAmount:TextView
         var cv:CardView
-        var tvTimeShower:TextView
-        var ivDelete:ImageView
+
         init {
             cv = view.findViewById(R.id.cvExpenseIncome)
             tvCategory = view.findViewById(R.id.tvCategory)
             tvAmount = view.findViewById(R.id.tvAmount)
-            tvTimeShower = view.findViewById(R.id.tvTimeShower)
-            ivDelete = view.findViewById(R.id.ivDelete)
+
         }
     }
 
@@ -50,7 +48,6 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         //Values Of CardView Elements
         holder.tvCategory.text = expenseIncome.category
         holder.tvAmount.text = expenseIncome.amount.toString()
-        holder.tvTimeShower.text = expenseIncome.time.toString()
 
 
 
@@ -67,29 +64,6 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
             holder.tvAmount.setText("-" + expenseIncome.amount.toString())
 
         }
-
-
-
-        //Card view opener
-        holder.cv.setOnClickListener {
-            if(holder.tvTimeShower.visibility == View.VISIBLE){
-                holder.tvTimeShower.visibility = View.GONE
-                holder.ivDelete.visibility = View.GONE
-            }else{
-                holder.tvTimeShower.visibility = View.VISIBLE
-                holder.ivDelete.visibility = View.VISIBLE
-            }
-
-        }
-
-
-
-
-        // Delete mehtod
-        holder.ivDelete.setOnClickListener {
-
-        }
-
 
 
 

@@ -77,8 +77,6 @@ class FragmentIncome :Fragment(){
                         }
 
 
-
-
                     }
 
                 }
@@ -119,10 +117,9 @@ class FragmentIncome :Fragment(){
                 pcStatistics.setEntryLabelTextSize(18f)
                 pcStatistics.data = pieData
                 pcStatistics.setUsePercentValues(false)
-                pcStatistics.centerText = "Total \n 2000"
                 pcStatistics.setEntryLabelColor(Color.WHITE)
                 pcStatistics.description.text=""
-                pcStatistics.setExtraOffsets(0f, 0f, 0f, 50f);
+                pcStatistics.setExtraOffsets(0f, 0f, 0f, 25f);
                 pcStatistics.transparentCircleRadius = 66f
 
 

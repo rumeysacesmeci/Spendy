@@ -124,7 +124,7 @@ class FragmentExpense : Fragment() {
                 pcStatistics.setUsePercentValues(false)
                 pcStatistics.setEntryLabelColor(Color.WHITE)
                 pcStatistics.description.text=""
-                pcStatistics.setExtraOffsets(0f, 0f, 0f, 50f);
+                pcStatistics.setExtraOffsets(0f, 0f, 0f, 25f);
                 pcStatistics.transparentCircleRadius = 66f
 
                 val entries = ArrayList<LegendEntry>()

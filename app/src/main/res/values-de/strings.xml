@@ -14,8 +14,8 @@
     <string name="btnSignUp">Registrieren</string>
     <string name="btnSignIn">Anmelden</string>
     <string name="title_activity_tab_statistics">ActivityTabStatistics</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Ausgabe</string>
+    <string name="tab_text_2">Eingabe</string>
     <string name="btnSendEmail">E-Mail senden</string>
     <string name="tvForgotPassword">Passwort vergessen?</string>
     <string name="cbAccept">Ich akzeptiere die Geschäftsbedingungen</string>

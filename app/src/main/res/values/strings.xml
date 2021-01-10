@@ -13,8 +13,8 @@
     <string name="btnSignUp">Sign Up</string>
     <string name="btnSignIn">Sign In</string>
     <string name="title_activity_tab_statistics">ActivityTabStatistics</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_1">Expense</string>
+    <string name="tab_text_2">Income</string>
     <string name="btnSendEmail">Send E-Mail</string>
     <string name="tvForgotPassword">Forgot Password?</string>
     <string name="cbAccept">I have accepted Terms And Conditions</string>

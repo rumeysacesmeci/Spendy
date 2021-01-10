@@ -157,6 +157,7 @@ class FragmentExpenseIncome : Fragment() {
                     }
                 }
 
+                tvTotal.text = "0"
                 tvTotal.text = total.toString()
 
                 mutableBudgetList.clear()

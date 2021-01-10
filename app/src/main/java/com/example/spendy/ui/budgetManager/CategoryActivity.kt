@@ -107,10 +107,10 @@ class CategoryActivity : AppCompatActivity(), CategoryAdapter.OnItemClickListene
         val clickedItem = categoriesArrayList[position]
         val messageType = intent.getIntExtra("type", 0)
         val messageAmount = intent.getDoubleExtra("amount", 0.0)
-        val messageTime = intent.getStringExtra("time")
 
 
-        val budget = Budget(messageType, messageAmount, clickedItem.categoryName, messageTime)
+
+        val budget = Budget(messageType, messageAmount, clickedItem.categoryName, "messageTime")
 
         repository.addIncome(budget)
         adapter.notifyItemChanged(position)

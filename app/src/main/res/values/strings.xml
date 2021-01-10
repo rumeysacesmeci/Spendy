@@ -52,7 +52,7 @@
     <string name="forgot_password_dialog_hint">Enter Your E-Mail</string>
 
     //Expense-Income Fragment
-    <string name="tv_total_currency">TOTAL :</string>
+    <string name="tv_total_currency">TOTAL</string>
     <string name="tv_enter_amount">Please Enter an Amount</string>
 
     //Expense-Income Fragment

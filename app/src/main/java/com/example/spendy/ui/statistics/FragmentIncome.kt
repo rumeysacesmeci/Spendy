@@ -7,14 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.spendy.R
+import com.example.spendy.models.pieChartModel
+
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.LegendEntry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_statistics_expense_tab.*
 
 class FragmentIncome :Fragment(){
+
+    private val db = Firebase.firestore
+    private val auth = FirebaseAuth.getInstance()
+
+    private val pcList = ArrayList<pieChartModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,56 +38,121 @@ class FragmentIncome :Fragment(){
         super.onViewCreated(view, savedInstanceState)
         setpcStatistics()
     }
+
+
     private fun setpcStatistics() {
         val expenses = ArrayList<PieEntry>()
-        expenses.add(PieEntry(2000F, "Maaş"))
-        expenses.add(PieEntry(1000F, "Rent"))
         //expenses.add(PieEntry(800F, "Health"))
         //expenses.add(PieEntry(900F, "Hobbies"))
 
-        val pieDataSet = PieDataSet(expenses, "")
-        pieDataSet.valueTextSize = 24f
-
-        val pieData = PieData(pieDataSet)
-        pieDataSet.setColors(
-            Color.rgb(38,198,218), Color.rgb(0,149,168)
-            , Color.rgb(207,216,220), Color.GRAY, Color.CYAN
-        )
-
-        pcStatistics.setHoleRadius(60f)
-        pcStatistics.setCenterTextSize(26f)
-        pcStatistics.setEntryLabelTextSize(0f)
-        pcStatistics.data = pieData
-        pcStatistics.setUsePercentValues(false)
-        pcStatistics.centerText = "Total \n 2000"
-        pcStatistics.setEntryLabelColor(Color.WHITE)
-        pcStatistics.description.text=""
-        pcStatistics.setExtraOffsets(0f, 0f, 0f, 50f);
-        pcStatistics.transparentCircleRadius = 66f
+        var valueDonation =0F
+        var valueSalary =0F
+        var valueSales =0F
+        var valueMarket =0F
+        var valueOthers =0F
 
 
-        val entries = ArrayList<LegendEntry>()
 
-        var x = 0
 
-        for (i in expenses) {
-            var entry = LegendEntry()
-            entry.formColor = pieDataSet.getColor(x)
-            x += 1
-            entry.label = "   " + i.label + " - " + i.value.toInt().toString() + " $"
-            entries.add(entry);
-        }
+        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
 
-        var legend = pcStatistics.legend
-        legend.setCustom(entries)
-        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
-        legend.setOrientation(Legend.LegendOrientation.VERTICAL);
-        legend.textSize = 19f
-        legend.formSize = 26f
-        legend.formToTextSpace = 8f
-        legend.setForm(Legend.LegendForm.CIRCLE)
-        legend.setDrawInside(false)
+                    if(document.data.get("type").toString().toInt()==0) {
+
+
+                        if (document.data.get("category").toString().equals(getString(R.string.donation))){
+                            valueDonation+=document.data.get("amount").toString().toFloat()
+                        }
+                        else if (document.data.get("category").toString().equals( getString(R.string.salary))){
+                            valueSalary+=document.data.get("amount").toString().toFloat()
+                        }
+
+                       else if (document.data.get("category").toString().equals(getString(R.string.sales))){
+                            valueSales+=document.data.get("amount").toString().toFloat()
+                        }
+                        else{
+                            valueOthers+=document.data.get("amount").toString().toFloat()
+                        }
+
+
+
+
+                    }
+
+                }
+
+                if(valueDonation>0){
+                    expenses.add(PieEntry(valueDonation, getString(R.string.donation)))
+                }
+                if(valueSalary>0){
+                    expenses.add( PieEntry(valueSalary, getString(R.string.salary)))
+                }
+                if(valueSales>0){
+                    expenses.add( PieEntry(valueSales, getString(R.string.sales)))
+                }
+
+                if(valueOthers>0){
+                    expenses.add( PieEntry(valueOthers, "Others"))
+                }
+
+
+                expenses.forEach {
+
+                    println(it.label)
+                }
+
+                val pieDataSet = PieDataSet(expenses, "")
+                pieDataSet.valueTextSize = 24f
+
+                val pieData = PieData(pieDataSet)
+                pieDataSet.setColors(
+                    Color.rgb(38,198,218), Color.rgb(0,149,168)
+                    , Color.rgb(207,216,220),Color.rgb(207,216,240),Color.rgb(207,216,200)
+                )
+
+
+
+                pcStatistics.setHoleRadius(60f)
+                pcStatistics.setCenterTextSize(26f)
+                pcStatistics.setEntryLabelTextSize(18f)
+                pcStatistics.data = pieData
+                pcStatistics.setUsePercentValues(false)
+                pcStatistics.centerText = "Total \n 2000"
+                pcStatistics.setEntryLabelColor(Color.WHITE)
+                pcStatistics.description.text=""
+                pcStatistics.setExtraOffsets(0f, 0f, 0f, 50f);
+                pcStatistics.transparentCircleRadius = 66f
+
+
+                val entries = ArrayList<LegendEntry>()
+
+                var x = 0
+
+                for (i in expenses) {
+                    var entry = LegendEntry()
+                    entry.formColor = pieDataSet.getColor(x)
+                    x += 1
+                    entry.label = "   " + i.label + " - " + i.value.toInt().toString() + " $"
+                    entries.add(entry);
+                }
+
+                var legend = pcStatistics.legend
+                legend.setCustom(entries)
+                legend.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
+                legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
+                legend.setOrientation(Legend.LegendOrientation.VERTICAL);
+                legend.textSize = 19f
+                legend.formSize = 26f
+                legend.formToTextSpace = 8f
+                legend.setForm(Legend.LegendForm.CIRCLE)
+                legend.setDrawInside(false)
+
+
+
+            }
+
 
     }
 }

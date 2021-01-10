@@ -53,7 +53,7 @@
     <string name="forgot_password_dialog_hint">Geben sie ihre E-Mail Adresse ein</string>
 
     //Expense-Income Fragment
-    <string name="tv_total_currency">GESAMT :</string>
+    <string name="tv_total_currency">GESAMT</string>
     <string name="tv_enter_amount">Bitte geben Sie einen Betrag ein</string>
 
     //Expense-Income Fragment

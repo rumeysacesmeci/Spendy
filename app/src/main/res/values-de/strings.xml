@@ -104,7 +104,7 @@
 
 
     //Homepage Navigator
-    <string name="homepage">Homepage</string>
+    <string name="homepage">Startseite</string>
     <string name="budget_manager">Finanzmanagement</string>
     <string name="statistics">Statistiken</string>
     <string name="log_out">Abmelden</string>

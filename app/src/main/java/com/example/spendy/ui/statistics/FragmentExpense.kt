@@ -67,7 +67,7 @@ class FragmentExpense : Fragment() {
                         else if (document.data.get("category").toString().equals(getString(R.string.rental_fee))){
                             valueFee+=document.data.get("amount").toString().toFloat()
                         }
-                        if (document.data.get("category").toString().equals(getString(R.string.market))){
+                        else if (document.data.get("category").toString().equals(getString(R.string.market))){
                             valueMarket+=document.data.get("amount").toString().toFloat()
                         }
                         else{

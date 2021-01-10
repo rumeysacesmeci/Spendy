@@ -69,7 +69,7 @@ class FragmentIncome :Fragment(){
                             valueSalary+=document.data.get("amount").toString().toFloat()
                         }
 
-                       else if (document.data.get("category").toString().equals(getString(R.string.sales))){
+                        else if (document.data.get("category").toString().equals(getString(R.string.sales))){
                             valueSales+=document.data.get("amount").toString().toFloat()
                         }
                         else{

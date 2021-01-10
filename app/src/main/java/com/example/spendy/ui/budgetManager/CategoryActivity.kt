@@ -49,7 +49,7 @@ class CategoryActivity : AppCompatActivity(), CategoryAdapter.OnItemClickListene
         rvCategories.setHasFixedSize(true)
         rvCategories.layoutManager = LinearLayoutManager(this)
 
-        loadLocate()
+
 
 
 

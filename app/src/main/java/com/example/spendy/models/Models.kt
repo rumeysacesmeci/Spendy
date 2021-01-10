@@ -1,11 +1,8 @@
 package com.example.spendy.models
 
-import com.google.firebase.firestore.FieldValue
-import java.sql.Time
-import java.sql.Timestamp
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
+
+//Model for Sign In
 data class SignInModel(
 
         val email:String,
@@ -14,18 +11,12 @@ data class SignInModel(
 
 )
 
-data class ExpenseIncome(
-        var type:Int,
-        var amount:Double,
-        var categoryName:String
-)
-
-
+//Model for Categories
 data class Categories(
         var categoryName:String
 )
 
-
+//Model for User
 data class User(
 
         val name:String,
@@ -35,7 +26,7 @@ data class User(
 
 
 )
-
+//Model for Budget
 data class Budget(
 
 
@@ -45,12 +36,5 @@ data class Budget(
         val time :String=""
 
 
-
-)
-
-data class pieChartModel(
-
-        val amount:String,
-        val category: String
 
 )

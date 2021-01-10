@@ -1,45 +1,26 @@
 package com.example.spendy.ui.budgetManager
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Context
-import android.content.res.Configuration
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Adapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spendy.R
 import com.example.spendy.adapters.CategoryAdapter
 import com.example.spendy.models.Budget
 import com.example.spendy.models.Categories
 import com.example.spendy.repository.Repository
-import com.example.spendy.ui.homepage.HomepageActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_category.*
-import kotlinx.android.synthetic.main.card_view_category.*
-import kotlinx.android.synthetic.main.card_view_category.view.*
-import kotlinx.android.synthetic.main.fragment_expense_income.*
-import java.sql.Time
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.util.*
+
 import kotlin.collections.ArrayList
 
 
 class CategoryActivity : AppCompatActivity(), CategoryAdapter.OnItemClickListener {
-    private val repository = Repository()
-    private lateinit var categoriesArrayList: ArrayList<Categories>
-    private lateinit var adapter: CategoryAdapter
-    private val db = Firebase.firestore
 
-    private val auth = FirebaseAuth.getInstance()
+    private val repository = Repository()
+
+    private lateinit var categoriesArrayList: ArrayList<Categories>
+
+    private lateinit var adapter: CategoryAdapter
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +29,6 @@ class CategoryActivity : AppCompatActivity(), CategoryAdapter.OnItemClickListene
 
         rvCategories.setHasFixedSize(true)
         rvCategories.layoutManager = LinearLayoutManager(this)
-
 
 
 
@@ -104,83 +84,23 @@ class CategoryActivity : AppCompatActivity(), CategoryAdapter.OnItemClickListene
     //Click method for category recyclerview(every row)
 
     override fun onItemClick(position: Int) {
-        val clickedItem = categoriesArrayList[position]
-        val messageType = intent.getIntExtra("type", 0)
-        val messageAmount = intent.getDoubleExtra("amount", 0.0)
 
+        val clickedItem = categoriesArrayList[position]
+
+        val messageType = intent.getIntExtra("type", 0)
+
+        val messageAmount = intent.getDoubleExtra("amount", 0.0)
 
 
         val budget = Budget(messageType, messageAmount, clickedItem.categoryName, "messageTime")
 
         repository.addIncome(budget)
+
         adapter.notifyItemChanged(position)
+
         finish()
 
     }
 
-
-    // Create toolbar for category page
-    fun toolbarCreate() {
-
-
-
-        toolbarCategory.setLogo(R.drawable.category)
-    }
-
-    //Set Language
-    private fun setLocate(language:String?){
-
-
-        var locale = Locale(language)
-
-        Locale.setDefault(locale)
-
-        val config = Configuration()
-
-        config.locale = locale
-
-
-
-        baseContext.resources.updateConfiguration(config,baseContext.resources.displayMetrics)
-
-        val editor = getSharedPreferences("Settings", Context.MODE_PRIVATE).edit()
-
-        editor.putString("MyLang",language)
-
-        editor.apply()
-
-
-
-    }
-
-
-    //Load Language
-    fun loadLocate(){
-
-        val sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE)
-
-        val language = sharedPreferences.getString("MyLang","")
-
-        setLocate(language)
-
-    }
-    /*@SuppressLint("NewApi")
-    fun stringToTimeStamp():Timestamp{
-        val messageTime = intent.getStringExtra("time")
-
-
-
-
-       /* val l = LocalDate.parse("12-10-2020 17:25", DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))
-
-        val unix = l.atStartOfDay(ZoneId.systemDefault()).toInstant().epochSecond*/
-        val pattern = "dd-MM-yyyy HH:mm"
-
-        val formatter = DateTimeFormatter.ofPattern(pattern)
-        val localDateTime = LocalDateTime.from(formatter.parse(messageTime))
-       com.google.firebase.Timestamp.CREATOR.createFromParcel()
-
-        return  timeStamp
-    }*/
 
 }

@@ -3,7 +3,6 @@ package com.example.spendy.ui.homepage
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.example.spendy.R
 import com.example.spendy.adapters.ExpenseIncomeAdapter
-import com.example.spendy.adapters.HomePageRVAdapter
 import com.example.spendy.models.Budget
-import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
@@ -23,21 +19,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.fragment_expense_income.*
 import kotlinx.android.synthetic.main.fragment_homepage.*
-import kotlinx.android.synthetic.main.fragment_statistics_expense_tab.*
-import kotlinx.coroutines.*
 
 
 class FragmentHomepage : androidx.fragment.app.Fragment() {
 
-
-    private lateinit var activitiesList: ArrayList<AccountActivity>
-
-    //private lateinit var adapter: HomePageRVAdapter
     private lateinit var adapter: ExpenseIncomeAdapter
-    private lateinit var studentList: ArrayList<Entry>
-    private lateinit var yearsList: ArrayList<String>
 
     private val db = Firebase.firestore
 
@@ -46,8 +33,10 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
     private lateinit var mutableBudgetList: MutableList<Budget>
 
     private val pcEntries = ArrayList<PieEntry>()
+
     var total = 0.0
-    var balance=0F
+
+    var balance = 0F
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,21 +51,19 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         rvHomepage.setHasFixedSize(true)
+
         rvHomepage.layoutManager = LinearLayoutManager(requireContext())
 
 
         mutableBudgetList = mutableListOf()
 
-        // adapter = HomePageRVAdapter(requireContext(), activitiesList)
 
         adapter = ExpenseIncomeAdapter(requireContext(), mutableBudgetList)
         rvHomepage.adapter = adapter
 
 
         populateRV()
-
 
 
     }
@@ -100,7 +87,7 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
 
                 val budgetList = snapshot.toObjects(Budget::class.java)
 
-                if(total==0.0){
+                if (total == 0.0) {
                     budgetList.forEach {
                         if (it.type == 0) {
                             total += it.amount
@@ -108,8 +95,8 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
                             total -= it.amount
                         }
                     }
-                    if(budgetList.isEmpty()){
-                        balance=1F
+                    if (budgetList.isEmpty()) {
+                        balance = 1F
                     }
                     setPcStatistics()
                 }
@@ -133,8 +120,6 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
         pcHomepage.centerText = total.toString()
         pcEntries.add(PieEntry(balance, getString(R.string.balance)))
 
-        //expenses.add(PieEntry(800F, "Health"))
-        //expenses.add(PieEntry(900F, "Hobbies"))*/
 
         val pieDataSet = PieDataSet(pcEntries, "")
         pieDataSet.valueTextSize = 24f
@@ -142,7 +127,7 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
         val pieData = PieData(pieDataSet)
         pieDataSet.setColors(
             Color.rgb(38, 198, 218), Color.rgb(0, 149, 168)
-            , Color.rgb(207,216,220), Color.GRAY, Color.CYAN
+            , Color.rgb(207, 216, 220), Color.GRAY, Color.CYAN
         )
 
         pcHomepage.setHoleRadius(60f)
@@ -152,10 +137,6 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
         pcHomepage.description.text = ""
 
 
-
-
-
-        // pcHomepage.centerText = total.toString()
         pcHomepage.setUsePercentValues(false)
 
         pcHomepage.setEntryLabelColor(Color.BLACK)
@@ -164,14 +145,5 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
 
     }
 
-    fun printtotal(total:Double){
-        var balance=0F
-        balance += total.toString().toFloat()
-
-
-        pcHomepage.centerText = total.toString()
-        pcEntries.add(PieEntry(balance, getString(R.string.balance)))
-
-    }
 
 }

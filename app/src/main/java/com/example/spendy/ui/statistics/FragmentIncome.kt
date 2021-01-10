@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.spendy.R
-import com.example.spendy.models.pieChartModel
+
 
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.LegendEntry
@@ -19,12 +19,11 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_statistics_expense_tab.*
 
-class FragmentIncome :Fragment(){
+class FragmentIncome : Fragment() {
 
     private val db = Firebase.firestore
     private val auth = FirebaseAuth.getInstance()
 
-    private val pcList = ArrayList<pieChartModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,11 +44,11 @@ class FragmentIncome :Fragment(){
         //expenses.add(PieEntry(800F, "Health"))
         //expenses.add(PieEntry(900F, "Hobbies"))
 
-        var valueDonation =0F
-        var valueSalary =0F
-        var valueSales =0F
-        var valueMarket =0F
-        var valueOthers =0F
+        var valueDonation = 0F
+        var valueSalary = 0F
+        var valueSales = 0F
+        var valueMarket = 0F
+        var valueOthers = 0F
 
 
 
@@ -59,21 +58,23 @@ class FragmentIncome :Fragment(){
             .addOnSuccessListener { result ->
                 for (document in result) {
 
-                    if(document.data.get("type").toString().toInt()==0) {
+                    if (document.data.get("type").toString().toInt() == 0) {
 
 
-                        if (document.data.get("category").toString().equals(getString(R.string.donation))){
-                            valueDonation+=document.data.get("amount").toString().toFloat()
-                        }
-                        else if (document.data.get("category").toString().equals( getString(R.string.salary))){
-                            valueSalary+=document.data.get("amount").toString().toFloat()
-                        }
-
-                        else if (document.data.get("category").toString().equals(getString(R.string.sales))){
-                            valueSales+=document.data.get("amount").toString().toFloat()
-                        }
-                        else{
-                            valueOthers+=document.data.get("amount").toString().toFloat()
+                        if (document.data.get("category").toString()
+                                .equals(getString(R.string.donation))
+                        ) {
+                            valueDonation += document.data.get("amount").toString().toFloat()
+                        } else if (document.data.get("category").toString()
+                                .equals(getString(R.string.salary))
+                        ) {
+                            valueSalary += document.data.get("amount").toString().toFloat()
+                        } else if (document.data.get("category").toString()
+                                .equals(getString(R.string.sales))
+                        ) {
+                            valueSales += document.data.get("amount").toString().toFloat()
+                        } else {
+                            valueOthers += document.data.get("amount").toString().toFloat()
                         }
 
 
@@ -81,18 +82,18 @@ class FragmentIncome :Fragment(){
 
                 }
 
-                if(valueDonation>0){
+                if (valueDonation > 0) {
                     expenses.add(PieEntry(valueDonation, getString(R.string.donation)))
                 }
-                if(valueSalary>0){
-                    expenses.add( PieEntry(valueSalary, getString(R.string.salary)))
+                if (valueSalary > 0) {
+                    expenses.add(PieEntry(valueSalary, getString(R.string.salary)))
                 }
-                if(valueSales>0){
-                    expenses.add( PieEntry(valueSales, getString(R.string.sales)))
+                if (valueSales > 0) {
+                    expenses.add(PieEntry(valueSales, getString(R.string.sales)))
                 }
 
-                if(valueOthers>0){
-                    expenses.add( PieEntry(valueOthers, "Others"))
+                if (valueOthers > 0) {
+                    expenses.add(PieEntry(valueOthers, "Others"))
                 }
 
 
@@ -106,8 +107,8 @@ class FragmentIncome :Fragment(){
 
                 val pieData = PieData(pieDataSet)
                 pieDataSet.setColors(
-                    Color.rgb(38,198,218), Color.rgb(0,149,168)
-                    , Color.rgb(207,216,220),Color.rgb(207,216,240),Color.rgb(207,216,200)
+                    Color.rgb(38, 198, 218), Color.rgb(0, 149, 168)
+                    , Color.rgb(207, 216, 220), Color.rgb(207, 216, 240), Color.rgb(207, 216, 200)
                 )
 
 
@@ -118,7 +119,7 @@ class FragmentIncome :Fragment(){
                 pcStatistics.data = pieData
                 pcStatistics.setUsePercentValues(false)
                 pcStatistics.setEntryLabelColor(Color.WHITE)
-                pcStatistics.description.text=""
+                pcStatistics.description.text = ""
                 pcStatistics.setExtraOffsets(0f, 0f, 0f, 25f);
                 pcStatistics.transparentCircleRadius = 66f
 
@@ -145,7 +146,6 @@ class FragmentIncome :Fragment(){
                 legend.formToTextSpace = 8f
                 legend.setForm(Legend.LegendForm.CIRCLE)
                 legend.setDrawInside(false)
-
 
 
             }

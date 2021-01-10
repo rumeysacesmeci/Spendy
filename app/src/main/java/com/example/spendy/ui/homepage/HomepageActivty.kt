@@ -10,27 +10,19 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.example.spendy.ui.statistics.ActivityStatisticsTab
-import com.example.spendy.adapters.HomePageRVAdapter
 import com.example.spendy.ui.budgetManager.FragmentExpenseIncome
 import com.example.spendy.R
 import com.example.spendy.ui.signIn.SignInActivity
-import com.github.mikephil.charting.data.Entry
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_homepage.*
 import kotlinx.android.synthetic.main.nav_header.view.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 
-private lateinit var activitiesList:ArrayList<AccountActivity>
 
-private lateinit var adapter: HomePageRVAdapter
-
-private lateinit var studentList:ArrayList<Entry>
-private lateinit var yearsList:ArrayList<String>
 private val auth = FirebaseAuth.getInstance()
 
-public final class HomepageActivity : AppCompatActivity() {
+  class HomepageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +30,7 @@ public final class HomepageActivity : AppCompatActivity() {
 
 
         setToolbar()
+
         setDrawer()
 
         supportFragmentManager.beginTransaction().add(R.id.fragmentHolder, FragmentHomepage()).commit()
@@ -75,6 +68,7 @@ public final class HomepageActivity : AppCompatActivity() {
 
         navigationView.setNavigationItemSelectedListener {menuItem ->
 
+            //Budget Manager Page
             if(menuItem.itemId == R.id.action_budget_manager){
 
                 toolbar.setTitle(R.string.budget_manager)
@@ -83,6 +77,8 @@ public final class HomepageActivity : AppCompatActivity() {
 
                 supportFragmentManager.beginTransaction().replace(R.id.fragmentHolder, FragmentExpenseIncome()).commit()
             }
+
+            //Homepage
             if(menuItem.itemId == R.id.action_homepage){
 
                 toolbar.setTitle(R.string.tb_homepage)
@@ -91,16 +87,15 @@ public final class HomepageActivity : AppCompatActivity() {
 
                 supportFragmentManager.beginTransaction().replace(R.id.fragmentHolder, FragmentHomepage()).commit()
             }
+            //Statistics Page
             if(menuItem.itemId == R.id.action_statistics){
-
-
 
                 val nvgToStatistic = Intent(this, ActivityStatisticsTab::class.java)
 
                 startActivity(nvgToStatistic)
 
             }
-
+            //Log out
             if(menuItem.itemId==R.id.action_logout){
 
                 auth.signOut()
@@ -109,13 +104,14 @@ public final class HomepageActivity : AppCompatActivity() {
                 finish()
             }
 
+            //English
             if(menuItem.itemId==R.id.action_english){
 
                 setLocate("en")
                 recreate()
 
             }
-
+            //Deutsch
             if(menuItem.itemId==R.id.action_deutsch){
 
                 setLocate("de")
@@ -193,9 +189,6 @@ public final class HomepageActivity : AppCompatActivity() {
 
     //Set Toolbar
     private fun setToolbar(){
-
-        //toolbar.title=R.string.tb_homepage.toString()
-
 
 
         setSupportActionBar(toolbar)

@@ -13,13 +13,11 @@ import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
-class SignUpActivity : AppCompatActivity(){
-
+class SignUpActivity : AppCompatActivity() {
 
 
     //Initiliaze
     private val repo = Repository()
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,15 +28,15 @@ class SignUpActivity : AppCompatActivity(){
     }
 
     //SignUp
-    fun signUp(view : View){
+    fun signUp(view: View) {
 
         val email = txtEmail.text.toString()
         val password = txtPassword.text.toString()
 
         var verifySignUp = true
 
-
-        if (txtEmail.text.toString().isEmpty()){
+        //Controlling E-Mail
+        if (txtEmail.text.toString().isEmpty()) {
 
             txtEmail.error = getString(R.string.empty_email_error)
 
@@ -46,32 +44,32 @@ class SignUpActivity : AppCompatActivity(){
 
             verifySignUp = false
         }
-
-        if (txtName.text.toString().isEmpty()){
+        //Controlling Name
+        if (txtName.text.toString().isEmpty()) {
 
             txtName.error = getString(R.string.empty_name_error)
             txtName.requestFocus()
 
             verifySignUp = false
         }
-
-        if (txtSurname.text.toString().isEmpty()){
+        //Controlling Surname
+        if (txtSurname.text.toString().isEmpty()) {
 
             txtSurname.error = getString(R.string.empty_surname_error)
             txtSurname.requestFocus()
 
             verifySignUp = false
         }
-
-        if (txtPassword.text.toString().isEmpty() || password.length < 6){
+        //Controlling Password
+        if (txtPassword.text.toString().isEmpty() || password.length < 6) {
 
             txtPassword.error = getString(R.string.empty_password_error)
             txtPassword.requestFocus()
 
             verifySignUp = false
         }
-
-        if (txtPasswordConfirm.text.toString().isEmpty()){
+        //Controlling Password Confirm
+        if (txtPasswordConfirm.text.toString().isEmpty()) {
 
             txtPasswordConfirm.error = getString(R.string.empty_password_confirm_error)
             txtPasswordConfirm.requestFocus()
@@ -79,7 +77,8 @@ class SignUpActivity : AppCompatActivity(){
             verifySignUp = false
         }
 
-        if(!Patterns.EMAIL_ADDRESS.matcher(txtEmail.text.toString()).matches()){
+        //Controlling E-Mail Pattern
+        if (!Patterns.EMAIL_ADDRESS.matcher(txtEmail.text.toString()).matches()) {
 
             txtEmail.error = getString(R.string.email_validation_error)
             txtEmail.requestFocus()
@@ -89,31 +88,32 @@ class SignUpActivity : AppCompatActivity(){
         }
 
         //Confirm Password
-        if (!txtPassword.text.toString().equals(txtPasswordConfirm.text.toString())){
+        if (!txtPassword.text.toString().equals(txtPasswordConfirm.text.toString())) {
 
-            Toast.makeText(baseContext,getString(R.string.password_match_error), Toast.LENGTH_LONG).show()
+            Toast.makeText(baseContext, getString(R.string.password_match_error), Toast.LENGTH_LONG)
+                .show()
             txtPasswordConfirm.requestFocus()
 
             verifySignUp = false
         }
 
         //Verify Sign Up
-        if(!verifySignUp){
+        if (!verifySignUp) {
 
             return
         }
 
-        if(checkCredentials()) {
+        if (checkCredentials()) {
             val result = repo.signUp(getSignUpValues())
 
-            if(!result){
+            if (!result) {
                 Toast.makeText(baseContext, "Registration failed!", Toast.LENGTH_SHORT).show()
                 return
-            }else{
+            } else {
                 Toast.makeText(baseContext, "Registration successful!", Toast.LENGTH_SHORT).show()
                 finish()
             }
-        }else{
+        } else {
             Toast.makeText(baseContext, "Registration failed!", Toast.LENGTH_SHORT).show()
             return
         }
@@ -128,23 +128,23 @@ class SignUpActivity : AppCompatActivity(){
         val password = txtPassword.text.toString()
         val passwordConfirm = txtPasswordConfirm.text.toString()
 
-        if(password.isEmpty() || password.length < 6){
+        if (password.isEmpty() || password.length < 6) {
             showError(txtPassword, "Password must be min 6 character!")
             return false
         }
-        if(email.isEmpty() || !email.contains("@")){
+        if (email.isEmpty() || !email.contains("@")) {
             showError(txtEmail, "Email is not valid!")
             return false
         }
-        if(passwordConfirm.isEmpty() || !passwordConfirm.equals(password)){
+        if (passwordConfirm.isEmpty() || !passwordConfirm.equals(password)) {
             showError(txtPasswordConfirm, "Password not match.")
             return false
         }
-        if(name.isEmpty()){
+        if (name.isEmpty()) {
             showError(txtName, "Invalid Name!")
             return false
         }
-        if(surname.isEmpty()){
+        if (surname.isEmpty()) {
             showError(txtSurname, "Invalid Surname!")
             return false
         }
@@ -160,7 +160,7 @@ class SignUpActivity : AppCompatActivity(){
     }
 
     //Get Sign Up Value
-   private fun getSignUpValues():User{
+    private fun getSignUpValues(): User {
 
         val name = txtName.text.toString();
         val surname = txtSurname.text.toString();
@@ -169,26 +169,6 @@ class SignUpActivity : AppCompatActivity(){
 
 
         return User(name, surname, email, password)
-    }
-
-    private fun isEmpty():Boolean{
-
-        val res = true
-
-        val isEmail = txtEmail.text.toString().isEmpty()
-        val isName = txtName.text.toString().isEmpty()
-        val isSurname = txtSurname.text.toString().isEmpty()
-        val isPassword = txtPassword.text.toString().isEmpty()
-        val isConfirmed = txtPasswordConfirm.text.toString().isEmpty()
-
-
-
-        return isEmail && isName && isSurname && isPassword && isConfirmed
-    }
-
-    private fun verifySignUp(){
-
-
     }
 
 

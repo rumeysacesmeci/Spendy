@@ -10,7 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spendy.R
 import com.example.spendy.models.Categories
-import com.example.spendy.ui.budgetManager.CategoryActivity
+
 
 class CategoryAdapter(
 
@@ -33,6 +33,7 @@ class CategoryAdapter(
 
         }
 
+        //OnClick method for CardView
         override fun onClick(p0: View?) {
             val position: Int = adapterPosition
             if (position != RecyclerView.NO_POSITION) {
@@ -46,6 +47,10 @@ class CategoryAdapter(
         fun onItemClick(position: Int)
 
     }
+
+
+    //RV Methods
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryCardViewHolder {
         val design =

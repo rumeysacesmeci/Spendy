@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spendy.adapters.ExpenseIncomeAdapter
 import com.example.spendy.R
 import com.example.spendy.models.Budget
-import com.example.spendy.repository.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
@@ -21,7 +20,6 @@ import kotlinx.android.synthetic.main.fragment_expense_income.*
 import kotlin.collections.ArrayList
 
 
-//
 // Fragment for Expense and Income Page
 class FragmentExpenseIncome : Fragment() {
 
@@ -31,14 +29,11 @@ class FragmentExpenseIncome : Fragment() {
     private lateinit var adapter: ExpenseIncomeAdapter
 
 
-    private val repository = Repository()
-
     private val db = Firebase.firestore
 
     private val auth = FirebaseAuth.getInstance()
 
     private lateinit var mutableBudgetList: MutableList<Budget>
-
 
 
     //OnCreateView
@@ -53,33 +48,29 @@ class FragmentExpenseIncome : Fragment() {
 
 
     //onViewCreated
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
 
         mutableBudgetList = mutableListOf()
 
         ivVallet.visibility = View.GONE
+
         rvExpenseIncome.visibility = View.VISIBLE
 
         adapter = ExpenseIncomeAdapter(requireContext(), mutableBudgetList)
 
         rvExpenseIncome.adapter = adapter
+
         rvExpenseIncome.setHasFixedSize(true)
+
         rvExpenseIncome.layoutManager = LinearLayoutManager(requireContext())
 
         expenseIncomeArrayList = ArrayList<Budget>()
+
         var total = 0.0
 
 
         populateRV()
-
-
-
-
 
 
         // When INCOME button clicked add datas to recyclervier
@@ -88,10 +79,6 @@ class FragmentExpenseIncome : Fragment() {
             ivVallet.visibility = View.GONE
 
             rvExpenseIncome.visibility = View.VISIBLE
-
-
-
-
 
 
             if (!txtAmount.text.toString().isEmpty()) {
@@ -123,17 +110,16 @@ class FragmentExpenseIncome : Fragment() {
 
             startActivity(newIntent)
 
-            //E mail login den sonra tutulup buraya verilecek
-            //repository.addMoney(requireContext(),Money(0,amount.toInt(),0,0,repository.getUser(requireContext(),"email")))
         }
 
 
     }
 
     // Take budgets from Firestore continously
-    fun populateRV() {
+    private fun populateRV() {
 
-        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget").orderBy("time",Query.Direction.DESCENDING)
+        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget")
+            .orderBy("time", Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, e ->
 
                 var total = 0.0
@@ -167,12 +153,6 @@ class FragmentExpenseIncome : Fragment() {
 
             }
     }
-
-
-
-
-
-
 
 
 }

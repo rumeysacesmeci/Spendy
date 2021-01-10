@@ -12,7 +12,6 @@ import com.github.mikephil.charting.components.LegendEntry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -34,18 +33,18 @@ class FragmentExpense : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setpcStatistics()
+        setPcStatistics()
     }
-    private fun setpcStatistics() {
-        val expenses = ArrayList<PieEntry>()
-        //expenses.add(PieEntry(800F, "Health"))
-        //expenses.add(PieEntry(900F, "Hobbies"))
 
-        var valueCredit =0F
-        var valueInvoice =0F
-        var valueFee =0F
-        var valueMarket =0F
-        var valueOthers =0F
+    private fun setPcStatistics() {
+        val expenses = ArrayList<PieEntry>()
+
+
+        var valueCredit = 0F
+        var valueInvoice = 0F
+        var valueFee = 0F
+        var valueMarket = 0F
+        var valueOthers = 0F
 
 
 
@@ -55,46 +54,47 @@ class FragmentExpense : Fragment() {
             .addOnSuccessListener { result ->
                 for (document in result) {
 
-                    if(document.data.get("type").toString().toInt()==1) {
+                    if (document.data.get("type").toString().toInt() == 1) {
 
-                        if (document.data.get("category").toString().equals(getString(R.string.credit_card))){
-                           valueCredit+=document.data.get("amount").toString().toFloat()
+                        if (document.data.get("category").toString()
+                                .equals(getString(R.string.credit_card))
+                        ) {
+                            valueCredit += document.data.get("amount").toString().toFloat()
+                        } else if (document.data.get("category").toString()
+                                .equals(getString(R.string.invoice))
+                        ) {
+                            valueInvoice += document.data.get("amount").toString().toFloat()
+                        } else if (document.data.get("category").toString()
+                                .equals(getString(R.string.rental_fee))
+                        ) {
+                            valueFee += document.data.get("amount").toString().toFloat()
+                        } else if (document.data.get("category").toString()
+                                .equals(getString(R.string.market))
+                        ) {
+                            valueMarket += document.data.get("amount").toString().toFloat()
+                        } else {
+                            valueOthers += document.data.get("amount").toString().toFloat()
                         }
-                        else if (document.data.get("category").toString().equals( getString(R.string.invoice))){
-                            valueInvoice+=document.data.get("amount").toString().toFloat()
-                        }
-
-                        else if (document.data.get("category").toString().equals(getString(R.string.rental_fee))){
-                            valueFee+=document.data.get("amount").toString().toFloat()
-                        }
-                        else if (document.data.get("category").toString().equals(getString(R.string.market))){
-                            valueMarket+=document.data.get("amount").toString().toFloat()
-                        }
-                        else{
-                            valueOthers+=document.data.get("amount").toString().toFloat()
-                        }
-
-
 
 
                     }
 
                 }
 
-                if(valueCredit>0){
+                if (valueCredit > 0) {
                     expenses.add(PieEntry(valueCredit, getString(R.string.credit_card)))
                 }
-                if(valueInvoice>0){
-                    expenses.add( PieEntry(valueInvoice, getString(R.string.invoice)))
+                if (valueInvoice > 0) {
+                    expenses.add(PieEntry(valueInvoice, getString(R.string.invoice)))
                 }
-                if(valueFee>0){
-                    expenses.add( PieEntry(valueFee, getString(R.string.rental_fee)))
+                if (valueFee > 0) {
+                    expenses.add(PieEntry(valueFee, getString(R.string.rental_fee)))
                 }
-                if(valueMarket>0){
-                    expenses.add( PieEntry(valueMarket, getString(R.string.market)))
+                if (valueMarket > 0) {
+                    expenses.add(PieEntry(valueMarket, getString(R.string.market)))
                 }
-                if(valueOthers>0){
-                    expenses.add( PieEntry(valueOthers, "Others"))
+                if (valueOthers > 0) {
+                    expenses.add(PieEntry(valueOthers, "Others"))
                 }
 
 
@@ -111,11 +111,11 @@ class FragmentExpense : Fragment() {
 
                 val pieData = PieData(pieDataSet)
                 pieDataSet.setColors(
-                    Color.rgb(38,198,218), Color.rgb(0,149,168)
-                    , Color.rgb(207,216,220),Color.rgb(207,216,240),Color.rgb(207,216,200)
+                    Color.rgb(38, 198, 218), Color.rgb(0, 149, 168)
+                    , Color.rgb(207, 216, 220), Color.rgb(207, 216, 240), Color.rgb(207, 216, 200)
                 )
 
-               // pieDataSet.setColors(ColorTemplate.JOYFUL_COLORS,255)
+
 
                 pcStatistics.setHoleRadius(60f)
                 pcStatistics.setCenterTextSize(26f)
@@ -123,7 +123,7 @@ class FragmentExpense : Fragment() {
                 pcStatistics.data = pieData
                 pcStatistics.setUsePercentValues(false)
                 pcStatistics.setEntryLabelColor(Color.WHITE)
-                pcStatistics.description.text=""
+                pcStatistics.description.text = ""
                 pcStatistics.setExtraOffsets(0f, 0f, 0f, 25f);
                 pcStatistics.transparentCircleRadius = 66f
 
@@ -131,13 +131,13 @@ class FragmentExpense : Fragment() {
 
                 var x = 0
 
-                 for (i in expenses) {
-                     var entry = LegendEntry()
+                for (i in expenses) {
+                    var entry = LegendEntry()
 
-                     entry.formColor = pieDataSet.getColor(x)
-                     x += 1
-                     entry.label = "   " + i.label + " - " + i.value.toInt().toString() + " $"
-                     entries.add(entry);
+                    entry.formColor = pieDataSet.getColor(x)
+                    x += 1
+                    entry.label = "   " + i.label + " - " + i.value.toInt().toString() + " $"
+                    entries.add(entry);
                 }
 
 
@@ -153,18 +153,10 @@ class FragmentExpense : Fragment() {
                 legend.setDrawInside(false)
 
 
-             /*   val legend: Legend = pcStatistics.getLegend()
-                legend.form = Legend.LegendForm.CIRCLE
-                legend.textSize = 16f
-                legend.formSize = 20f
-                legend.formToTextSpace = 4f*/
-
             }
 
 
     }
-
-
 
 
 }

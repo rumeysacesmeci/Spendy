@@ -8,27 +8,37 @@ import androidx.test.espresso.action.ViewActions.*
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import com.example.spendy.R
+import com.example.spendy.ui.homepage.HomepageActivity
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
+import org.hamcrest.core.IsInstanceOf
 import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.RuleChain
 import org.junit.runner.RunWith
 
 @LargeTest
-@RunWith(AndroidJUnit4::class)
-class LanguageActivityTest {
+@RunWith(androidx.test.ext.junit.runners.AndroidJUnit4::class)
+class SignInActivityTest {
 
-    @Rule
+
     @JvmField
     var mActivityTestRule = ActivityTestRule(SignInActivity::class.java)
 
+    @JvmField
+    var mhomeActivityTestRule = ActivityTestRule(HomepageActivity::class.java)
+
+
+
+    @Rule
+    @JvmField
+    val chain= RuleChain.outerRule(mhomeActivityTestRule).around(mActivityTestRule)
+
     @Test
-    fun languageActivityTest() {
+    fun signInActivityTest3() {
         val textInputEditText = onView(
             allOf(
                 withId(R.id.txtEmail),
@@ -74,90 +84,17 @@ class LanguageActivityTest {
         )
         appCompatButton.perform(click())
 
-        val appCompatImageButton = onView(
+        val ımageButton = onView(
             allOf(
-                childAtPosition(
+                withParent(
                     allOf(
                         withId(R.id.toolbar),
-                        childAtPosition(
-                            withClassName(`is`("android.widget.LinearLayout")),
-                            0
-                        )
-                    ),
-                    1
+                        withParent(IsInstanceOf.instanceOf(android.widget.LinearLayout::class.java))
+                    )
                 ),
                 isDisplayed()
             )
         )
-        appCompatImageButton.perform(click())
-
-        val navigationMenuItemView = onView(
-            allOf(
-                childAtPosition(
-                    allOf(
-                        withId(R.id.design_navigation_view),
-                        childAtPosition(
-                            withId(R.id.navigationView),
-                            0
-                        )
-                    ),
-                    8
-                ),
-                isDisplayed()
-            )
-        )
-        navigationMenuItemView.perform(click())
-
-        val appCompatImageButton2 = onView(
-            allOf(
-                childAtPosition(
-                    allOf(
-                        withId(R.id.toolbar),
-                        childAtPosition(
-                            withClassName(`is`("android.widget.LinearLayout")),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatImageButton2.perform(click())
-
-        val navigationMenuItemView2 = onView(
-            allOf(
-                childAtPosition(
-                    allOf(
-                        withId(R.id.design_navigation_view),
-                        childAtPosition(
-                            withId(R.id.navigationView),
-                            0
-                        )
-                    ),
-                    8
-                ),
-                isDisplayed()
-            )
-        )
-        navigationMenuItemView2.perform(click())
-
-        val appCompatImageButton3 = onView(
-            allOf(
-                childAtPosition(
-                    allOf(
-                        withId(R.id.toolbar),
-                        childAtPosition(
-                            withClassName(`is`("android.widget.LinearLayout")),
-                            0
-                        )
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        appCompatImageButton3.perform(click())
     }
 
     private fun childAtPosition(

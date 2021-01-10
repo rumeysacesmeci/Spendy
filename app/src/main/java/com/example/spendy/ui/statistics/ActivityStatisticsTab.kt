@@ -3,7 +3,6 @@ package com.example.spendy.ui.statistics
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.spendy.R
-import com.example.spendy.models.ExpenseIncome
 import kotlinx.android.synthetic.main.activity_statistics_tab.*
 
 

@@ -5,24 +5,24 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.spendy.models.ExpenseIncome
 import com.example.spendy.R
 import com.example.spendy.models.Budget
 
 
 // Adapter for card_view_expense_income.xml
-class ExpenseIncomeAdapter(private val context: Context,private val expenseIncomeList:List<Budget>)
-    :RecyclerView.Adapter<ExpenseIncomeAdapter.CardViewObjectsHolder>() {
+class ExpenseIncomeAdapter(
+    private val context: Context,
+    private val expenseIncomeList: List<Budget>
+) : RecyclerView.Adapter<ExpenseIncomeAdapter.CardViewObjectsHolder>() {
 
     //Card view holder
-    inner class CardViewObjectsHolder(view:View):RecyclerView.ViewHolder(view){
-        var tvCategory:TextView
-        var tvAmount:TextView
-        var cv:CardView
+    inner class CardViewObjectsHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var tvCategory: TextView
+        var tvAmount: TextView
+        var cv: CardView
 
         init {
             cv = view.findViewById(R.id.cvExpenseIncome)
@@ -33,7 +33,8 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewObjectsHolder {
-        val design = LayoutInflater.from(context).inflate(R.layout.card_view_expense_income,parent,false)
+        val design =
+            LayoutInflater.from(context).inflate(R.layout.card_view_expense_income, parent, false)
         return CardViewObjectsHolder(design)
     }
 
@@ -50,23 +51,21 @@ class ExpenseIncomeAdapter(private val context: Context,private val expenseIncom
         holder.tvAmount.text = expenseIncome.amount.toString()
 
 
+        //Controlling for type of Budget(0:Income)
+        if (expenseIncome.type == 0) {
 
-        if(expenseIncome.type==0){
-            //holder.tvExpenseIncome.text = "INCOME"
-            holder.cv.setCardBackgroundColor(Color.rgb(207,216,220))
-            holder.tvAmount.setTextColor(Color.rgb(0,128,0))
+            holder.cv.setCardBackgroundColor(Color.rgb(207, 216, 220))
+            holder.tvAmount.setTextColor(Color.rgb(0, 128, 0))
             holder.tvAmount.setText("+" + expenseIncome.amount.toString())
         }
-        if(expenseIncome.type==1){
-            //holder.tvExpenseIncome.text = "EXPENSE"
-            holder.cv.setCardBackgroundColor(Color.rgb(207,216,220))
+        //Controlling for type of Budget(1:Expense)
+        if (expenseIncome.type == 1) {
+
+            holder.cv.setCardBackgroundColor(Color.rgb(207, 216, 220))
             holder.tvAmount.setTextColor(Color.RED)
             holder.tvAmount.setText("-" + expenseIncome.amount.toString())
 
         }
-
-
-
 
 
     }

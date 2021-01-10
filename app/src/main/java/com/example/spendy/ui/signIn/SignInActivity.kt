@@ -1,15 +1,11 @@
 package com.example.spendy.ui.signIn
 
 
-import android.app.Activity
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -24,7 +20,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
@@ -32,9 +27,6 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import kotlinx.android.synthetic.main.activity_sign_in.txtEmail
 import kotlinx.android.synthetic.main.activity_sign_in.txtPassword
-import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.android.synthetic.main.dialog_forgot_password.*
-import java.util.*
 
 
 class SignInActivity : AppCompatActivity() {
@@ -44,7 +36,6 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private lateinit var googleSignInClient: GoogleSignInClient
-    private val repository = Repository()
     private val auth = FirebaseAuth.getInstance()
     private lateinit var mAuth: FirebaseAuth
 
@@ -53,7 +44,7 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
-        //auth.signOut()
+
 
         mAuth = Firebase.auth
 
@@ -68,6 +59,7 @@ class SignInActivity : AppCompatActivity() {
 
         }
 
+        //Checking Token
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
@@ -75,6 +67,7 @@ class SignInActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
+        //Btn google Listener
         btnGoogle.setOnClickListener {
             logInGoogle()
         }
@@ -166,12 +159,12 @@ class SignInActivity : AppCompatActivity() {
             res = false
 
         }
-        if(txtPassword.text.toString().length < 6){
+        if (txtPassword.text.toString().length < 6) {
             txtPassword.error = getString(R.string.password_not_valid_error)
             txtPassword.requestFocus()
             res = false
         }
-        if(!Patterns.EMAIL_ADDRESS.matcher(txtEmail.text.toString()).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(txtEmail.text.toString()).matches()) {
 
             txtEmail.error = getString(R.string.email_validation_error)
             txtEmail.requestFocus()
@@ -220,12 +213,10 @@ class SignInActivity : AppCompatActivity() {
     //On Forgot Password Pressed
 
 
-    fun onForgotButtonPressed(view: View){
+    fun onForgotButtonPressed(view: View) {
 
 
         val builder = AlertDialog.Builder(this)
-
-
 
 
         val view = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
@@ -248,21 +239,14 @@ class SignInActivity : AppCompatActivity() {
         builder.show()
 
 
-
-
-
-
     }
-
-
-
 
 
     //Forgot Password.
     private fun forgotPassword(email: EditText) {
 
 
-        if (email.text.toString().isEmpty()){
+        if (email.text.toString().isEmpty()) {
 
             txtEmail.error = "Please Enter Your E-Mail"
             txtEmail.requestFocus()
@@ -282,10 +266,13 @@ class SignInActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    Toast.makeText(baseContext, "E-Mail has been sent,Please Check Your E-Mail", Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        baseContext,
+                        "E-Mail has been sent,Please Check Your E-Mail",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
-
 
 
     }

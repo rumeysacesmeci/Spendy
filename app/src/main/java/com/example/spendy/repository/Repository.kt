@@ -7,6 +7,7 @@ import com.example.spendy.adapters.ExpenseIncomeAdapter
 import com.example.spendy.models.Budget
 import com.example.spendy.models.SignInModel
 import com.example.spendy.models.User
+import com.example.spendy.models.pieChartModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,7 +24,7 @@ private val auth = FirebaseAuth.getInstance()
 private val db = Firebase.firestore
 private var timeCount = 0
 private lateinit var mutableBudgetList: MutableList<Budget>
-
+private val pcList = ArrayList<pieChartModel>()
 
 class Repository {
 
@@ -149,27 +150,27 @@ class Repository {
 
         mutableBudgetList = mutableListOf()//?
 
+        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
 
 
-        /*
-
-        db.collection("Users").document(auth.currentUser!!.email.toString()).collection("Budget").addSnapshotListener { snapshot, e ->
 
 
-            if (e != null || snapshot == null) {
 
-                return@addSnapshotListener
+
+                    pcList.add(pieChartModel(document.data.get("amount").toString(),document.data.get("category").toString()))
+
+
+                }
+
+
+                pcList.forEach {
+
+                    println(it.amount)
+                }
             }
-
-
-           // budgetList = snapshot.toObjects(Budget::class.java)
-
-
-
-        }
-            */
-
-
 
 
         return mutableBudgetList

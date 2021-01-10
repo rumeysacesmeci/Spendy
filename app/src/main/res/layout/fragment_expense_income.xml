@@ -45,7 +45,8 @@
         app:layout_constraintBottom_toTopOf="@+id/btnExpense"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvExpenseIncome"
@@ -64,11 +65,15 @@
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginBottom="5dp"
+        android:background="@color/secondaryDarkColor"
+        android:gravity="center"
         android:text="@string/tv_total_currency"
+
+        android:textColor="@color/white"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvTime"
+        app:layout_constraintBottom_toTopOf="@+id/tvTotal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -82,12 +87,15 @@
         app:srcCompat="@drawable/vallet" />
 
     <TextView
-        android:id="@+id/tvTime"
+        android:id="@+id/tvTotal"
         android:layout_width="410dp"
         android:layout_height="46dp"
         android:layout_marginBottom="13dp"
-        android:text="Tİme"
-        android:textSize="24sp"
+
+        android:background="@color/income"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/txtAmount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

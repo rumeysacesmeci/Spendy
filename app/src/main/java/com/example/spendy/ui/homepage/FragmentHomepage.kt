@@ -47,6 +47,7 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
 
     private val pcEntries = ArrayList<PieEntry>()
     var total = 0.0
+    var balance=0F
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,7 +76,7 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
 
 
         populateRV()
-        setPcStatistics()
+
 
 
     }
@@ -85,8 +86,8 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
     private fun populateRV() {
 
 
-        db.collection("Users").document(auth.currentUser!!.email.toString())
-            .collection("Budget").limit(5).orderBy("time", Query.Direction.DESCENDING)
+        db.collection("Users").document(auth.currentUser?.email.toString())
+            .collection("Budget").orderBy("time", Query.Direction.DESCENDING)
 
             .addSnapshotListener { snapshot, e ->
 
@@ -107,7 +108,10 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
                             total -= it.amount
                         }
                     }
-                    printtotal(total)
+                    if(budgetList.isEmpty()){
+                        balance=1F
+                    }
+                    setPcStatistics()
                 }
 
 
@@ -117,10 +121,7 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
 
                 adapter.notifyDataSetChanged()
 
-
             }
-
-
     }
 
 
@@ -128,7 +129,10 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
     private fun setPcStatistics() {
 
 
-        pcEntries.add(PieEntry(1000F, getString(R.string.balance)))
+        balance += total.toString().toFloat()
+        pcHomepage.centerText = total.toString()
+        pcEntries.add(PieEntry(balance, getString(R.string.balance)))
+
         //expenses.add(PieEntry(800F, "Health"))
         //expenses.add(PieEntry(900F, "Hobbies"))*/
 
@@ -150,7 +154,7 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
 
 
 
-       // pcHomepage.centerText = total.toString()
+        // pcHomepage.centerText = total.toString()
         pcHomepage.setUsePercentValues(false)
 
         pcHomepage.setEntryLabelColor(Color.WHITE)
@@ -163,8 +167,12 @@ class FragmentHomepage : androidx.fragment.app.Fragment() {
     }
 
     fun printtotal(total:Double){
+        var balance=0F
+        balance += total.toString().toFloat()
 
-            pcHomepage.centerText = total.toString()
+
+        pcHomepage.centerText = total.toString()
+        pcEntries.add(PieEntry(balance, getString(R.string.balance)))
 
     }
 

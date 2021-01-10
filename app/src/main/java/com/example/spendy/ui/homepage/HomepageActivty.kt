@@ -93,7 +93,7 @@ public final class HomepageActivity : AppCompatActivity() {
             }
             if(menuItem.itemId == R.id.action_statistics){
 
-                
+
 
                 val nvgToStatistic = Intent(this, ActivityStatisticsTab::class.java)
 
@@ -104,7 +104,6 @@ public final class HomepageActivity : AppCompatActivity() {
             if(menuItem.itemId==R.id.action_logout){
 
                 auth.signOut()
-
                 val nvgToSignUp = Intent(this, SignInActivity::class.java)
                 startActivity(nvgToSignUp)
                 finish()

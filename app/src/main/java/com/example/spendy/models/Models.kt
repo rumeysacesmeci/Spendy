@@ -47,3 +47,10 @@ data class Budget(
 
 
 )
+
+data class pieChartModel(
+
+        val amount:String,
+        val category: String
+
+)
